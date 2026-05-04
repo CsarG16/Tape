@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de QR Secreto ❤</title>
+    <title>Generador de QR Romántico ❤</title>
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FBDBDA;
+            background: linear-gradient(135deg, #FBDBDA 0%, #F2C3C2 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,57 +18,79 @@
             margin: 0;
             color: #590d22;
         }
-
         .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 15px 35px rgba(197, 92, 102, 0.2);
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
+            border: 2px solid #E9ABAC;
         }
-
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 1rem 0;
             border: 2px solid #E9ABAC;
-            border-radius: 5px;
+            border-radius: 10px;
             box-sizing: border-box;
+            outline: none;
+            text-align: center;
         }
-
+        .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         button {
             background-color: #C55C66;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            margin: 5px;
+            transition: all 0.3s ease;
         }
-
-        button:hover {
-            background-color: #CE6E75;
+        button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        #canvas-container { 
+            margin-top: 2rem; 
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            display: inline-block;
+            position: relative;
         }
-
-        #canvas-container {
-            margin-top: 1.5rem;
+        /* Estilo para el marco de corazón */
+        .heart-frame {
+            position: relative;
+            display: inline-block;
+        }
+        .heart-frame::after {
+            content: '';
+            position: absolute;
+            top: -10%; left: -10%;
+            width: 120%; height: 120%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="none" stroke="%23CE6E75" stroke-width="20" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
         }
     </style>
 </head>
-
 <body>
     <div class="card">
-        <h1>Generador de QR</h1>
-        <p>Introduce la URL que verás en tu celular (ej: http://192.168.100.18:8000)</p>
-        <input type="text" id="qr-url" placeholder="http://..." value="http://192.168.100.18:8000">
-        <button onclick="generateQR()">Generar QR con Corazón</button>
-        <button onclick="downloadQR()" id="download-btn"
-            style="display:none; background-color: #590d22;">Descargar</button>
-
-        <div id="canvas-container"></div>
+        <h1 style="margin:0; font-size: 1.8rem; color: #590d22;">QR Romántico ❤</h1>
+        <p style="font-size: 0.95rem; margin-top: 0.5rem; color: #C55C66;">Genera el código para Xime</p>
+        
+        <input type="text" id="qr-url" placeholder="URL del proyecto" value="http://192.168.100.18:8000">
+        
+        <div class="btns">
+            <button onclick="generateQR()">Generar con Corazón</button>
+            <button onclick="downloadQR()" id="download-btn" style="display:none; background-color: #590d22;">Descargar PNG</button>
+        </div>
+        
+        <div id="canvas-container">
+            <div id="qr-result"></div>
+        </div>
     </div>
 
     <script>
@@ -77,47 +98,51 @@
 
         function generateQR() {
             const url = document.getElementById('qr-url').value;
-            if (!url) return alert("Pon una URL válida");
-
+            
             qrCode = new QRCodeStyling({
                 width: 300,
                 height: 300,
                 type: "svg",
                 data: url,
+                // Imagen central de corazón en formato SVG
+                image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23C55C66' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/></svg>",
                 dotsOptions: {
                     color: "#C55C66",
-                    type: "rounded" // Podemos usar 'dots' o 'rounded'
+                    type: "dots" 
                 },
                 backgroundOptions: {
                     color: "#ffffff",
                 },
-                cornersSquareOptions: {
-                    color: "#590d22",
-                    type: "extra-rounded"
-                },
-                cornersDotOptions: {
-                    color: "#590d22",
-                    type: "dot"
-                },
                 imageOptions: {
                     crossOrigin: "anonymous",
-                    margin: 10
+                    margin: 8,
+                    imageSize: 0.4
+                },
+                cornersSquareOptions: {
+                    type: "extra-rounded",
+                    color: "#590d22"
+                },
+                cornersDotOptions: {
+                    type: "dot",
+                    color: "#C55C66"
+                },
+                qrOptions: {
+                    errorCorrectionLevel: "H"
                 }
-                // Nota: Para un corazón en el medio, necesitaríamos una imagen de un corazón.
-                // Intentaremos usar un emoji o una imagen de corazón simple si la tuvieras.
-                // Por ahora, usaremos puntos redondeados que dan un aspecto más suave.
             });
 
-            const container = document.getElementById("canvas-container");
-            container.innerHTML = "";
-            qrCode.append(container);
+            const resultContainer = document.getElementById("qr-result");
+            resultContainer.innerHTML = "";
+            qrCode.append(resultContainer);
+            
+            // Aplicar el marco de corazón visual
+            document.getElementById("canvas-container").className = "heart-frame";
             document.getElementById("download-btn").style.display = "inline-block";
         }
 
         function downloadQR() {
-            qrCode.download({ name: "qr-ximenita", extension: "png" });
+            qrCode.download({ name: "qr-ximenita-corazon", extension: "png" });
         }
     </script>
 </body>
-
 </html>
