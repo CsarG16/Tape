@@ -4,39 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Un mensaje especial para ti.">
     <title>Para Ximenita ❤</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;800&display=swap" rel="stylesheet">
-    <!-- Main Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <style>
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem !important; }
-    </style>
 </head>
 <body>
-    <!-- Initial Overlay to bypass browser autoplay restrictions -->
-    <div id="message-overlay">
+    <div id="message-overlay" style="display: flex;">
         <h2 style="font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff4d6d; margin-bottom: 2rem;">¿Lista, mi amor?</h2>
-        <button id="start-btn" class="heart-btn">❤</button>
-        <p style="margin-top: 2rem; font-family: 'Inter', sans-serif; font-style: normal;">Presiona el corazón</p>
+        <a href="{% url 'mensaje' %}" class="heart-btn" style="text-decoration: none;">❤</a>
+        <p style="margin-top: 2rem; font-family: 'Inter', sans-serif;">Toca el corazón</p>
     </div>
 
-    <!-- Hidden Audio -->
-    <audio id="romantic-audio" loop>
-        <source src="{% static 'Hecha Pa\' Mi.mp3' %}" type="audio/mpeg">
-        Tu navegador no soporta el audio.
-    </audio>
-
-    <div class="container">
-        <h1>Para: Ximenita</h1>
-        <p>"Porque cada dibujo y cada letra de esta carta tienen un solo dueño... Tú."</p>
-        <div style="font-size: 3rem; margin-top: 1rem;">✨💖✨</div>
-    </div>
-
-    <!-- Main JS -->
     <script src="{% static 'main.js' %}"></script>
 </body>
 </html>
