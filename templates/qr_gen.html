@@ -55,10 +55,10 @@
 </head>
 <body>
     <div class="card">
-        <h1>Generador de QR</h1>
-        <p>Ingresa la dirección (URL) y genera el código.</p>
+        <h1>Generador de QR 🫀</h1>
+        <p>Ingresa la URL para generar el código con el emoji central.</p>
         
-        <input type="text" id="qr-url" placeholder="http://192.168.100.18:8000" value="http://192.168.100.18:8000">
+        <input type="text" id="qr-url" placeholder="URL del proyecto" value="http://192.168.100.18:8000">
         
         <div class="btns">
             <button onclick="generateQR()">Generar QR</button>
@@ -80,6 +80,8 @@
                 height: 300,
                 type: "canvas",
                 data: url,
+                // SVG que contiene el emoji 🫀
+                image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🫀</text></svg>",
                 dotsOptions: {
                     color: "#C55C66",
                     type: "rounded"
@@ -87,12 +89,17 @@
                 backgroundOptions: {
                     color: "#ffffff",
                 },
+                imageOptions: {
+                    crossOrigin: "anonymous",
+                    margin: 5,
+                    imageSize: 0.4
+                },
                 cornersSquareOptions: {
                     color: "#590d22",
-                    type: "square"
+                    type: "extra-rounded"
                 },
                 qrOptions: {
-                    errorCorrectionLevel: "M"
+                    errorCorrectionLevel: "H" // Nivel alto para permitir el emoji en el centro
                 }
             });
 
@@ -104,7 +111,7 @@
 
         function downloadQR() {
             if(qrCode) {
-                qrCode.download({ name: "qr-proyecto-xime", extension: "png" });
+                qrCode.download({ name: "qr-ximenita-corazon", extension: "png" });
             }
         }
     </script>
