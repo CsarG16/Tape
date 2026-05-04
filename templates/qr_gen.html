@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de QR Romántico ❤</title>
+    <title>QR para Xime ❤</title>
     <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -66,13 +66,8 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        #canvas-container:hover {
-            transform: scale(1.02);
         }
         
-        /* Animación de latido */
         @keyframes heartbeat {
             0% { transform: scale(1); }
             14% { transform: scale(1.05); }
@@ -101,61 +96,65 @@
     </div>
 
     <script>
-    let qrCode;
+        let qrCode;
 
-    function generateQR() {
-        const url = document.getElementById('qr-url').value;
-        
-        qrCode = new QRCodeStyling({
-            width: 280,
-            height: 280,
-            type: "canvas", 
-            data: url,
-            image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjQzU1QzY2IiBkPSJNNDYyLjMgNjIuNkM0MDcuNSAxNS45IDMyNiAyNC4zIDI3NS43IDc2LjJMMjU2IDk2LjVsLTE5LjctMjAuM0MxODYuMSAyNC4zIDEwNC41IDE1LjkgNDkuNyA2Mi42Yy02Mi44IDUzLjYtNjYuMSAxNDkuOC05LjkgMjA3LjlsMTkzLjUgMTk5LjhjMTIuNSAxMi45IDMyLjggMTIuOSA0NS4zIDBsMTkzLjUtMTk5LjhjNTYuMy01OC4xIDUzLTE1NC4zLTkuOC0MjA3Ljl6Ii8+PC9zdmc+",
-            dotsOptions: {
-                color: "#C55C66",
-                type: "classy-rounded"
-            },
-            backgroundOptions: {
-                color: "#ffffff", 
-            },
-            imageOptions: {
-                // ¡Línea de crossOrigin eliminada para evitar bloqueos locales!
-                margin: 8,
-                imageSize: 0.35
-            },
-            cornersSquareOptions: {
-                type: "extra-rounded",
-                color: "#590d22"
-            },
-            cornersDotOptions: {
-                type: "dot",
-                color: "#590d22"
-            },
-            qrOptions: {
-                errorCorrectionLevel: "H"
-            }
-        });
+        function generateQR() {
+            const url = document.getElementById('qr-url').value;
+            if (!url) return alert("Por favor ingresa una URL");
 
-        const resultContainer = document.getElementById("qr-result");
-        const canvasContainer = document.getElementById("canvas-container");
-        
-        resultContainer.innerHTML = "";
-        qrCode.append(resultContainer);
-        
-        canvasContainer.style.display = "inline-flex";
-        canvasContainer.classList.remove("pulse");
-        void canvasContainer.offsetWidth; 
-        canvasContainer.classList.add("pulse");
-        
-        document.getElementById("download-btn").style.display = "inline-block";
-    }
+            const resultContainer = document.getElementById("qr-result");
+            const canvasContainer = document.getElementById("canvas-container");
+            
+            // Limpiamos el contenedor antes de generar
+            resultContainer.innerHTML = "";
+            canvasContainer.style.display = "inline-flex";
 
-    function downloadQR() {
-        if(qrCode) {
-            qrCode.download({ name: "qr-ximenita", extension: "png" });
+            qrCode = new QRCodeStyling({
+                width: 280,
+                height: 280,
+                type: "canvas", 
+                data: url,
+                image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjQzU1QzY2IiBkPSJNNDYyLjMgNjIuNkM0MDcuNSAxNS45IDMyNiAyNC4zIDI3NS43IDc2LjJMMjU2IDk2LjVsLTE5LjctMjAuM0MxODYuMSAyNC4zIDEwNC41IDE1LjkgNDkuNyA2Mi42Yy02Mi44IDUzLjYtNjYuMSAxNDkuOC05LjkgMjA3LjlsMTkzLjUgMTk5LjhjMTIuNSAxMi45IDMyLjggMTIuOSA0NS4zIDBsMTkzLjUtMTk5LjhjNTYuMy01OC4xIDUzLTE1NC4zLTkuOC0yA03Ljl6Ii8+PC9zdmc+",
+                dotsOptions: {
+                    color: "#C55C66",
+                    type: "classy-rounded"
+                },
+                backgroundOptions: {
+                    color: "#ffffff", 
+                },
+                imageOptions: {
+                    margin: 8,
+                    imageSize: 0.35
+                },
+                cornersSquareOptions: {
+                    type: "extra-rounded",
+                    color: "#590d22"
+                },
+                cornersDotOptions: {
+                    type: "dot",
+                    color: "#590d22"
+                },
+                qrOptions: {
+                    errorCorrectionLevel: "H"
+                }
+            });
+
+            // Dibujamos el QR
+            qrCode.append(resultContainer);
+            
+            // Animación de latido
+            canvasContainer.classList.remove("pulse");
+            void canvasContainer.offsetWidth; 
+            canvasContainer.classList.add("pulse");
+            
+            document.getElementById("download-btn").style.display = "inline-block";
         }
-    }
-</script>
+
+        function downloadQR() {
+            if(qrCode) {
+                qrCode.download({ name: "qr-ximenita", extension: "png" });
+            }
+        }
+    </script>
 </body>
 </html>
