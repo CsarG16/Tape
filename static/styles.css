@@ -1,12 +1,16 @@
 :root {
-    --romantic-pink: #ff85a1;
-    --romantic-red: #ff4d6d;
-    --bg-warm: #fff0f3;
+    --palo-rosa-1: #FBDBDA;
+    --palo-rosa-2: #F2C3C2;
+    --palo-rosa-3: #E9ABAC;
+    --palo-rosa-4: #E09698;
+    --palo-rosa-5: #D78286;
+    --palo-rosa-6: #CE6E75;
+    --palo-rosa-7: #C55C66;
     --text-dark: #590d22;
 }
 
 body {
-    background: radial-gradient(circle, #fff0f3 0%, #ffccd5 100%);
+    background: radial-gradient(circle, var(--palo-rosa-1) 0%, var(--palo-rosa-2) 100%);
     color: var(--text-dark);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     display: flex;
@@ -22,10 +26,10 @@ body {
     text-align: center;
     padding: 3rem;
     border-radius: 2rem;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 133, 161, 0.3);
-    box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15);
+    border: 2px solid var(--palo-rosa-3);
+    box-shadow: 0 20px 40px rgba(197, 92, 102, 0.15);
     z-index: 10;
     max-width: 90%;
     animation: fadeIn 2s ease-out;
@@ -37,24 +41,23 @@ body {
 }
 
 h1 {
-    font-family: 'Inter', sans-serif; /* Could use a more cursive font if imported */
     font-weight: 800;
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, var(--romantic-red), var(--romantic-pink));
+    background: linear-gradient(to right, var(--palo-rosa-7), var(--palo-rosa-5));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 p {
     font-size: 1.2rem;
-    color: #800f2f;
+    color: var(--palo-rosa-7);
     margin-bottom: 2rem;
     font-style: italic;
 }
 
 .heart-btn {
-    background: var(--romantic-red);
+    background: var(--palo-rosa-7);
     color: white;
     border: none;
     width: 100px;
@@ -65,7 +68,7 @@ p {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+    box-shadow: 0 10px 20px rgba(197, 92, 102, 0.4);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     animation: pulse 1.5s infinite;
@@ -77,15 +80,15 @@ p {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(255, 77, 109, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(197, 92, 102, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(197, 92, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(197, 92, 102, 0); }
 }
 
 /* Floating hearts background */
 .floating-heart {
     position: absolute;
-    color: var(--romantic-pink);
+    color: var(--palo-rosa-4);
     font-size: 1.5rem;
     pointer-events: none;
     z-index: 1;
@@ -106,7 +109,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 240, 243, 0.95);
+    background: rgba(251, 219, 218, 0.95);
     display: flex;
     flex-direction: column;
     justify-content: center;
