@@ -1,28 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('dynamic-btn');
+    const startBtn = document.getElementById('start-btn');
+    const overlay = document.getElementById('message-overlay');
+    const audio = document.getElementById('romantic-audio');
     const container = document.querySelector('.container');
 
-    btn.addEventListener('click', () => {
-        // Simple micro-animation
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            btn.style.transform = 'scale(1)';
-        }, 100);
+    // Create floating hearts
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-heart');
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+        heart.style.fontSize = Math.random() * 1 + 1 + 'rem';
+        document.body.appendChild(heart);
 
-        // Interaction effect
-        const colors = ['#6366f1', '#a855f7', '#ec4899', '#f59e0b'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        
-        btn.style.background = randomColor;
-        document.querySelector('h1').style.backgroundImage = `linear-gradient(to right, ${randomColor}, #fff)`;
-        
-        console.log("¡Ximenita está viva!");
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHeart, 400);
+
+    startBtn.addEventListener('click', () => {
+        // Start audio
+        audio.play().catch(error => {
+            console.log("Audio play failed:", error);
+        });
+
+        // Hide overlay with fade
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 1000);
+
+        console.log("Música iniciada para Ximenita ❤");
     });
 
-    // Subtle parallax mouse move effect
+    // Subtle parallax effect for the main card
     document.addEventListener('mousemove', (e) => {
-        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+        const xAxis = (window.innerWidth / 2 - e.pageX) / 40;
+        const yAxis = (window.innerHeight / 2 - e.pageY) / 40;
         container.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
     });
 });
