@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +19,17 @@
             margin: 0;
             color: #590d22;
         }
+
         .card {
             background: white;
             padding: 2rem;
             border-radius: 1rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
             max-width: 400px;
             width: 90%;
         }
+
         input {
             width: 100%;
             padding: 10px;
@@ -35,6 +38,7 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
+
         button {
             background-color: #C55C66;
             color: white;
@@ -45,18 +49,26 @@
             font-weight: bold;
             margin: 5px;
         }
-        button:hover { background-color: #CE6E75; }
-        #canvas-container { margin-top: 1.5rem; }
+
+        button:hover {
+            background-color: #CE6E75;
+        }
+
+        #canvas-container {
+            margin-top: 1.5rem;
+        }
     </style>
 </head>
+
 <body>
     <div class="card">
         <h1>Generador de QR</h1>
         <p>Introduce la URL que verás en tu celular (ej: http://192.168.100.18:8000)</p>
         <input type="text" id="qr-url" placeholder="http://..." value="http://192.168.100.18:8000">
         <button onclick="generateQR()">Generar QR con Corazón</button>
-        <button onclick="downloadQR()" id="download-btn" style="display:none; background-color: #590d22;">Descargar</button>
-        
+        <button onclick="downloadQR()" id="download-btn"
+            style="display:none; background-color: #590d22;">Descargar</button>
+
         <div id="canvas-container"></div>
     </div>
 
@@ -107,4 +119,5 @@
         }
     </script>
 </body>
+
 </html>
