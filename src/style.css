@@ -201,7 +201,7 @@ body {
     #CA7C83 45%,
     #B56A72 100%
   );
-  transition: width 0.08s linear, height 0.3s ease, top 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  transition: width 0.08s linear;
   will-change: width;
 }
 
@@ -211,30 +211,63 @@ body {
               0 0 4px rgba(202, 124, 131, 0.2);
 }
 
-/* Animación de desplazamiento de la onda */
-@keyframes waveMove {
+/* Animaciones de desplazamiento de las ondas */
+@keyframes waveMoveLeft {
   0% {
     background-position-x: 0px;
   }
   100% {
-    background-position-x: -20px; /* Desplaza exactamente un ciclo para un bucle perfecto */
+    background-position-x: -90px;
   }
 }
 
-/* Barra de progreso ondulada estilo Samsung One UI 8 / Android 13 */
-.progress-bar-container.is-playing:not(.active) .progress-fill {
-  height: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent; /* Quita el fondo de gradiente sólido */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='12' viewBox='0 0 20 12'%3E%3Cpath d='M 0 6 Q 5 0%2C 10 6 T 20 6' fill='none' stroke='%23CA7C83' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+@keyframes waveMoveRight {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: -60px;
+  }
+}
+
+/* Ondas fluidas (estilo espectro de Samsung One UI 8) */
+.progress-wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
   background-repeat: repeat-x;
-  background-position: 0 center;
-  background-size: 20px 12px;
-  border-radius: 0;
-  animation: waveMove 0.8s linear infinite;
-  box-shadow: none !important;
-  filter: drop-shadow(0 1.5px 3px rgba(202, 124, 131, 0.3));
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.wave-1 {
+  height: 18px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='18' viewBox='0 0 90 18'%3E%3Cpath d='M 0 18 C 18 18%2C 22.5 2%2C 45 2 C 67.5 2%2C 72 18%2C 90 18 Z' fill='rgba(255%2C 255%2C 255%2C 0.22)'/%3E%3C/svg%3E");
+  background-size: 90px 18px;
+  background-position: 0 bottom;
+}
+
+.wave-2 {
+  height: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='22' viewBox='0 0 60 22'%3E%3Cpath d='M 0 22 C 12 22%2C 15 2%2C 30 2 C 45 2%2C 48 22%2C 60 22 Z' fill='rgba(255%2C 255%2C 255%2C 0.35)'/%3E%3C/svg%3E");
+  background-size: 60px 22px;
+  background-position: 0 bottom;
+}
+
+/* Mostrar y animar las ondas solo cuando se reproduce y no se arrastra */
+.progress-bar-container.is-playing:not(.active) .progress-wave {
+  opacity: 1;
+}
+
+.progress-bar-container.is-playing:not(.active) .wave-1 {
+  animation: waveMoveLeft 3.5s linear infinite;
+}
+
+.progress-bar-container.is-playing:not(.active) .wave-2 {
+  animation: waveMoveRight 2.2s linear infinite;
 }
 
 /* Thumb (bolita) — invisible por defecto, aparece al hover/touch */
