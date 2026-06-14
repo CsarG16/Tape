@@ -48,6 +48,7 @@ const btnLike = document.getElementById('btn-like');
 const progressBarContainer = document.getElementById('progress-bar-container');
 const progressTrack = document.getElementById('progress-track');
 const progressFill = document.getElementById('progress-fill');
+const progressWaveContainer = document.getElementById('progress-wave-container');
 const progressThumb = document.getElementById('progress-thumb');
 const progressTooltip = document.getElementById('progress-tooltip');
 const timeCurrent = document.getElementById('time-current');
@@ -188,6 +189,9 @@ function setProgressBar(percent) {
   const clamped = Math.max(0, Math.min(100, percent));
   progressFill.style.width = clamped + '%';
   progressThumb.style.left = clamped + '%';
+  if (progressWaveContainer) {
+    progressWaveContainer.style.width = clamped + '%';
+  }
 }
 
 // Calcula el porcentaje de progreso a partir de la posición X del puntero

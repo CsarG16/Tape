@@ -217,7 +217,7 @@ body {
     background-position-x: 0px;
   }
   100% {
-    background-position-x: -90px;
+    background-position-x: -120px;
   }
 }
 
@@ -226,35 +226,46 @@ body {
     background-position-x: 0px;
   }
   100% {
-    background-position-x: -60px;
+    background-position-x: -80px;
   }
+}
+
+/* Contenedor de las ondas - posicionado y centrado sobre el track de progreso */
+.progress-wave-container {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0%;
+  height: 30px; /* Altura suficiente para que las ondas sobresalgan por arriba y abajo */
+  overflow: hidden; /* Corta las ondas exactamente en el thumb horizontalmente */
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Ondas fluidas (estilo espectro de Samsung One UI 8) */
 .progress-wave {
   position: absolute;
   left: 0;
-  bottom: 0;
-  width: 100%;
+  top: 0;
+  width: 440px; /* Ancho fijo grande para que no se deformen al estirarse la barra */
+  height: 100%;
   pointer-events: none;
   opacity: 0;
   background-repeat: repeat-x;
   transition: opacity 0.35s ease;
-  z-index: 1;
 }
 
 .wave-1 {
-  height: 18px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='18' viewBox='0 0 90 18'%3E%3Cpath d='M 0 18 C 18 18%2C 22.5 2%2C 45 2 C 67.5 2%2C 72 18%2C 90 18 Z' fill='rgba(255%2C 255%2C 255%2C 0.22)'/%3E%3C/svg%3E");
-  background-size: 90px 18px;
-  background-position: 0 bottom;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30' viewBox='0 0 120 30'%3E%3Cpath d='M 0 15 C 30 3%2C 30 27%2C 60 15 C 90 3%2C 90 27%2C 120 15 L 120 30 L 0 30 Z' fill='rgba(255%2C 255%2C 255%2C 0.22)'/%3E%3C/svg%3E");
+  background-size: 120px 30px;
+  background-position: 0 center;
 }
 
 .wave-2 {
-  height: 22px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='22' viewBox='0 0 60 22'%3E%3Cpath d='M 0 22 C 12 22%2C 15 2%2C 30 2 C 45 2%2C 48 22%2C 60 22 Z' fill='rgba(255%2C 255%2C 255%2C 0.35)'/%3E%3C/svg%3E");
-  background-size: 60px 22px;
-  background-position: 0 bottom;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 80 30'%3E%3Cpath d='M 0 15 C 20 0%2C 20 30%2C 40 15 C 60 0%2C 60 30%2C 80 15 L 80 30 L 0 30 Z' fill='rgba(255%2C 255%2C 255%2C 0.35)'/%3E%3C/svg%3E");
+  background-size: 80px 30px;
+  background-position: 0 center;
 }
 
 /* Mostrar y animar las ondas solo cuando se reproduce y no se arrastra */
@@ -263,11 +274,11 @@ body {
 }
 
 .progress-bar-container.is-playing:not(.active) .wave-1 {
-  animation: waveMoveLeft 3.5s linear infinite;
+  animation: waveMoveLeft 4s linear infinite;
 }
 
 .progress-bar-container.is-playing:not(.active) .wave-2 {
-  animation: waveMoveRight 2.2s linear infinite;
+  animation: waveMoveRight 2.5s linear infinite;
 }
 
 /* Thumb (bolita) — invisible por defecto, aparece al hover/touch */
