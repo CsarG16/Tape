@@ -1,6 +1,7 @@
 import welcomeHTML from './templates/welcome.html?raw';
 import storyHTML from './templates/story.html?raw';
 import playerHTML from './templates/player.html?raw';
+import { playlist } from './playlistData.js';
 
 // SVGs de Heroicons para Play/Pause
 const playIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 ml-0.5"><path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>`;
@@ -11,12 +12,12 @@ document.getElementById('screen-welcome-container').innerHTML = welcomeHTML;
 document.getElementById('screen-story-container').innerHTML = storyHTML;
 document.getElementById('screen-player-container').innerHTML = playerHTML;
 
-// Playlist Data (Puedes cambiar las canciones y los mensajes aquí)
-const playlist = [];
-
 let currentIndex = 0;
 let isPlaying = false;
 let heartsInterval = null;
+let lastActiveIndex = -1; // Rastreador de línea activa de karaoke
+let animationFrameId = null; // ID para el loop de requestAnimationFrame
+let currentLanguage = 'EN'; // Idioma actual de las letras ('EN' o 'ES')
 
 // DOM Elements
 const screenWelcome = document.getElementById('screen-welcome');
@@ -43,14 +44,26 @@ const btnPrev = document.getElementById('btn-prev');
 const btnNext = document.getElementById('btn-next');
 const btnLike = document.getElementById('btn-like');
 
-const progressSlider = document.getElementById('progress-slider');
+// Custom Progress Bar DOM (Samsung One UI 8 Widget Style)
+const progressBarContainer = document.getElementById('progress-bar-container');
+const progressTrack = document.getElementById('progress-track');
+const progressFill = document.getElementById('progress-fill');
+const progressThumb = document.getElementById('progress-thumb');
+const progressTooltip = document.getElementById('progress-tooltip');
 const timeCurrent = document.getElementById('time-current');
 const timeDuration = document.getElementById('time-duration');
+let isScrubbing = false; // Estado de arrastre activo
 
+// Card & scroll flow elements (Carta y letras flotantes)
 const btnOpenLetter = document.getElementById('btn-open-letter');
-const btnCloseLetter = document.getElementById('btn-close-letter');
-const letterOverlay = document.getElementById('letter-overlay');
+const btnBackToControlsFromLetter = document.getElementById('btn-back-to-controls-from-letter');
 const letterText = document.getElementById('letter-text');
+
+const btnOpenLyrics = document.getElementById('btn-open-lyrics');
+const btnBackToControls = document.getElementById('btn-back-to-controls');
+const btnTranslateLyrics = document.getElementById('btn-translate-lyrics');
+const lyricsText = document.getElementById('lyrics-text');
+const lyricsContainerScroll = document.getElementById('lyrics-container-scroll');
 
 const btnClosePlaylist = document.getElementById('btn-close-playlist');
 const playlistOverlay = document.getElementById('playlist-overlay');
@@ -64,18 +77,38 @@ const glow3 = document.getElementById('glow-3');
 function loadTrack(index) {
   if (playlist.length === 0) {
     songTitle.textContent = "Sin canciones";
-    songArtist.textContent = "Edita src/main.js para agregar música";
-    letterText.textContent = "Tu playlist está vacía.\n\nPara empezar, abre el archivo src/main.js y añade tus canciones (título, artista, archivo mp3 y tu carta dedicada) dentro de la lista 'playlist'.";
+    songArtist.textContent = "Edita src/playlistData.js";
+    letterText.textContent = "Tu playlist está vacía.";
+    lyricsText.innerHTML = '<p class="text-sm text-neutral-soft-500 text-center py-12">Sin letras.</p>';
     audioPlayer.src = "";
     return;
   }
   currentIndex = index;
   const track = playlist[index];
   
+  // Control de idioma y visibilidad del botón de traducción
+  currentLanguage = 'EN';
+  if (btnTranslateLyrics) {
+    btnTranslateLyrics.querySelector('span').textContent = 'ES';
+    const hasTranslation = track.lyrics && track.lyrics.some(line => line.translation && line.translation !== line.text);
+    if (hasTranslation) {
+      btnTranslateLyrics.classList.remove('hidden');
+    } else {
+      btnTranslateLyrics.classList.add('hidden');
+    }
+  }
+  
   // Update texts and assets
   songTitle.textContent = track.title;
   songArtist.textContent = track.artist;
   letterText.textContent = track.message;
+  
+  // Renderizar las letras de karaoke dinámicamente
+  buildLyricsUI(track.lyrics);
+  lastActiveIndex = -1; // Resetear índice de karaoke
+  if (lyricsContainerScroll) {
+    lyricsContainerScroll.scrollTop = 0; // Regresar scroll de letras arriba
+  }
   
   // Set audio source
   audioPlayer.src = track.src;
@@ -87,13 +120,42 @@ function loadTrack(index) {
     glow3.style.backgroundColor = track.glowColors.glow3;
   }
   
-  // Reset slider and times
-  progressSlider.value = 0;
+  // Reset progress bar and times
+  setProgressBar(0);
   timeCurrent.textContent = "0:00";
   timeDuration.textContent = "0:00";
   
   // Highlight active item in playlist bottom sheet
   updatePlaylistActiveState();
+}
+
+// Generador de interfaz de letras sincronizadas
+function buildLyricsUI(lyricsArray) {
+  lyricsText.innerHTML = ''; // Limpiar letras previas
+  if (!lyricsArray || lyricsArray.length === 0) {
+    lyricsText.innerHTML = '<p class="text-sm text-neutral-soft-500 text-center py-12">Esta canción no tiene letra configurada.</p>';
+    return;
+  }
+  
+  lyricsArray.forEach((line, idx) => {
+    const lineDiv = document.createElement('div');
+    lineDiv.className = 'lyric-line';
+    lineDiv.setAttribute('data-time', line.time);
+    
+    // Si el idioma es español (ES) y la línea tiene traducción, usarla; si no, mantener el original (EN/ES)
+    const displayText = (currentLanguage === 'ES' && line.translation) ? line.translation : line.text;
+    lineDiv.textContent = displayText;
+    
+    // Salto interactivo a la línea al hacer clic (Estilo Spotify premium)
+    lineDiv.addEventListener('click', () => {
+      audioPlayer.currentTime = line.time;
+      if (!isPlaying) {
+        playTrack();
+      }
+    });
+    
+    lyricsText.appendChild(lineDiv);
+  });
 }
 
 function updatePlaylistActiveState() {
@@ -103,12 +165,140 @@ function updatePlaylistActiveState() {
       item.classList.add('bg-palo-rosa-200/60');
       item.classList.remove('bg-palo-rosa-100/50');
       item.querySelector('.active-indicator').classList.remove('hidden');
+      item.querySelector('.active-indicator').classList.add('flex');
     } else {
       item.classList.remove('bg-palo-rosa-200/60');
       item.classList.add('bg-palo-rosa-100/50');
+      item.querySelector('.active-indicator').classList.remove('flex');
       item.querySelector('.active-indicator').classList.add('hidden');
     }
   });
+}
+
+// ========== Motor de Progreso a 60fps (Samsung One UI 8 Engine) ==========
+
+// Actualiza visualmente la barra de progreso (fill + thumb)
+function setProgressBar(percent) {
+  const clamped = Math.max(0, Math.min(100, percent));
+  progressFill.style.width = clamped + '%';
+  progressThumb.style.left = clamped + '%';
+}
+
+// Calcula el porcentaje de progreso a partir de la posición X del puntero
+function getProgressFromPointer(e) {
+  const rect = progressTrack.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const x = clientX - rect.left;
+  return Math.max(0, Math.min(100, (x / rect.width) * 100));
+}
+
+// Scrubbing: inicio (pointerdown / touchstart)
+function onScrubStart(e) {
+  e.preventDefault();
+  isScrubbing = true;
+  progressBarContainer.classList.add('active');
+  
+  const percent = getProgressFromPointer(e);
+  setProgressBar(percent);
+  updateTooltip(percent, e);
+  
+  if (audioPlayer.duration) {
+    const time = (percent / 100) * audioPlayer.duration;
+    timeCurrent.textContent = formatTime(time);
+  }
+}
+
+// Scrubbing: movimiento (pointermove / touchmove)
+function onScrubMove(e) {
+  if (!isScrubbing) return;
+  e.preventDefault();
+  
+  const percent = getProgressFromPointer(e);
+  setProgressBar(percent);
+  updateTooltip(percent, e);
+  
+  if (audioPlayer.duration) {
+    const time = (percent / 100) * audioPlayer.duration;
+    timeCurrent.textContent = formatTime(time);
+  }
+}
+
+// Scrubbing: finalización (pointerup / touchend)
+function onScrubEnd(e) {
+  if (!isScrubbing) return;
+  isScrubbing = false;
+  progressBarContainer.classList.remove('active');
+  
+  // Calcular posición final y aplicar seek al audio
+  const percent = progressFill.style.width ? parseFloat(progressFill.style.width) : 0;
+  if (audioPlayer.duration) {
+    audioPlayer.currentTime = (percent / 100) * audioPlayer.duration;
+  }
+}
+
+// Posicionar el tooltip flotante de tiempo
+function updateTooltip(percent, e) {
+  if (!audioPlayer.duration) return;
+  const time = (percent / 100) * audioPlayer.duration;
+  progressTooltip.textContent = formatTime(time);
+  
+  // Posicionar horizontalmente sobre el thumb, clampeando a los bordes
+  const trackRect = progressTrack.getBoundingClientRect();
+  const tooltipWidth = progressTooltip.offsetWidth;
+  const thumbPx = (percent / 100) * trackRect.width;
+  
+  // Clampear para que no se salga del contenedor
+  const minLeft = tooltipWidth / 2 + 4;
+  const maxLeft = trackRect.width - tooltipWidth / 2 - 4;
+  const clampedLeft = Math.max(minLeft, Math.min(maxLeft, thumbPx));
+  
+  progressTooltip.style.left = clampedLeft + 'px';
+}
+
+// Registrar eventos de interacción (pointer + touch para máxima compatibilidad)
+progressBarContainer.addEventListener('pointerdown', onScrubStart);
+document.addEventListener('pointermove', onScrubMove);
+document.addEventListener('pointerup', onScrubEnd);
+
+// Touch events como respaldo para iOS Safari
+progressBarContainer.addEventListener('touchstart', onScrubStart, { passive: false });
+document.addEventListener('touchmove', onScrubMove, { passive: false });
+document.addEventListener('touchend', onScrubEnd);
+
+// Click directo en la pista (salto instantáneo sin arrastre)
+progressBarContainer.addEventListener('click', (e) => {
+  if (isScrubbing) return; // Ignorar si ya estamos arrastrando
+  const percent = getProgressFromPointer(e);
+  setProgressBar(percent);
+  if (audioPlayer.duration) {
+    audioPlayer.currentTime = (percent / 100) * audioPlayer.duration;
+    timeCurrent.textContent = formatTime(audioPlayer.currentTime);
+  }
+});
+
+// Soporte de teclado (accesibilidad): flechas izquierda/derecha para avanzar/retroceder
+progressBarContainer.addEventListener('keydown', (e) => {
+  if (!audioPlayer.duration) return;
+  const step = 5; // Segundos por keypress
+  if (e.key === 'ArrowRight') {
+    audioPlayer.currentTime = Math.min(audioPlayer.duration, audioPlayer.currentTime + step);
+  } else if (e.key === 'ArrowLeft') {
+    audioPlayer.currentTime = Math.max(0, audioPlayer.currentTime - step);
+  }
+});
+
+// Loop de renderizado a 60fps
+function updateProgressAndLyrics() {
+  if (audioPlayer.duration && !isScrubbing) {
+    const currentTime = audioPlayer.currentTime;
+    const progress = (currentTime / audioPlayer.duration) * 100;
+    setProgressBar(progress);
+    timeCurrent.textContent = formatTime(currentTime);
+    updateLyricsSync(currentTime);
+  }
+  if (isPlaying) {
+    animationFrameId = requestAnimationFrame(updateProgressAndLyrics);
+  }
 }
 
 // Play / Pause Logic
@@ -117,6 +307,11 @@ function playTrack() {
   audioPlayer.play().then(() => {
     isPlaying = true;
     btnPlayPause.innerHTML = pauseIconSVG;
+    vinyl.classList.add('playing');
+    
+    // Iniciar loop de renderizado a 60fps
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    animationFrameId = requestAnimationFrame(updateProgressAndLyrics);
   }).catch((e) => {
     console.error("Audio playback error:", e);
   });
@@ -127,8 +322,16 @@ function pauseTrack() {
   audioPlayer.pause();
   isPlaying = false;
   btnPlayPause.innerHTML = playIconSVG;
+  vinyl.classList.remove('playing');
+  
+  // Detener loop
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
 }
 
+// Alternar reproducción
 function togglePlay() {
   if (playlist.length === 0) return;
   if (isPlaying) {
@@ -146,11 +349,11 @@ function nextTrack() {
   if (isPlaying) {
     playTrack();
   } else {
-    // Si estaba en pausa, solo cargar la pista sin reproducir
     audioPlayer.load();
   }
 }
 
+// Anterior canción
 function prevTrack() {
   if (playlist.length === 0) return;
   let prevIdx = currentIndex - 1;
@@ -163,7 +366,7 @@ function prevTrack() {
   }
 }
 
-// Time Formatting helper (e.g. 125 -> 2:05)
+// Formatear segundos en minutos (ej. 125 -> 2:05)
 function formatTime(seconds) {
   if (isNaN(seconds)) return "0:00";
   const mins = Math.floor(seconds / 60);
@@ -171,12 +374,63 @@ function formatTime(seconds) {
   return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-// Audio events
+// Sincronización de Letras de Karaoke (Spotify Engine)
+function updateLyricsSync(currentTime) {
+  const lines = lyricsText.querySelectorAll('.lyric-line');
+  if (lines.length === 0) return;
+  
+  let activeIndex = -1;
+  
+  // Buscar la línea que debería estar activa actualmente
+  for (let i = 0; i < lines.length; i++) {
+    const time = parseFloat(lines[i].getAttribute('data-time'));
+    if (currentTime >= time) {
+      activeIndex = i;
+    } else {
+      break;
+    }
+  }
+  
+  // Si la línea activa cambia, resaltar y centrar
+  if (activeIndex !== -1 && activeIndex !== lastActiveIndex) {
+    lastActiveIndex = activeIndex;
+    
+    lines.forEach((line, idx) => {
+      if (idx === activeIndex) {
+        line.classList.add('active');
+      } else {
+        line.classList.remove('active');
+      }
+    });
+    
+    // Scroll centrado automático robusto (inmune a problemas de offsetParent)
+    if (lyricsContainerScroll && lines[activeIndex]) {
+      const activeLine = lines[activeIndex];
+      const containerRect = lyricsContainerScroll.getBoundingClientRect();
+      const activeLineRect = activeLine.getBoundingClientRect();
+      
+      // Calcular la posición absoluta de la línea dentro del contenedor con scroll
+      const absoluteLineTop = activeLineRect.top - containerRect.top + lyricsContainerScroll.scrollTop;
+      // Centrar exactamente
+      const targetScroll = absoluteLineTop - (containerRect.height / 2) + (activeLineRect.height / 2);
+      
+      lyricsContainerScroll.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  }
+}
+
+// Audio events (mantener eventos como respaldo y soporte al cambiar el audio)
 audioPlayer.addEventListener('timeupdate', () => {
-  if (audioPlayer.duration) {
-    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressSlider.value = progress;
-    timeCurrent.textContent = formatTime(audioPlayer.currentTime);
+  // Si no está reproduciendo y no estamos arrastrando, actualizar de inmediato una vez
+  if (!isPlaying && !isScrubbing && audioPlayer.duration) {
+    const currentTime = audioPlayer.currentTime;
+    const progress = (currentTime / audioPlayer.duration) * 100;
+    setProgressBar(progress);
+    timeCurrent.textContent = formatTime(currentTime);
+    updateLyricsSync(currentTime);
   }
 });
 
@@ -187,20 +441,6 @@ audioPlayer.addEventListener('loadedmetadata', () => {
 audioPlayer.addEventListener('ended', () => {
   nextTrack();
   playTrack();
-});
-
-// Slider interaction (seek)
-progressSlider.addEventListener('input', () => {
-  if (audioPlayer.duration) {
-    const time = (progressSlider.value / 100) * audioPlayer.duration;
-    timeCurrent.textContent = formatTime(time);
-  }
-});
-
-progressSlider.addEventListener('change', () => {
-  if (audioPlayer.duration) {
-    audioPlayer.currentTime = (progressSlider.value / 100) * audioPlayer.duration;
-  }
 });
 
 // Build Playlist Bottom Sheet
@@ -215,10 +455,10 @@ function buildPlaylistUI() {
     trackDiv.className = 'track-item flex items-center justify-between p-4 bg-palo-rosa-100/50 rounded-xl transition-all duration-300 cursor-pointer active:scale-[0.98]';
     trackDiv.innerHTML = `
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 overflow-hidden bg-black flex items-center justify-center">
+        <div class="w-10 h-10 overflow-hidden bg-black flex items-center justify-center rounded-md">
           <img src="${track.cover}" class="w-full h-full object-cover" />
         </div>
-        <div>
+        <div class="text-left">
           <h4 class="text-sm font-semibold text-palo-rosa-800 truncate max-w-[180px]">${track.title}</h4>
           <p class="text-xs text-neutral-soft-500">${track.artist}</p>
         </div>
@@ -246,18 +486,43 @@ function buildPlaylistUI() {
   });
 }
 
-// Overlay Toggle Functions
-function openLetterSheet() {
-  closePlaylistSheet(); // Cerrar playlist si estuviera abierta
-  letterOverlay.classList.remove('translate-y-full');
+// Desplazamiento a Carta (Letter Flow)
+function scrollToLetter() {
+  closePlaylistSheet();
+  const letterSection = document.getElementById('letter-section');
+  letterSection.classList.remove('hidden');
+  
+  setTimeout(() => {
+    letterSection.scrollIntoView({ behavior: 'smooth' });
+  }, 30);
 }
 
-function closeLetterSheet() {
-  letterOverlay.classList.add('translate-y-full');
+// Desplazamiento a Letras (Lyrics Flow)
+function scrollToLyrics() {
+  closePlaylistSheet();
+  const lyricsSection = document.getElementById('lyrics-section');
+  lyricsSection.classList.remove('hidden');
+  
+  setTimeout(() => {
+    lyricsSection.scrollIntoView({ behavior: 'smooth' });
+  }, 30);
 }
 
+// Regresar suavemente al panel superior
+function scrollToControls() {
+  screenPlayer.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  setTimeout(() => {
+    const letterSection = document.getElementById('letter-section');
+    const lyricsSection = document.getElementById('lyrics-section');
+    letterSection.classList.add('hidden');
+    lyricsSection.classList.add('hidden');
+  }, 650);
+}
+
+// Overlay Toggle Functions (Lista de Reproducción)
 function openPlaylistSheet() {
-  closeLetterSheet(); // Cerrar carta de amor si estuviera abierta
+  screenPlayer.scrollTo({ top: 0, behavior: 'auto' });
   playlistOverlay.classList.remove('translate-y-full');
 }
 
@@ -265,45 +530,41 @@ function closePlaylistSheet() {
   playlistOverlay.classList.add('translate-y-full');
 }
 
-// Floating Hearts Particle Engine
+// Floating Hearts Particle Engine (Únicamente corazones anatómicos)
 function createFloatingHeart() {
   const heart = document.createElement('div');
   heart.className = 'floating-heart text-palo-rosa-400';
   
-  // Decide character randomly
   const symbols = ['🫀'];
   heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
   
-  // Random styling
   const size = Math.random() * 0.8 + 0.6; // 0.6rem to 1.4rem
   heart.style.fontSize = `${size}rem`;
-  heart.style.left = `${Math.random() * 92 + 4}vw`; // 4vw to 96vw
+  heart.style.left = `${Math.random() * 92 + 4}vw`;
   
-  const drift = Math.random() * 40 - 20; // -20vw to 20vw drift
-  const rotation = Math.random() * 360 - 180; // rotation
+  const drift = Math.random() * 40 - 20;
+  const rotation = Math.random() * 360 - 180;
   heart.style.setProperty('--drift', `${drift}vw`);
   heart.style.setProperty('--rot', `${rotation}deg`);
   
-  // Speed up hearts when music is playing!
   const duration = isPlaying ? (Math.random() * 2 + 2.5) : (Math.random() * 3 + 4); 
   heart.style.animationDuration = `${duration}s`;
   heart.style.opacity = Math.random() * 0.4 + 0.4;
   
   document.body.appendChild(heart);
   
-  // Clean up
   setTimeout(() => {
     heart.remove();
   }, duration * 1000);
 }
 
-// Scroll Story Snapping intersection observer for scroll reveal (de ventana completa)
+// Scroll reveal observer
 function initScrollAnimations() {
   const scrollItems = document.querySelectorAll('.scroll-item');
   
   const observerOptions = {
-    root: null, // Usa el viewport de la ventana del navegador
-    threshold: 0.45 // Se activa cuando casi la mitad de la carta es visible
+    root: null,
+    threshold: 0.45
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -325,30 +586,23 @@ function initScrollAnimations() {
 
 // Transition 1: Welcome -> Scroll Story
 function handleEnter() {
-  // Unificar desbloqueo de Audio en iOS: Cargamos el archivo en segundo plano mediante interaccion inicial
   audioPlayer.load();
   audioPlayer.play().then(() => {
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
   }).catch(e => console.log("Audio contextual unlock:", e));
 
-  // Transition welcome screen out
   screenWelcome.classList.add('opacity-0', 'scale-95');
   
   setTimeout(() => {
     screenWelcomeContainer.style.display = 'none';
-    
-    // Activar scroll en el body
     document.body.style.overflowY = 'auto';
-    
-    // Transition story screen in
     screenStoryContainer.style.display = 'block';
     screenStory.style.display = 'flex';
-    screenStory.offsetHeight; // Force reflow
+    screenStory.offsetHeight;
     screenStory.classList.remove('opacity-0');
     screenStory.classList.add('opacity-100');
     
-    // Iniciar lluvia lenta de corazones durante la lectura
     if (!heartsInterval) {
       heartsInterval = setInterval(createFloatingHeart, 900);
     }
@@ -357,36 +611,30 @@ function handleEnter() {
 
 // Transition 2: Scroll Story -> Player
 function handleGoToPlayer() {
-  // Iniciar reproducción de música para real
   playTrack();
 
-  // Aumentar la velocidad de los corazones flotantes
   if (heartsInterval) {
     clearInterval(heartsInterval);
-    heartsInterval = setInterval(createFloatingHeart, 450); // Lluvia más intensa
+    heartsInterval = setInterval(createFloatingHeart, 450);
   }
 
-  // Desactivar scroll del body
   document.body.style.overflowY = 'hidden';
   window.scrollTo(0, 0);
 
-  // Transition story screen out
   screenStory.classList.remove('opacity-100');
   screenStory.classList.add('opacity-0');
 
   setTimeout(() => {
     screenStoryContainer.style.display = 'none';
-
-    // Transition player screen in
     screenPlayerContainer.style.display = 'block';
     screenPlayer.style.display = 'flex';
-    screenPlayer.offsetHeight; // Force reflow
+    screenPlayer.offsetHeight;
     screenPlayer.classList.remove('opacity-0');
     screenPlayer.classList.add('opacity-100');
   }, 600);
 }
 
-// Back to Welcome (Reset)
+// Back to Welcome
 function handleBackToWelcome() {
   pauseTrack();
   screenPlayer.classList.remove('opacity-100');
@@ -399,11 +647,12 @@ function handleBackToWelcome() {
     screenWelcome.offsetHeight;
     screenWelcome.classList.remove('opacity-0', 'scale-95');
     
-    // Desactivar scroll
     document.body.style.overflowY = 'hidden';
     window.scrollTo(0, 0);
     
-    // Stop hearts when returning
+    // Resetear posición de scroll del reproductor
+    screenPlayer.scrollTo({ top: 0, behavior: 'auto' });
+    
     if (heartsInterval) {
       clearInterval(heartsInterval);
       heartsInterval = null;
@@ -417,8 +666,33 @@ btnGoToPlayer.addEventListener('click', handleGoToPlayer);
 btnBackWelcome.addEventListener('click', handleBackToWelcome);
 btnTogglePlaylist.addEventListener('click', openPlaylistSheet);
 btnClosePlaylist.addEventListener('click', closePlaylistSheet);
-btnOpenLetter.addEventListener('click', openLetterSheet);
-btnCloseLetter.addEventListener('click', closeLetterSheet);
+
+// Carta scroll triggers
+btnOpenLetter.addEventListener('click', scrollToLetter);
+btnBackToControlsFromLetter.addEventListener('click', scrollToControls);
+
+// Letras scroll triggers
+btnOpenLyrics.addEventListener('click', scrollToLyrics);
+btnBackToControls.addEventListener('click', scrollToControls);
+
+if (btnTranslateLyrics) {
+  btnTranslateLyrics.addEventListener('click', () => {
+    if (currentLanguage === 'EN') {
+      currentLanguage = 'ES';
+      btnTranslateLyrics.querySelector('span').textContent = 'EN';
+    } else {
+      currentLanguage = 'EN';
+      btnTranslateLyrics.querySelector('span').textContent = 'ES';
+    }
+    
+    const track = playlist[currentIndex];
+    buildLyricsUI(track.lyrics);
+    
+    // Forzar actualización visual inmediata de la línea activa tras cambiar idioma
+    lastActiveIndex = -1;
+    updateLyricsSync(audioPlayer.currentTime);
+  });
+}
 
 btnPlayPause.addEventListener('click', togglePlay);
 btnNext.addEventListener('click', nextTrack);
@@ -436,16 +710,12 @@ btnLike.addEventListener('click', () => {
     svg.setAttribute('fill', 'currentColor');
     btnLike.classList.remove('text-palo-rosa-400');
     btnLike.classList.add('text-palo-rosa-500');
-    // Trigger a mini heart particle
     createFloatingHeart();
   }
 });
 
 // Close sheets when clicking outside them
 document.addEventListener('click', (e) => {
-  if (!letterOverlay.contains(e.target) && !btnOpenLetter.contains(e.target) && !letterOverlay.classList.contains('translate-y-full')) {
-    closeLetterSheet();
-  }
   if (!playlistOverlay.contains(e.target) && !btnTogglePlaylist.contains(e.target) && !playlistOverlay.classList.contains('translate-y-full')) {
     closePlaylistSheet();
   }
@@ -457,7 +727,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTrack(0);
   initScrollAnimations();
   
-  // Ocultar contenedores de pantallas inactivas explícitamente al inicio
   screenStoryContainer.style.display = 'none';
   screenPlayerContainer.style.display = 'none';
 });

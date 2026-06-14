@@ -9,10 +9,12 @@
   </head>
   <body class="bg-palo-rosa-50 text-palo-rosa-800 flex items-center justify-center min-h-screen relative overflow-hidden">
     
-    <!-- Ambient Blur Background (Dynamic colored blobs) -->
-    <div id="glow-1" class="ambient-glow w-96 h-96 bg-palo-rosa-300/40 top-[-10%] left-[-20%]"></div>
-    <div id="glow-2" class="ambient-glow w-[30rem] h-[30rem] bg-palo-rosa-400/25 bottom-[-10%] right-[-10%]"></div>
-    <div id="glow-3" class="ambient-glow w-80 h-80 bg-palo-rosa-200/50 top-[30%] right-[10%]"></div>
+    <!-- Ambient Blur Background Container (Prevents scrollbars from negative coordinates) -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div id="glow-1" class="ambient-glow w-96 h-96 bg-palo-rosa-300/40 top-[-10%] left-[-20%]"></div>
+      <div id="glow-2" class="ambient-glow w-[30rem] h-[30rem] bg-palo-rosa-400/25 bottom-[-10%] right-[-10%]"></div>
+      <div id="glow-3" class="ambient-glow w-80 h-80 bg-palo-rosa-200/50 top-[30%] right-[10%]"></div>
+    </div>
 
     <!-- MAIN APP CONTAINER (Cubre toda la pantalla de forma transparente) -->
     <div id="app" class="w-full min-h-[100dvh] flex flex-col z-10 relative select-none">
