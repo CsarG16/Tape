@@ -102,6 +102,9 @@ function loadTrack(index) {
   songTitle.textContent = track.title;
   songArtist.textContent = track.artist;
   letterText.textContent = track.message;
+  if (albumCover) {
+    albumCover.src = track.cover || '/album_art.png';
+  }
   
   // Renderizar las letras de karaoke dinámicamente
   buildLyricsUI(track.lyrics);
@@ -611,8 +614,6 @@ function handleEnter() {
 
 // Transition 2: Scroll Story -> Player
 function handleGoToPlayer() {
-  playTrack();
-
   if (heartsInterval) {
     clearInterval(heartsInterval);
     heartsInterval = setInterval(createFloatingHeart, 450);

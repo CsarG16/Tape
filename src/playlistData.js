@@ -3,7 +3,7 @@ export const playlist = [
     "title": "My Favorite Part",
     "artist": "Mac Miller (feat. Ariana Grande)",
     "src": "/music/Mac Miller - My Favorite Part.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/The Divine Feminie.jpg",
     "message": "Esta canción me recuerda lo hermosa e increíble que eres para mí, aunque a veces no te des cuenta de todo el brillo que transmites. Esa espontaneidad tuya es mi parte favorita de ti. 🫀",
     "lyrics": [
       {
