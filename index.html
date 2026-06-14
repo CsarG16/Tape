@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Para Ximenita</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body class="bg-palo-rosa-50 text-palo-rosa-800 flex items-center justify-center min-h-screen relative overflow-hidden">
+    
+    <!-- Ambient Blur Background (Dynamic colored blobs) -->
+    <div id="glow-1" class="ambient-glow w-96 h-96 bg-palo-rosa-300/40 top-[-10%] left-[-20%]"></div>
+    <div id="glow-2" class="ambient-glow w-[30rem] h-[30rem] bg-palo-rosa-400/25 bottom-[-10%] right-[-10%]"></div>
+    <div id="glow-3" class="ambient-glow w-80 h-80 bg-palo-rosa-200/50 top-[30%] right-[10%]"></div>
+
+    <!-- MAIN APP CONTAINER (Cubre toda la pantalla de forma transparente) -->
+    <div id="app" class="w-full min-h-[100dvh] flex flex-col z-10 relative select-none">
+      <!-- Los templates de las pantallas se inyectarán en estos contenedores -->
+      <div id="screen-welcome-container" class="h-full w-full flex flex-col justify-center items-center"></div>
+      <div id="screen-story-container" class="w-full"></div>
+      <div id="screen-player-container" class="h-full w-full"></div>
+    </div>
+
+    <!-- Elemento de audio global -->
+    <audio id="audio-player"></audio>
+
+    <!-- Script de lógica -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #FEFDFE;
+  font-family: 'Inter', sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Glassmorphism Styles (light theme) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(238, 182, 187, 0.25);
+}
+
+.glass-panel-heavy {
+  background: rgba(252, 241, 242, 0.85);
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1px solid rgba(238, 182, 187, 0.15);
+}
+
+/* Ambient Glowing Backgrounds */
+.ambient-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+  transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Vinyl Sheen Overlay */
+.vinyl-sheen {
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 45%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.2) 55%,
+    transparent 60%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Vinyl grooves simulation */
+.vinyl-grooves {
+  background-image: repeating-radial-gradient(
+    circle,
+    #000,
+    #000 3px,
+    #181818 4px,
+    #000 5px
+  );
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+/* Floating Hearts Animation */
+.floating-heart {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform, opacity;
+  animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(105vh) translateX(0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(var(--drift)) scale(1.1) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+/* Custom scrollbar (modern standards) */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(202, 124, 131, 0.15) transparent;
+}
+
+/* Custom Webkit scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(202, 124, 131, 0.15);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(202, 124, 131, 0.4);
+}
+
+/* Pulse Animation for Heart Button */
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(202, 124, 131, 0.5));
+  }
+  50% {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 25px rgba(202, 124, 131, 0.8));
+  }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 1.8s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Ring pulse */
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-ring-pulse {
+  animation: ringPulse 2.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Custom slider input */
+input[type="range"].progress-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(202, 124, 131, 0.15);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+input[type="range"].progress-slider:hover {
+  background: rgba(202, 124, 131, 0.3);
+}
+
+input[type="range"].progress-slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+}
+
+input[type="range"].progress-slider::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  background: #CA7C83;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px;
+  transition: transform 0.1s;
+  box-shadow: 0 2px 6px rgba(202, 124, 131, 0.35);
+}
+
+input[type="range"].progress-slider:active::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+
+/* Safe areas and screen optimization (iPhone, Mac, Tablets) */
+#app {
+  padding-top: calc(1.5rem + env(safe-area-inset-top));
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* En pantallas grandes (Mac, PC, Tablets) lo centramos de forma limpia y transparente */
+@media (min-width: 768px) {
+  #app {
+    margin: auto;
+    position: relative;
+    z-index: 10;
+  }
+}
+
