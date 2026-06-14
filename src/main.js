@@ -127,6 +127,9 @@ function loadTrack(index) {
   setProgressBar(0);
   timeCurrent.textContent = "0:00";
   timeDuration.textContent = "0:00";
+  if (progressBarContainer) {
+    progressBarContainer.classList.remove('is-playing');
+  }
   
   // Highlight active item in playlist bottom sheet
   updatePlaylistActiveState();
@@ -311,6 +314,9 @@ function playTrack() {
     isPlaying = true;
     btnPlayPause.innerHTML = pauseIconSVG;
     vinyl.classList.add('playing');
+    if (progressBarContainer) {
+      progressBarContainer.classList.add('is-playing');
+    }
     
     // Iniciar loop de renderizado a 60fps
     if (animationFrameId) cancelAnimationFrame(animationFrameId);
@@ -326,6 +332,9 @@ function pauseTrack() {
   isPlaying = false;
   btnPlayPause.innerHTML = playIconSVG;
   vinyl.classList.remove('playing');
+  if (progressBarContainer) {
+    progressBarContainer.classList.remove('is-playing');
+  }
   
   // Detener loop
   if (animationFrameId) {
