@@ -550,3 +550,10 @@ html, body {
   text-shadow: 0 0 20px rgba(202, 124, 131, 0.25);
 }
 
+/* Evitar scroll vertical en el reproductor principal en móvil cuando las secciones extra están ocultas */
+@media (max-width: 1279px) {
+  .player-main-block {
+    min-height: calc(100dvh - 3.5rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  }
+}
+
