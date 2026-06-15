@@ -587,7 +587,12 @@ function createFloatingHeart() {
   heart.style.animationDuration = `${duration}s`;
   heart.style.opacity = Math.random() * 0.4 + 0.4;
   
-  document.body.appendChild(heart);
+  const heartsContainer = document.getElementById('hearts-container');
+  if (heartsContainer) {
+    heartsContainer.appendChild(heart);
+  } else {
+    document.body.appendChild(heart);
+  }
   
   setTimeout(() => {
     heart.remove();
@@ -632,7 +637,6 @@ function handleEnter() {
   
   setTimeout(() => {
     screenWelcomeContainer.style.display = 'none';
-    document.body.style.overflowY = 'auto';
     screenStoryContainer.style.display = 'block';
     screenStory.style.display = 'flex';
     screenStory.offsetHeight;
@@ -651,9 +655,6 @@ function handleGoToPlayer() {
     clearInterval(heartsInterval);
     heartsInterval = setInterval(createFloatingHeart, 450);
   }
-
-  document.body.style.overflowY = 'hidden';
-  window.scrollTo(0, 0);
 
   screenStory.classList.remove('opacity-100');
   screenStory.classList.add('opacity-0');
@@ -680,9 +681,6 @@ function handleBackToWelcome() {
     screenWelcome.style.display = 'flex';
     screenWelcome.offsetHeight;
     screenWelcome.classList.remove('opacity-0', 'scale-95');
-    
-    document.body.style.overflowY = 'hidden';
-    window.scrollTo(0, 0);
     
     // Resetear posición de scroll del reproductor
     screenPlayer.scrollTo({ top: 0, behavior: 'auto' });
