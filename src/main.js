@@ -47,6 +47,17 @@ const btnGoToPlayer = document.getElementById('btn-go-to-player');
 const btnBackWelcome = document.getElementById('btn-back-welcome');
 const btnTogglePlaylist = document.getElementById('btn-toggle-playlist');
 
+// Voice Note Player Elements
+const btnPlayVoice = document.getElementById('btn-play-voice');
+const voicePlayIcon = document.getElementById('voice-play-icon');
+const voicePauseIcon = document.getElementById('voice-pause-icon');
+const voiceProgressContainer = document.getElementById('voice-progress-container');
+const voiceProgressFill = document.getElementById('voice-progress-fill');
+const voiceProgressThumb = document.getElementById('voice-progress-thumb');
+const voiceTimeCurrent = document.getElementById('voice-time-current');
+const voiceTimeDuration = document.getElementById('voice-time-duration');
+const voiceNoteAudio = document.getElementById('voice-note-audio');
+
 const audioPlayer = document.getElementById('audio-player');
 const vinyl = document.getElementById('vinyl');
 const albumCover = document.getElementById('album-cover');
@@ -869,8 +880,85 @@ function initScrollAnimations() {
   });
 }
 
+let isVoicePlaying = false;
+
+function playVoiceNote() {
+  if (!voiceNoteAudio) return;
+  voiceNoteAudio.play().then(() => {
+    isVoicePlaying = true;
+    if (voicePlayIcon) voicePlayIcon.classList.add('hidden');
+    if (voicePauseIcon) voicePauseIcon.classList.remove('hidden');
+  }).catch(e => console.error("Error playing voice note:", e));
+}
+
+function pauseVoiceNote() {
+  if (!voiceNoteAudio) return;
+  voiceNoteAudio.pause();
+  isVoicePlaying = false;
+  if (voicePlayIcon) voicePlayIcon.classList.remove('hidden');
+  if (voicePauseIcon) voicePauseIcon.classList.add('hidden');
+}
+
+function toggleVoiceNote() {
+  if (isVoicePlaying) {
+    pauseVoiceNote();
+  } else {
+    playVoiceNote();
+  }
+}
+
+// Event Listeners para la Nota de Voz
+if (btnPlayVoice) {
+  btnPlayVoice.addEventListener('click', toggleVoiceNote);
+}
+
+if (voiceNoteAudio) {
+  voiceNoteAudio.addEventListener('timeupdate', () => {
+    if (voiceNoteAudio.duration) {
+      const percent = (voiceNoteAudio.currentTime / voiceNoteAudio.duration) * 100;
+      if (voiceProgressFill) voiceProgressFill.style.width = percent + '%';
+      if (voiceProgressThumb) {
+        voiceProgressThumb.style.left = percent + '%';
+        voiceProgressThumb.classList.remove('opacity-0');
+        voiceProgressThumb.classList.add('opacity-100');
+      }
+      if (voiceTimeCurrent) voiceTimeCurrent.textContent = formatTime(voiceNoteAudio.currentTime);
+    }
+  });
+
+  voiceNoteAudio.addEventListener('loadedmetadata', () => {
+    if (voiceTimeDuration) voiceTimeDuration.textContent = formatTime(voiceNoteAudio.duration);
+  });
+
+  voiceNoteAudio.addEventListener('ended', () => {
+    pauseVoiceNote();
+    if (voiceProgressFill) voiceProgressFill.style.width = '0%';
+    if (voiceProgressThumb) {
+      voiceProgressThumb.style.left = '0%';
+      voiceProgressThumb.classList.add('opacity-0');
+    }
+    if (voiceTimeCurrent) voiceTimeCurrent.textContent = '0:00';
+  });
+}
+
+if (voiceProgressContainer) {
+  voiceProgressContainer.addEventListener('click', (e) => {
+    const rect = voiceProgressContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percent = Math.max(0, Math.min(1, x / rect.width));
+    if (voiceNoteAudio && voiceNoteAudio.duration) {
+      voiceNoteAudio.currentTime = percent * voiceNoteAudio.duration;
+      if (voiceProgressFill) voiceProgressFill.style.width = (percent * 100) + '%';
+      if (voiceProgressThumb) voiceProgressThumb.style.left = (percent * 100) + '%';
+    }
+  });
+}
+
 // Transition 1: Welcome -> Scroll Story
 function handleEnter() {
+  // Pausar la nota de voz si se está reproduciendo al avanzar
+  pauseVoiceNote();
+
   audioPlayer.load();
   audioPlayer.play().then(() => {
     audioPlayer.pause();
@@ -1030,6 +1118,12 @@ document.addEventListener('DOMContentLoaded', () => {
   buildPlaylistUI();
   loadTrack(0);
   initScrollAnimations();
+  
+  // Set voice note source dynamically
+  if (voiceNoteAudio) {
+    const base = import.meta.env.BASE_URL;
+    voiceNoteAudio.src = `${base}uwu.m4a`;
+  }
   
   screenStoryContainer.style.display = 'none';
   screenPlayerContainer.style.display = 'none';
