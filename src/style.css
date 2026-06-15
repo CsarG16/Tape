@@ -444,3 +444,107 @@ html, body {
 .drag-handle:active {
   cursor: grabbing;
 }
+
+/* ========== RESPONSIVE DESKTOP LAYOUT (≥1280px / xl) ========== */
+
+/* Panel derecho con separador sutil */
+@media (min-width: 1280px) {
+  /* Welcome screen: textos más grandes en desktop */
+  #screen-welcome h1 {
+    font-size: 4rem;
+  }
+  
+  #screen-welcome p {
+    font-size: 1.125rem;
+    max-width: 28rem;
+  }
+
+  /* Story screen: textos más amplios en desktop */
+  #screen-story .font-handwritten2 {
+    font-size: 2rem;
+  }
+
+  /* Player screen */
+  #screen-player {
+    gap: 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Panel izquierdo: centrado vertical con ancho fijo */
+  #player-left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid rgba(238, 182, 187, 0.2);
+    padding-right: 2rem;
+  }
+
+  /* Panel derecho: borde sutil de separación con glassmorphism */
+  #player-right-panel {
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  /* Sutil glow detrás del panel derecho */
+  #player-right-panel::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: -1px;
+    width: 2px;
+    height: 60%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(202, 124, 131, 0.3) 30%,
+      rgba(202, 124, 131, 0.5) 50%,
+      rgba(202, 124, 131, 0.3) 70%,
+      transparent 100%
+    );
+    filter: blur(3px);
+    pointer-events: none;
+  }
+
+  /* Ocultar botones de Carta y Letra en desktop (se usan los tabs del panel derecho) */
+  #btn-open-letter,
+  #btn-open-lyrics {
+    display: none !important;
+  }
+}
+
+/* Desktop: Estilos de Tabs del panel derecho */
+.desktop-tab {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.desktop-tab:hover {
+  transform: scale(1.05);
+}
+
+.desktop-tab:active {
+  transform: scale(0.95);
+}
+
+/* Desktop lyrics container: reutiliza los mismos estilos de karaoke */
+#desktop-lyrics-content .lyric-line {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: left center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.4;
+  color: rgba(124, 86, 90, 0.35);
+  opacity: 0.35;
+  filter: blur(0.5px);
+}
+
+#desktop-lyrics-content .lyric-line.active {
+  color: #CA7C83;
+  opacity: 1;
+  transform: scale(1.05);
+  filter: blur(0px);
+  text-shadow: 0 0 20px rgba(202, 124, 131, 0.25);
+}
+

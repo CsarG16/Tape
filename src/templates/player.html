@@ -1,189 +1,241 @@
-<div id="screen-player" class="hidden w-full max-w-md mx-auto flex flex-col h-full px-6 opacity-0 transition-all duration-1000 ease-out z-20 overflow-y-auto custom-scrollbar">
+<div id="screen-player" class="hidden w-full max-w-md xl:max-w-6xl mx-auto flex flex-col xl:flex-row h-full px-6 opacity-0 transition-all duration-1000 ease-out z-20 overflow-y-auto xl:overflow-hidden custom-scrollbar">
   
-  <!-- BLOQUE 1: CONTROLES DEL REPRODUCTOR (Ocupa la vista inicial completa) -->
-  <div class="w-full flex-shrink-0 min-h-[85vh] flex flex-col justify-between">
+  <!-- ====== PANEL IZQUIERDO: CONTROLES DEL REPRODUCTOR ====== -->
+  <div id="player-left-panel" class="w-full xl:w-[420px] xl:flex-shrink-0 xl:h-full xl:overflow-y-auto xl:custom-scrollbar flex flex-col">
     
-    <!-- Header -->
-    <div class="flex items-center justify-between w-full pt-4">
-      <button id="btn-back-welcome" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-        Volver
-      </button>
-      <div class="text-center flex flex-col items-center">
-        <span class="text-[9px] uppercase tracking-[0.25em] text-neutral-soft-500 font-bold block mb-1">REPRODUCIENDO</span>
-        <span class="text-xs font-semibold text-palo-rosa-600 tracking-wide flex items-center gap-1">
-          XIMENA 
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
-            <path d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
+    <!-- BLOQUE 1: CONTROLES DEL REPRODUCTOR (Ocupa la vista inicial completa) -->
+    <div class="w-full flex-shrink-0 min-h-[85vh] xl:min-h-0 xl:flex-grow flex flex-col justify-between">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between w-full pt-4">
+        <button id="btn-back-welcome" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
-          CÉSAR
-        </span>
-      </div>
-      <button id="btn-toggle-playlist" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1">
-        Playlist
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Minimal Square Album Art Visualizer -->
-    <div class="flex-grow flex items-center justify-center my-4 relative">
-      <div id="vinyl" class="w-56 h-56 relative shadow-2xl shadow-palo-rosa-300/30 transition-all duration-700 overflow-hidden bg-palo-rosa-100 rounded-lg">
-        <img id="album-cover" src="/album_art.png" alt="Cover Art" class="w-full h-full object-cover" />
-      </div>
-    </div>
-
-    <!-- Track Info -->
-    <div class="px-2 mb-4">
-      <div class="flex justify-between items-end">
-        <div class="max-w-[80%]">
-          <h2 id="song-title" class="text-xl font-medium text-palo-rosa-800 tracking-wide truncate">Cargando...</h2>
-          <p id="song-artist" class="text-neutral-soft-500 font-light text-xs mt-1 tracking-wide truncate">Playlist de Amor</p>
+          Volver
+        </button>
+        <div class="text-center flex flex-col items-center">
+          <span class="text-[9px] uppercase tracking-[0.25em] text-neutral-soft-500 font-bold block mb-1">REPRODUCIENDO</span>
+          <span class="text-xs font-semibold text-palo-rosa-600 tracking-wide flex items-center gap-1">
+            XIMENA 
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+              <path d="m9.653 16.915-.005-.003-.019-.01a20.759 20.759 0 0 1-1.162-.682 22.045 22.045 0 0 1-2.582-1.9C4.045 12.733 2 10.352 2 7.5a4.5 4.5 0 0 1 8-2.828A4.5 4.5 0 0 1 18 7.5c0 2.852-2.044 5.233-3.885 6.82a22.049 22.049 0 0 1-3.744 2.582l-.019.01-.005.003h-.002a.739.739 0 0 1-.69.001l-.002-.001Z" />
+            </svg>
+            CÉSAR
+          </span>
         </div>
-        <!-- Heart like toggle (Heroicons outline by default) -->
-        <button id="btn-like" class="text-palo-rosa-400 hover:text-palo-rosa-500 p-2 active:scale-125 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transition-all duration-300">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+        <button id="btn-toggle-playlist" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1">
+          Playlist
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Minimal Square Album Art Visualizer -->
+      <div class="flex-grow flex items-center justify-center my-4 relative">
+        <div id="vinyl" class="w-56 h-56 relative shadow-2xl shadow-palo-rosa-300/30 transition-all duration-700 overflow-hidden bg-palo-rosa-100 rounded-lg">
+          <img id="album-cover" src="/album_art.png" alt="Cover Art" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <!-- Track Info -->
+      <div class="px-2 mb-4">
+        <div class="flex justify-between items-end">
+          <div class="max-w-[80%]">
+            <h2 id="song-title" class="text-xl font-medium text-palo-rosa-800 tracking-wide truncate">Cargando...</h2>
+            <p id="song-artist" class="text-neutral-soft-500 font-light text-xs mt-1 tracking-wide truncate">Playlist de Amor</p>
+          </div>
+          <!-- Heart like toggle (Heroicons outline by default) -->
+          <button id="btn-like" class="text-palo-rosa-400 hover:text-palo-rosa-500 p-2 active:scale-125 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 transition-all duration-300">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Audio Progress Bar (Samsung One UI 8 Widget Style) -->
+      <div class="px-2 mb-4">
+        <div id="progress-bar-container" class="progress-bar-container" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <!-- Tooltip de tiempo flotante (aparece al arrastrar) -->
+          <div id="progress-tooltip" class="progress-tooltip">0:00</div>
+          <!-- Pista base -->
+          <div id="progress-track" class="progress-track">
+            <!-- Relleno animado con gradiente -->
+            <div id="progress-fill" class="progress-fill"></div>
+            <!-- Contenedor de Ondas (no recortado verticalmente) -->
+            <div id="progress-wave-container" class="progress-wave-container">
+              <div class="progress-wave wave-1"></div>
+              <div class="progress-wave wave-2"></div>
+            </div>
+            <!-- Thumb interactivo -->
+            <div id="progress-thumb" class="progress-thumb"></div>
+          </div>
+        </div>
+        <div class="flex justify-between text-[9px] text-neutral-soft-500 mt-2.5 font-mono tracking-widest">
+          <span id="time-current">0:00</span>
+          <span id="time-duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Media Controls (Minimal Glyph-Only Style using Heroicons) -->
+      <div class="flex items-center justify-between px-12 mb-6">
+        <!-- Prev Button -->
+        <button id="btn-prev" class="p-3 text-palo-rosa-500/60 active:text-palo-rosa-700 active:scale-95 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto transform -scale-x-100">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+          </svg>
+        </button>
+        
+        <!-- Play / Pause Button -->
+        <button id="btn-play-pause" class="w-16 h-16 bg-palo-rosa-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-palo-rosa-400/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 ml-0.5">
+            <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        
+        <!-- Next Button -->
+        <button id="btn-next" class="p-3 text-palo-rosa-500/60 active:text-palo-rosa-700 active:scale-95 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dedication & Lyrics Buttons (Apple Music style dual access) -->
+      <div class="px-2 pb-2 flex justify-center gap-4">
+        <!-- Letter Button -->
+        <button id="btn-open-letter" class="py-3 px-5 text-[10px] uppercase tracking-widest font-bold text-palo-rosa-600 flex items-center gap-1.5 active:scale-95 hover:text-palo-rosa-700 transition-colors bg-palo-rosa-100 hover:bg-palo-rosa-200 rounded-full cursor-pointer">
+          <span>Carta</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.981l7.5-4.039a2.25 2.25 0 012.134 0l7.5 4.039a2.25 2.25 0 011.183 1.98V19.5z" />
+          </svg>
+        </button>
+        <!-- Lyrics Button -->
+        <button id="btn-open-lyrics" class="py-3 px-5 text-[10px] uppercase tracking-widest font-bold text-palo-rosa-600 flex items-center gap-1.5 active:scale-95 hover:text-palo-rosa-700 transition-colors bg-palo-rosa-100 hover:bg-palo-rosa-200 rounded-full cursor-pointer">
+          <span>Letra</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
           </svg>
         </button>
       </div>
     </div>
 
-    <!-- Audio Progress Bar (Samsung One UI 8 Widget Style) -->
-    <div class="px-2 mb-4">
-      <div id="progress-bar-container" class="progress-bar-container" role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
-        <!-- Tooltip de tiempo flotante (aparece al arrastrar) -->
-        <div id="progress-tooltip" class="progress-tooltip">0:00</div>
-        <!-- Pista base -->
-        <div id="progress-track" class="progress-track">
-          <!-- Relleno animado con gradiente -->
-          <div id="progress-fill" class="progress-fill"></div>
-          <!-- Contenedor de Ondas (no recortado verticalmente) -->
-          <div id="progress-wave-container" class="progress-wave-container">
-            <div class="progress-wave wave-1"></div>
-            <div class="progress-wave wave-2"></div>
-          </div>
-          <!-- Thumb interactivo -->
-          <div id="progress-thumb" class="progress-thumb"></div>
+    <!-- MOBILE ONLY: Carta y Letras debajo del reproductor (se ocultan en desktop) -->
+    <!-- BLOQUE 2: SECCIÓN DE CARTA FLOTANTE (Fitted below the player, scrolls into view) -->
+    <div id="letter-section" class="hidden xl:!hidden w-full flex-shrink-0 min-h-[85vh] flex flex-col justify-between pt-12 pb-16 mt-8">
+      <!-- Back to player button -->
+      <div class="flex justify-start mb-6">
+        <button id="btn-back-to-controls-from-letter" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+          Reproductor
+        </button>
+      </div>
+      
+      <!-- Letter Content -->
+      <div class="flex-grow flex flex-col justify-start py-6">
+        <div class="text-center font-handwritten2 text-2xl text-palo-rosa-700 leading-relaxed w-full max-w-sm mx-auto select-text">
+          <p id="letter-text" class="whitespace-pre-line break-words px-4">Cargando tu mensaje...</p>
         </div>
       </div>
-      <div class="flex justify-between text-[9px] text-neutral-soft-500 mt-2.5 font-mono tracking-widest">
-        <span id="time-current">0:00</span>
-        <span id="time-duration">0:00</span>
+
+      <!-- Footer -->
+      <div class="text-center pt-6 mt-4 flex justify-center">
+        <p class="font-handwritten text-xl text-palo-rosa-500 flex items-center gap-1.5 justify-center">
+          Con todo mi amor, César
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-palo-rosa-500 animate-pulse">
+            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+          </svg>
+        </p>
       </div>
     </div>
 
-    <!-- Media Controls (Minimal Glyph-Only Style using Heroicons) -->
-    <div class="flex items-center justify-between px-12 mb-6">
-      <!-- Prev Button -->
-      <button id="btn-prev" class="p-3 text-palo-rosa-500/60 active:text-palo-rosa-700 active:scale-95 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto transform -scale-x-100">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-        </svg>
-      </button>
+    <!-- BLOQUE 3: SECCIÓN DE LETRAS FLOTANTES (Fitted below the letter section, scrolls into view) -->
+    <div id="lyrics-section" class="hidden xl:!hidden w-full flex-shrink-0 min-h-[85vh] flex flex-col justify-between pt-12 pb-16 mt-8">
+      <!-- Back to player button & Translation Toggle -->
+      <div class="flex justify-between items-center mb-6">
+        <button id="btn-back-to-controls" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
+          Reproductor
+        </button>
+        <button id="btn-translate-lyrics" class="hidden py-1.5 px-3 bg-palo-rosa-100 hover:bg-palo-rosa-200 text-palo-rosa-600 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center gap-1">
+          <span>ES</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896 3.066 2.199 5.746 3.81 7.91L18 11.75m-6.666-6.386A48.56 48.56 0 019 12.484" />
+          </svg>
+        </button>
+      </div>
       
-      <!-- Play / Pause Button -->
-      <button id="btn-play-pause" class="w-16 h-16 bg-palo-rosa-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-palo-rosa-400/30 hover:scale-105 active:scale-95 transition-all cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 ml-0.5">
-          <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" />
-        </svg>
-      </button>
-      
-      <!-- Next Button -->
-      <button id="btn-next" class="p-3 text-palo-rosa-500/60 active:text-palo-rosa-700 active:scale-95 transition-all">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-        </svg>
-      </button>
+      <!-- Lyrics Content (Contenedor de scroll acotado para el centrado de karaoke) -->
+      <div id="lyrics-container-scroll" class="flex-grow h-[50vh] overflow-y-auto custom-scrollbar w-full py-36 scroll-smooth">
+        <div id="lyrics-text" class="text-left font-sans w-full max-w-sm mx-auto select-text px-6 flex flex-col gap-6">
+          Cargando letra...
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center pt-6 mt-4">
+        <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-soft-400 font-bold">Letras flotando en tu corazón 🫀</p>
+      </div>
     </div>
 
-    <!-- Dedication & Lyrics Buttons (Apple Music style dual access) -->
-    <div class="px-2 pb-2 flex justify-center gap-4">
-      <!-- Letter Button -->
-      <button id="btn-open-letter" class="py-3 px-5 text-[10px] uppercase tracking-widest font-bold text-palo-rosa-600 flex items-center gap-1.5 active:scale-95 hover:text-palo-rosa-700 transition-colors bg-palo-rosa-100 hover:bg-palo-rosa-200 rounded-full cursor-pointer">
-        <span>Carta</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.981l7.5-4.039a2.25 2.25 0 012.134 0l7.5 4.039a2.25 2.25 0 011.183 1.98V19.5z" />
-        </svg>
-      </button>
-      <!-- Lyrics Button -->
-      <button id="btn-open-lyrics" class="py-3 px-5 text-[10px] uppercase tracking-widest font-bold text-palo-rosa-600 flex items-center gap-1.5 active:scale-95 hover:text-palo-rosa-700 transition-colors bg-palo-rosa-100 hover:bg-palo-rosa-200 rounded-full cursor-pointer">
-        <span>Letra</span>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
-        </svg>
-      </button>
-    </div>
   </div>
 
-  <!-- BLOQUE 2: SECCIÓN DE CARTA FLOTANTE (Fitted below the player, scrolls into view) -->
-  <div id="letter-section" class="hidden w-full flex-shrink-0 min-h-[85vh] flex flex-col justify-between pt-12 pb-16 mt-8">
-    <!-- Back to player button -->
-    <div class="flex justify-start mb-6">
-      <button id="btn-back-to-controls-from-letter" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1.5">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        </svg>
-        Reproductor
-      </button>
-    </div>
+  <!-- ====== PANEL DERECHO: CARTA Y LETRA (Solo visible en desktop ≥1024px) ====== -->
+  <div id="player-right-panel" class="hidden xl:flex flex-col h-full flex-grow overflow-hidden">
     
-    <!-- Letter Content -->
-    <div class="flex-grow flex flex-col justify-start py-6">
-      <div class="text-center font-handwritten2 text-2xl text-palo-rosa-700 leading-relaxed w-full max-w-sm mx-auto select-text">
-        <p id="letter-text" class="whitespace-pre-line break-words px-4">Cargando tu mensaje...</p>
+    <!-- Tabs para alternar Carta / Letra en desktop -->
+    <div class="flex items-center justify-between px-6 pt-6 pb-4">
+      <div class="flex gap-2">
+        <button id="btn-desktop-tab-letter" class="desktop-tab active py-2 px-5 text-[10px] uppercase tracking-widest font-bold rounded-full cursor-pointer transition-all duration-300 bg-palo-rosa-500 text-white shadow-md shadow-palo-rosa-300/30">
+          Carta
+        </button>
+        <button id="btn-desktop-tab-lyrics" class="desktop-tab py-2 px-5 text-[10px] uppercase tracking-widest font-bold rounded-full cursor-pointer transition-all duration-300 bg-palo-rosa-100 text-palo-rosa-600 hover:bg-palo-rosa-200">
+          Letra
+        </button>
       </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-center pt-6 mt-4 flex justify-center">
-      <p class="font-handwritten text-xl text-palo-rosa-500 flex items-center gap-1.5 justify-center">
-        Con todo mi amor, César
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-palo-rosa-500 animate-pulse">
-          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-        </svg>
-      </p>
-    </div>
-  </div>
-
-  <!-- BLOQUE 3: SECCIÓN DE LETRAS FLOTANTES (Fitted below the letter section, scrolls into view) -->
-  <div id="lyrics-section" class="hidden w-full flex-shrink-0 min-h-[85vh] flex flex-col justify-between pt-12 pb-16 mt-8">
-    <!-- Back to player button & Translation Toggle -->
-    <div class="flex justify-between items-center mb-6">
-      <button id="btn-back-to-controls" class="text-palo-rosa-500/70 active:text-palo-rosa-700 transition-colors p-2 text-xs uppercase tracking-widest flex items-center gap-1.5">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-        </svg>
-        Reproductor
-      </button>
-      <button id="btn-translate-lyrics" class="hidden py-1.5 px-3 bg-palo-rosa-100 hover:bg-palo-rosa-200 text-palo-rosa-600 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all active:scale-95 flex items-center gap-1">
+      <!-- Translate button (solo visible en tab de letras) -->
+      <button id="btn-desktop-translate" class="hidden py-1.5 px-3 bg-palo-rosa-100 hover:bg-palo-rosa-200 text-palo-rosa-600 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all active:scale-95 items-center gap-1">
         <span>ES</span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896 3.066 2.199 5.746 3.81 7.91L18 11.75m-6.666-6.386A48.56 48.56 0 019 12.484" />
         </svg>
       </button>
     </div>
-    
-    <!-- Lyrics Content (Contenedor de scroll acotado para el centrado de karaoke) -->
-    <div id="lyrics-container-scroll" class="flex-grow h-[50vh] overflow-y-auto custom-scrollbar w-full py-36 scroll-smooth">
-      <div id="lyrics-text" class="text-left font-sans w-full max-w-sm mx-auto select-text px-6 flex flex-col gap-6">
+
+    <!-- Desktop: Contenido de Carta -->
+    <div id="desktop-letter-content" class="flex-grow overflow-y-auto custom-scrollbar px-6 flex flex-col justify-center">
+      <div class="text-center font-handwritten2 text-2xl text-palo-rosa-700 leading-relaxed w-full max-w-md mx-auto select-text">
+        <p id="desktop-letter-text" class="whitespace-pre-line break-words px-4">Cargando tu mensaje...</p>
+      </div>
+      <div class="text-center pt-8 mt-4 flex justify-center">
+        <p class="font-handwritten text-xl text-palo-rosa-500 flex items-center gap-1.5 justify-center">
+          Con todo mi amor, César
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 text-palo-rosa-500 animate-pulse">
+            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+          </svg>
+        </p>
+      </div>
+    </div>
+
+    <!-- Desktop: Contenido de Letras -->
+    <div id="desktop-lyrics-content" class="hidden flex-grow overflow-y-auto custom-scrollbar px-6 py-12 scroll-smooth">
+      <div id="desktop-lyrics-text" class="text-left font-sans w-full max-w-md mx-auto select-text px-6 flex flex-col gap-6">
         Cargando letra...
       </div>
     </div>
 
-    <!-- Footer -->
-    <div class="text-center pt-6 mt-4">
-      <p class="text-[9px] uppercase tracking-[0.2em] text-neutral-soft-400 font-bold">Letras flotando en tu corazón 🫀</p>
-    </div>
   </div>
 
 </div>
 
 <!-- ================= SOBRE-VISTA B: PLAYLIST (BOTTOM SHEET OVERLAY) ================= -->
-<div id="playlist-overlay" class="fixed bottom-0 left-0 right-0 w-full max-w-md mx-auto max-h-[70vh] bg-white/95 backdrop-blur-3xl z-40 transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col p-8 rounded-t-3xl shadow-2xl shadow-palo-rosa-300/20 border-t border-palo-rosa-200 overflow-x-hidden">
+<div id="playlist-overlay" class="fixed bottom-0 left-0 right-0 w-full max-w-md xl:max-w-6xl mx-auto max-h-[70vh] bg-white/95 backdrop-blur-3xl z-40 transform translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] flex flex-col p-8 rounded-t-3xl shadow-2xl shadow-palo-rosa-300/20 border-t border-palo-rosa-200 overflow-x-hidden">
   
   <div class="flex justify-between items-center mb-8">
     <h3 class="text-xs uppercase tracking-widest font-bold text-palo-rosa-600">Canciones Dedicadas</h3>

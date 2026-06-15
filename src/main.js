@@ -29,6 +29,10 @@ let lastActiveIndex = -1; // Rastreador de línea activa de karaoke
 let animationFrameId = null; // ID para el loop de requestAnimationFrame
 let currentLanguage = 'EN'; // Idioma actual de las letras ('EN' o 'ES')
 
+// Detector de pantalla grande para layout responsivo
+const isDesktop = () => window.matchMedia('(min-width: 1280px)').matches;
+let currentDesktopTab = 'letter'; // 'letter' o 'lyrics'
+
 // DOM Elements
 const screenWelcome = document.getElementById('screen-welcome');
 const screenStory = document.getElementById('screen-story');
@@ -84,6 +88,16 @@ const glow1 = document.getElementById('glow-1');
 const glow2 = document.getElementById('glow-2');
 const glow3 = document.getElementById('glow-3');
 
+// Desktop panel elements
+const playerRightPanel = document.getElementById('player-right-panel');
+const btnDesktopTabLetter = document.getElementById('btn-desktop-tab-letter');
+const btnDesktopTabLyrics = document.getElementById('btn-desktop-tab-lyrics');
+const btnDesktopTranslate = document.getElementById('btn-desktop-translate');
+const desktopLetterContent = document.getElementById('desktop-letter-content');
+const desktopLyricsContent = document.getElementById('desktop-lyrics-content');
+const desktopLetterText = document.getElementById('desktop-letter-text');
+const desktopLyricsText = document.getElementById('desktop-lyrics-text');
+
 // Initialize Playlist Data & State
 function loadTrack(index) {
   if (playlist.length === 0) {
@@ -118,12 +132,26 @@ function loadTrack(index) {
     albumCover.src = track.cover || `${base}album_art.png`;
   }
   
-  // Renderizar las letras de karaoke dinámicamente
+  // Renderizar las letras de karaoke dinámicamente (mobile)
   buildLyricsUI(track.lyrics);
   lastActiveIndex = -1; // Resetear índice de karaoke
   if (lyricsContainerScroll) {
     lyricsContainerScroll.scrollTop = 0; // Regresar scroll de letras arriba
   }
+  
+  // Desktop: actualizar panel derecho
+  if (desktopLetterText) {
+    desktopLetterText.textContent = track.message;
+  }
+  if (desktopLyricsText) {
+    buildDesktopLyricsUI(track.lyrics);
+    if (desktopLyricsContent) {
+      desktopLyricsContent.scrollTop = 0;
+    }
+  }
+  
+  // Desktop: actualizar visibilidad del botón de traducción
+  updateDesktopTranslateButton(track);
   
   // Set audio source
   audioPlayer.src = track.src;
@@ -174,6 +202,80 @@ function buildLyricsUI(lyricsArray) {
     
     lyricsText.appendChild(lineDiv);
   });
+}
+
+// Desktop: Generador de interfaz de letras para panel derecho
+function buildDesktopLyricsUI(lyricsArray) {
+  if (!desktopLyricsText) return;
+  desktopLyricsText.innerHTML = '';
+  if (!lyricsArray || lyricsArray.length === 0) {
+    desktopLyricsText.innerHTML = '<p class="text-sm text-neutral-soft-500 text-center py-12">Esta canción no tiene letra configurada.</p>';
+    return;
+  }
+  
+  lyricsArray.forEach((line, idx) => {
+    const lineDiv = document.createElement('div');
+    lineDiv.className = 'lyric-line';
+    lineDiv.setAttribute('data-time', line.time);
+    
+    const displayText = (currentLanguage === 'ES' && line.translation) ? line.translation : line.text;
+    lineDiv.textContent = displayText;
+    
+    lineDiv.addEventListener('click', () => {
+      audioPlayer.currentTime = line.time;
+      if (!isPlaying) {
+        playTrack();
+      }
+    });
+    
+    desktopLyricsText.appendChild(lineDiv);
+  });
+}
+
+// Desktop: Actualizar visibilidad del botón de traducción
+function updateDesktopTranslateButton(track) {
+  if (!btnDesktopTranslate) return;
+  const hasTranslation = track && track.lyrics && track.lyrics.some(line => line.translation && line.translation !== line.text);
+  if (hasTranslation && currentDesktopTab === 'lyrics') {
+    btnDesktopTranslate.classList.remove('hidden');
+    btnDesktopTranslate.classList.add('flex');
+  } else {
+    btnDesktopTranslate.classList.add('hidden');
+    btnDesktopTranslate.classList.remove('flex');
+  }
+}
+
+// Desktop: Cambiar entre tabs de Carta y Letra
+function switchDesktopTab(tab) {
+  currentDesktopTab = tab;
+  const track = playlist[currentIndex];
+  
+  if (tab === 'letter') {
+    // Mostrar carta, ocultar letras
+    desktopLetterContent.classList.remove('hidden');
+    desktopLetterContent.classList.add('flex');
+    desktopLyricsContent.classList.add('hidden');
+    
+    // Estilo del tab activo
+    btnDesktopTabLetter.classList.add('bg-palo-rosa-500', 'text-white', 'shadow-md', 'shadow-palo-rosa-300/30');
+    btnDesktopTabLetter.classList.remove('bg-palo-rosa-100', 'text-palo-rosa-600');
+    btnDesktopTabLyrics.classList.remove('bg-palo-rosa-500', 'text-white', 'shadow-md', 'shadow-palo-rosa-300/30');
+    btnDesktopTabLyrics.classList.add('bg-palo-rosa-100', 'text-palo-rosa-600');
+  } else {
+    // Mostrar letras, ocultar carta
+    desktopLetterContent.classList.add('hidden');
+    desktopLetterContent.classList.remove('flex');
+    desktopLyricsContent.classList.remove('hidden');
+    
+    // Estilo del tab activo
+    btnDesktopTabLyrics.classList.add('bg-palo-rosa-500', 'text-white', 'shadow-md', 'shadow-palo-rosa-300/30');
+    btnDesktopTabLyrics.classList.remove('bg-palo-rosa-100', 'text-palo-rosa-600');
+    btnDesktopTabLetter.classList.remove('bg-palo-rosa-500', 'text-white', 'shadow-md', 'shadow-palo-rosa-300/30');
+    btnDesktopTabLetter.classList.add('bg-palo-rosa-100', 'text-palo-rosa-600');
+  }
+  
+  // Actualizar visibilidad del botón de traducción
+  updateDesktopTranslateButton(track);
 }
 
 function updatePlaylistActiveState() {
@@ -403,14 +505,20 @@ function formatTime(seconds) {
 
 // Sincronización de Letras de Karaoke (Spotify Engine)
 function updateLyricsSync(currentTime) {
+  // Mobile lyrics sync
   const lines = lyricsText.querySelectorAll('.lyric-line');
-  if (lines.length === 0) return;
+  
+  // Desktop lyrics sync
+  const desktopLines = desktopLyricsText ? desktopLyricsText.querySelectorAll('.lyric-line') : [];
+  
+  const allLines = lines.length > 0 ? lines : desktopLines;
+  if (allLines.length === 0) return;
   
   let activeIndex = -1;
   
   // Buscar la línea que debería estar activa actualmente
-  for (let i = 0; i < lines.length; i++) {
-    const time = parseFloat(lines[i].getAttribute('data-time'));
+  for (let i = 0; i < allLines.length; i++) {
+    const time = parseFloat(allLines[i].getAttribute('data-time'));
     if (currentTime >= time) {
       activeIndex = i;
     } else {
@@ -422,6 +530,7 @@ function updateLyricsSync(currentTime) {
   if (activeIndex !== -1 && activeIndex !== lastActiveIndex) {
     lastActiveIndex = activeIndex;
     
+    // Update mobile lyrics
     lines.forEach((line, idx) => {
       if (idx === activeIndex) {
         line.classList.add('active');
@@ -430,18 +539,41 @@ function updateLyricsSync(currentTime) {
       }
     });
     
+    // Update desktop lyrics
+    desktopLines.forEach((line, idx) => {
+      if (idx === activeIndex) {
+        line.classList.add('active');
+      } else {
+        line.classList.remove('active');
+      }
+    });
+    
     // Scroll centrado automático robusto (inmune a problemas de offsetParent)
+    // Mobile scroll
     if (lyricsContainerScroll && lines[activeIndex]) {
       const activeLine = lines[activeIndex];
       const containerRect = lyricsContainerScroll.getBoundingClientRect();
       const activeLineRect = activeLine.getBoundingClientRect();
       
-      // Calcular la posición absoluta de la línea dentro del contenedor con scroll
       const absoluteLineTop = activeLineRect.top - containerRect.top + lyricsContainerScroll.scrollTop;
-      // Centrar exactamente
       const targetScroll = absoluteLineTop - (containerRect.height / 2) + (activeLineRect.height / 2);
       
       lyricsContainerScroll.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Desktop scroll
+    if (desktopLyricsContent && desktopLines[activeIndex] && isDesktop()) {
+      const activeLine = desktopLines[activeIndex];
+      const containerRect = desktopLyricsContent.getBoundingClientRect();
+      const activeLineRect = activeLine.getBoundingClientRect();
+      
+      const absoluteLineTop = activeLineRect.top - containerRect.top + desktopLyricsContent.scrollTop;
+      const targetScroll = absoluteLineTop - (containerRect.height / 2) + (activeLineRect.height / 2);
+      
+      desktopLyricsContent.scrollTo({
         top: targetScroll,
         behavior: 'smooth'
       });
@@ -615,6 +747,12 @@ function buildPlaylistUI() {
 
 // Desplazamiento a Carta (Letter Flow)
 function scrollToLetter() {
+  // En desktop, cambiar al tab de carta en el panel derecho
+  if (isDesktop()) {
+    switchDesktopTab('letter');
+    return;
+  }
+  
   closePlaylistSheet();
   const letterSection = document.getElementById('letter-section');
   letterSection.classList.remove('hidden');
@@ -630,6 +768,12 @@ function scrollToLetter() {
 
 // Desplazamiento a Letras (Lyrics Flow)
 function scrollToLyrics() {
+  // En desktop, cambiar al tab de letras en el panel derecho
+  if (isDesktop()) {
+    switchDesktopTab('lyrics');
+    return;
+  }
+  
   closePlaylistSheet();
   const lyricsSection = document.getElementById('lyrics-section');
   lyricsSection.classList.remove('hidden');
@@ -852,6 +996,34 @@ document.addEventListener('click', (e) => {
     closePlaylistSheet();
   }
 });
+
+// Desktop Tab Event Listeners
+if (btnDesktopTabLetter) {
+  btnDesktopTabLetter.addEventListener('click', () => switchDesktopTab('letter'));
+}
+if (btnDesktopTabLyrics) {
+  btnDesktopTabLyrics.addEventListener('click', () => switchDesktopTab('lyrics'));
+}
+if (btnDesktopTranslate) {
+  btnDesktopTranslate.addEventListener('click', () => {
+    if (currentLanguage === 'EN') {
+      currentLanguage = 'ES';
+      btnDesktopTranslate.querySelector('span').textContent = 'EN';
+      if (btnTranslateLyrics) btnTranslateLyrics.querySelector('span').textContent = 'EN';
+    } else {
+      currentLanguage = 'EN';
+      btnDesktopTranslate.querySelector('span').textContent = 'ES';
+      if (btnTranslateLyrics) btnTranslateLyrics.querySelector('span').textContent = 'ES';
+    }
+    
+    const track = playlist[currentIndex];
+    buildLyricsUI(track.lyrics);
+    buildDesktopLyricsUI(track.lyrics);
+    
+    lastActiveIndex = -1;
+    updateLyricsSync(audioPlayer.currentTime);
+  });
+}
 
 // App Startup
 document.addEventListener('DOMContentLoaded', () => {
