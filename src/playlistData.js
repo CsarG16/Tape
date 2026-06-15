@@ -204,153 +204,6 @@ export const playlist = [
     }
   },
   {
-    "title": "Como las Mariposas",
-    "artist": "Pedro Suárez-Vértiz",
-    "src": "/music/Pedro Suarez Vertiz - Como las Mariposas.mp3",
-    "cover": "/album_art/Como Las Mariposas.jpg",
-    "message": "Mi amor, esta canción describe perfectamente lo que siento cada vez que te veo. Se me alborota el pecho y me llenas de una felicidad inexplicable. Eres mi persona favorita... 🫀",
-    "lyrics": [
-      {
-        "time": 0,
-        "text": "♪ (Intro Instrumental) ♪",
-        "translation": "♪ (Intro Instrumental) ♪"
-      },
-      {
-        "time": 8.78,
-        "text": "Como las mariposas"
-      },
-      {
-        "time": 11.77,
-        "text": "Hermosa te veo venir"
-      },
-      {
-        "time": 15.99,
-        "text": "Esas piernas preciosas, ah"
-      },
-      {
-        "time": 20.12,
-        "text": "Son toditas para mí"
-      },
-      {
-        "time": 23.6,
-        "text": "Dime cosas graciosas"
-      },
-      {
-        "time": 27.52,
-        "text": "Tú sabes hacerme reír"
-      },
-      {
-        "time": 31.99,
-        "text": "Cintura deliciosa, ah"
-      },
-      {
-        "time": 35.17,
-        "text": "Quiero morir junto a ti"
-      },
-      {
-        "time": 41.92,
-        "text": "Uh, me enamoro, me enamoro de ella"
-      },
-      {
-        "time": 46.23,
-        "text": "Tanto que disparo y llego a las estrellas"
-      },
-      {
-        "time": 53.35,
-        "text": "No me alcanza memoria"
-      },
-      {
-        "time": 55.8,
-        "text": "Para poder resistir"
-      },
-      {
-        "time": 59.81,
-        "text": "Los espasmos de gloria, ah"
-      },
-      {
-        "time": 63.94,
-        "text": "Que tú me haces sentir"
-      },
-      {
-        "time": 68.1,
-        "text": "Quiero que muerdas mi boca"
-      },
-      {
-        "time": 71.34,
-        "text": "Quiero que me hagas sufrir"
-      },
-      {
-        "time": 76.22,
-        "text": "Quiero verte muy loca, ah"
-      },
-      {
-        "time": 79.47,
-        "text": "Quiero tus uñas sentir"
-      },
-      {
-        "time": 84.61,
-        "text": "Uh, me enamoro, me enamoro de ella"
-      },
-      {
-        "time": 89.93,
-        "text": "Tanto que disparo y llego a las estrellas"
-      },
-      {
-        "time": 95.32,
-        "text": "Vienes y vas frente a mí, mujer preciosa"
-      },
-      {
-        "time": 101.03,
-        "text": "Mi sangre ya va a hervir"
-      },
-      {
-        "time": 102.41,
-        "text": "Mis manos ya se frotan"
-      },
-      {
-        "time": 123.54,
-        "text": "Tus imágenes flotan"
-      },
-      {
-        "time": 126.08,
-        "text": "Vienen y van frente a mí"
-      },
-      {
-        "time": 130.5,
-        "text": "Nuestros cuerpos rebotan, ah"
-      },
-      {
-        "time": 133.98,
-        "text": "Porque te mueves así"
-      },
-      {
-        "time": 140.78,
-        "text": "Uh, me enamoro, me enamoro de ella"
-      },
-      {
-        "time": 144.75,
-        "text": "Tanto que disparo y llego a las estrellas"
-      },
-      {
-        "time": 151.34,
-        "text": "Vienes y vas frente a mí, mujer preciosa"
-      },
-      {
-        "time": 156.09,
-        "text": "Mi sangre ya va a hervir"
-      },
-      {
-        "time": 157.64,
-        "text": "Mis manos ya se frotan"
-      }
-    ],
-    "glowColors": {
-      "glow1": "rgba(244, 172, 183, 0.45)",
-      "glow2": "rgba(255, 229, 217, 0.3)",
-      "glow3": "rgba(238, 182, 187, 0.4)"
-    }
-  },
-  {
     "title": "Nuestro Sueño",
     "artist": "Grupo Niche",
     "src": "/music/Grupo Niche - Nuestro Sueño.mp3",
@@ -694,186 +547,292 @@ export const playlist = [
     }
   },
   {
-    "title": "Te Quiero",
-    "artist": "Amén",
-    "src": "/music/Amén - Te Quiero.mp3",
-    "cover": "/album_art/Te Quiero.jpg",
-    "message": "Esta canción de rock es pura magia. Su solo y la voz de Marcello me hacen pensar en ese encanto especial que tienes y que me enamora cada vez más de ti. 🫀",
+    "title": "Just The Way You Are",
+    "artist": "Bruno Mars",
+    "src": "/music/Bruno Mars - Just The Way You Are.mp3",
+    "cover": "/album_art/Just The Way You Are.jpg",
+    "message": "Tus ojos, tu cabello, tu risa... todo de ti es perfecto. Eres increíble tal y como eres. No hay nada en ti que quisiera cambiar, Ximenita. 🫀",
     "lyrics": [
       {
         "time": 0,
-        "text": "♪ (Intro Instrumental) ♪",
-        "translation": "♪ (Intro Instrumental) ♪"
+        "text": "♪ (Intro de Piano y Beat) ♪",
+        "translation": "♪ (Intro de Piano y Beat) ♪"
       },
       {
-        "time": 34.09,
-        "text": "Cuando en las calles, al caminar"
+        "time": 17.82,
+        "text": "Oh, her eyes, her eyes",
+        "translation": "Oh, sus ojos, sus ojos"
       },
       {
-        "time": 38.36,
-        "text": "Prendo un cigarro y me pongo a pensar en ti"
+        "time": 19.83,
+        "text": "Make the stars look like they're not shining",
+        "translation": "Hacen que las estrellas parezcan no brillar"
       },
       {
-        "time": 44.04,
-        "text": "Oh, solo en ti"
+        "time": 22.58,
+        "text": "Her hair, her hair",
+        "translation": "Su cabello, su cabello"
       },
       {
-        "time": 49.29,
-        "text": "Siento tu risa y al despertar"
+        "time": 24.33,
+        "text": "Falls perfectly without her trying",
+        "translation": "Cae perfectamente sin que ella lo intente"
       },
       {
-        "time": 53.09,
-        "text": "Solo me doy cuenta que no era verdad"
+        "time": 27.2,
+        "text": "She's so beautiful",
+        "translation": "Ella es tan hermosa"
       },
       {
-        "time": 56.63,
-        "text": "No sé, no sé si pueda aguantar"
+        "time": 29.72,
+        "text": "And I tell her every day",
+        "translation": "Y se lo digo todos los días"
       },
       {
-        "time": 62.1,
-        "text": "Oh, no"
+        "time": 34.53,
+        "text": "Yeah, I know, I know",
+        "translation": "Sí, lo sé, lo sé"
       },
       {
-        "time": 63.46,
-        "text": "Y es que tienes algo muy especial"
+        "time": 37.58,
+        "text": "When I compliment her, she won't believe me",
+        "translation": "Cuando la elogio ella no me cree"
       },
       {
-        "time": 67.49,
-        "text": "Tienes un encanto que me va a matar"
+        "time": 40.07,
+        "text": "And it's so, it's so",
+        "translation": "Y es tan, tan"
       },
       {
-        "time": 72.07,
-        "text": "Eres como una rosa"
+        "time": 41.85,
+        "text": "Sad to think that she don't see what I see",
+        "translation": "Triste pensar que ella no ve lo que yo veo"
       },
       {
-        "time": 74.59,
-        "text": "Que no la puedo tocar"
+        "time": 44.89,
+        "text": "But every time she asks me, \"Do I look okay?\"",
+        "translation": "Pero cada vez que me pregunta '¿me veo bien?'"
       },
       {
-        "time": 78.25,
-        "text": "Oh, no"
+        "time": 48.43,
+        "text": "I say",
+        "translation": "Yo digo"
       },
       {
-        "time": 79.1,
-        "text": "Y solo quiero decirte una vez más"
+        "time": 51.57,
+        "text": "When I see your face",
+        "translation": "Cuando veo tu rostro"
       },
       {
-        "time": 82.91,
-        "text": "Que te quiero"
+        "time": 56.16,
+        "text": "There's not a thing that I would change",
+        "translation": "No hay ni una sola cosa que cambiaría"
       },
       {
-        "time": 86.39,
-        "text": "Y ya no sé qué hacer"
+        "time": 60.95,
+        "text": "'Cause you're amazing",
+        "translation": "Porque eres increíble"
       },
       {
-        "time": 89.71,
-        "text": "Pues no me quiero pelar"
+        "time": 63.83,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
       },
       {
-        "time": 95.82,
-        "text": "Anduve por las calles"
+        "time": 69.35,
+        "text": "And when you smile",
+        "translation": "Y cuando sonríes"
       },
       {
-        "time": 103.4,
-        "text": "En busca del amor"
+        "time": 73.95,
+        "text": "The whole world stops and stares for a while",
+        "translation": "El mundo entero se detiene y se queda mirando por un rato"
       },
       {
-        "time": 109.33,
-        "text": "Pero nunca te encontré"
+        "time": 78.1,
+        "text": "'Cause girl, you're amazing",
+        "translation": "Porque, chica, eres increíble"
       },
       {
-        "time": 113.15,
-        "text": "Oh, no"
+        "time": 81.46,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
       },
       {
-        "time": 117.9,
-        "text": "Nunca te encontré"
+        "time": 87.17,
+        "text": "Yeah",
+        "translation": "Sí"
       },
       {
-        "time": 120.42,
-        "text": "Oh, maldición"
+        "time": 88.61,
+        "text": "Her lips, her lips",
+        "translation": "Sus labios, sus labios"
       },
       {
-        "time": 155.52,
-        "text": "Cuando al fin te pude besar"
+        "time": 90.38,
+        "text": "I could kiss them all day if she'd let me",
+        "translation": "Podría besarlos todo el día si me dejara"
       },
       {
-        "time": 158.85,
-        "text": "Sentí que eras mi droga y no quiero dejarte, no"
+        "time": 93.05,
+        "text": "Her laugh, her laugh",
+        "translation": "Su risa, su risa"
       },
       {
-        "time": 165.62,
-        "text": "No te quiero dejar nunca más"
+        "time": 94.71,
+        "text": "She hates, but I think it's so sexy",
+        "translation": "La odia, pero a mí me parece tan sexy"
       },
       {
-        "time": 170.66,
-        "text": "Cuando te miro puedo soñar"
+        "time": 97.63,
+        "text": "She's so beautiful",
+        "translation": "Ella es tan hermosa"
       },
       {
-        "time": 174,
-        "text": "Puedo tocar el cielo y volar como Supermán"
+        "time": 100.21,
+        "text": "And I tell her every day",
+        "translation": "Y se lo digo todos los días"
       },
       {
-        "time": 180.39,
-        "text": "Como Supermán, oh"
+        "time": 105.27,
+        "text": "Oh, you know, you know, you know",
+        "translation": "Oh, sabes, sabes, sabes"
       },
       {
-        "time": 185.05,
-        "text": "Y es que tienes algo muy especial"
+        "time": 107.39,
+        "text": "I'd never ask you to change",
+        "translation": "Que nunca te pediría que cambies"
       },
       {
-        "time": 190.48,
-        "text": "Tienes un encanto que me va a matar"
+        "time": 110.19,
+        "text": "If perfect's what you're searching for",
+        "translation": "Si lo que buscas es la perfección"
       },
       {
-        "time": 193.19,
-        "text": "Eres como una rosa"
+        "time": 112.59,
+        "text": "Then just stay the same",
+        "translation": "Entonces quédate igual"
       },
       {
-        "time": 195.85,
-        "text": "Que no la puedo tocar, oh, no"
+        "time": 114.52,
+        "text": "So don't even bother asking if you look okay",
+        "translation": "Así que ni te molestes en preguntar si te ves bien"
       },
       {
-        "time": 200.64,
-        "text": "Y solo quiero decirte una vez más"
+        "time": 118.63,
+        "text": "You know I'll say",
+        "translation": "Sabes que diré"
       },
       {
-        "time": 204.24,
-        "text": "Que te quiero"
+        "time": 121.98,
+        "text": "When I see your face",
+        "translation": "Cuando veo tu rostro"
       },
       {
-        "time": 207.54,
-        "text": "Y ya no sé qué hacer"
+        "time": 126.65,
+        "text": "There's not a thing that I would change",
+        "translation": "No hay ni una sola cosa que cambiaría"
       },
       {
-        "time": 210.94,
-        "text": "Pues no me quiero pelar"
+        "time": 131.24,
+        "text": "'Cause you're amazing",
+        "translation": "Porque eres increíble"
       },
       {
-        "time": 214.58,
-        "text": "Y solo quiero decirte una vez más"
+        "time": 134.2,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
       },
       {
-        "time": 219.94,
-        "text": "Que te quiero"
+        "time": 139.99,
+        "text": "And when you smile",
+        "translation": "Y cuando sonríes"
       },
       {
-        "time": 222.91,
-        "text": "Y ya no sé qué hacer"
+        "time": 144.12,
+        "text": "The whole world stops and stares for a while",
+        "translation": "El mundo entero se detiene y se queda mirando por un rato"
       },
       {
-        "time": 226.07,
-        "text": "Pues no me quiero pelar"
+        "time": 148.78,
+        "text": "'Cause girl, you're amazing",
+        "translation": "Porque, chica, eres increíble"
       },
       {
-        "time": 229.42,
-        "text": "Y ya no sé qué hacer, yeh"
+        "time": 152.05,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
+      },
+      {
+        "time": 157.22,
+        "text": "The way you are",
+        "translation": "Cómo eres"
+      },
+      {
+        "time": 161.72,
+        "text": "The way you are",
+        "translation": "Cómo eres"
+      },
+      {
+        "time": 166.62,
+        "text": "Girl, you're amazing",
+        "translation": "Chica, eres increíble"
+      },
+      {
+        "time": 169.59,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
+      },
+      {
+        "time": 174.87,
+        "text": "When I see your face",
+        "translation": "Cuando veo tu rostro"
+      },
+      {
+        "time": 179.55,
+        "text": "There's not a thing that I would change",
+        "translation": "No hay ni una sola cosa que cambiaría"
+      },
+      {
+        "time": 184.04,
+        "text": "'Cause you're amazing",
+        "translation": "Porque eres increíble"
+      },
+      {
+        "time": 187.31,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
+      },
+      {
+        "time": 192.65,
+        "text": "And when you smile",
+        "translation": "Y cuando sonríes"
+      },
+      {
+        "time": 197,
+        "text": "The whole world stops and stares for a while",
+        "translation": "El mundo entero se detiene y se queda mirando por un rato"
+      },
+      {
+        "time": 201.68,
+        "text": "'Cause girl, you're amazing",
+        "translation": "Porque, chica, eres increíble"
+      },
+      {
+        "time": 204.86,
+        "text": "Just the way you are",
+        "translation": "Tal y como eres"
+      },
+      {
+        "time": 210.18,
+        "text": "Yeah",
+        "translation": "Sí"
       }
     ],
     "glowColors": {
-      "glow1": "rgba(238, 182, 187, 0.45)",
-      "glow2": "rgba(255, 229, 217, 0.3)",
-      "glow3": "rgba(244, 172, 183, 0.4)"
+      "glow1": "rgba(244, 172, 183, 0.4)",
+      "glow2": "rgba(253, 241, 242, 0.5)",
+      "glow3": "rgba(255, 229, 217, 0.35)"
     }
   },
   {
@@ -1112,75 +1071,6 @@ export const playlist = [
     }
   },
   {
-    "title": "Just The Way You Are",
-    "artist": "Bruno Mars",
-    "src": "/music/Bruno Mars - Just The Way You Are.mp3",
-    "cover": "/album_art/Just The Way You Are.jpg",
-    "message": "Tus ojos, tu cabello, tu risa... todo de ti es perfecto. Eres increíble tal y como eres. No hay nada en ti que quisiera cambiar, Ximenita. 🫀",
-    "lyrics": [
-      { "time": 0, "text": "♪ (Intro de Piano y Beat) ♪", "translation": "♪ (Intro de Piano y Beat) ♪" },
-      { "time": 17.82, "text": "Oh, her eyes, her eyes", "translation": "Oh, sus ojos, sus ojos" },
-      { "time": 19.83, "text": "Make the stars look like they're not shining", "translation": "Hacen que las estrellas parezcan no brillar" },
-      { "time": 22.58, "text": "Her hair, her hair", "translation": "Su cabello, su cabello" },
-      { "time": 24.33, "text": "Falls perfectly without her trying", "translation": "Cae perfectamente sin que ella lo intente" },
-      { "time": 27.2, "text": "She's so beautiful", "translation": "Ella es tan hermosa" },
-      { "time": 29.72, "text": "And I tell her every day", "translation": "Y se lo digo todos los días" },
-      { "time": 34.53, "text": "Yeah, I know, I know", "translation": "Sí, lo sé, lo sé" },
-      { "time": 37.58, "text": "When I compliment her, she won't believe me", "translation": "Cuando la elogio ella no me cree" },
-      { "time": 40.07, "text": "And it's so, it's so", "translation": "Y es tan, tan" },
-      { "time": 41.85, "text": "Sad to think that she don't see what I see", "translation": "Triste pensar que ella no ve lo que yo veo" },
-      { "time": 44.89, "text": "But every time she asks me, \"Do I look okay?\"", "translation": "Pero cada vez que me pregunta '¿me veo bien?'" },
-      { "time": 48.43, "text": "I say", "translation": "Yo digo" },
-      { "time": 51.57, "text": "When I see your face", "translation": "Cuando veo tu rostro" },
-      { "time": 56.16, "text": "There's not a thing that I would change", "translation": "No hay ni una sola cosa que cambiaría" },
-      { "time": 60.95, "text": "'Cause you're amazing", "translation": "Porque eres increíble" },
-      { "time": 63.83, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 69.35, "text": "And when you smile", "translation": "Y cuando sonríes" },
-      { "time": 73.95, "text": "The whole world stops and stares for a while", "translation": "El mundo entero se detiene y se queda mirando por un rato" },
-      { "time": 78.1, "text": "'Cause girl, you're amazing", "translation": "Porque, chica, eres increíble" },
-      { "time": 81.46, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 87.17, "text": "Yeah", "translation": "Sí" },
-      { "time": 88.61, "text": "Her lips, her lips", "translation": "Sus labios, sus labios" },
-      { "time": 90.38, "text": "I could kiss them all day if she'd let me", "translation": "Podría besarlos todo el día si me dejara" },
-      { "time": 93.05, "text": "Her laugh, her laugh", "translation": "Su risa, su risa" },
-      { "time": 94.71, "text": "She hates, but I think it's so sexy", "translation": "La odia, pero a mí me parece tan sexy" },
-      { "time": 97.63, "text": "She's so beautiful", "translation": "Ella es tan hermosa" },
-      { "time": 100.21, "text": "And I tell her every day", "translation": "Y se lo digo todos los días" },
-      { "time": 105.27, "text": "Oh, you know, you know, you know", "translation": "Oh, sabes, sabes, sabes" },
-      { "time": 107.39, "text": "I'd never ask you to change", "translation": "Que nunca te pediría que cambies" },
-      { "time": 110.19, "text": "If perfect's what you're searching for", "translation": "Si lo que buscas es la perfección" },
-      { "time": 112.59, "text": "Then just stay the same", "translation": "Entonces quédate igual" },
-      { "time": 114.52, "text": "So don't even bother asking if you look okay", "translation": "Así que ni te molestes en preguntar si te ves bien" },
-      { "time": 118.63, "text": "You know I'll say", "translation": "Sabes que diré" },
-      { "time": 121.98, "text": "When I see your face", "translation": "Cuando veo tu rostro" },
-      { "time": 126.65, "text": "There's not a thing that I would change", "translation": "No hay ni una sola cosa que cambiaría" },
-      { "time": 131.24, "text": "'Cause you're amazing", "translation": "Porque eres increíble" },
-      { "time": 134.2, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 139.99, "text": "And when you smile", "translation": "Y cuando sonríes" },
-      { "time": 144.12, "text": "The whole world stops and stares for a while", "translation": "El mundo entero se detiene y se queda mirando por un rato" },
-      { "time": 148.78, "text": "'Cause girl, you're amazing", "translation": "Porque, chica, eres increíble" },
-      { "time": 152.05, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 157.22, "text": "The way you are", "translation": "Cómo eres" },
-      { "time": 161.72, "text": "The way you are", "translation": "Cómo eres" },
-      { "time": 166.62, "text": "Girl, you're amazing", "translation": "Chica, eres increíble" },
-      { "time": 169.59, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 174.87, "text": "When I see your face", "translation": "Cuando veo tu rostro" },
-      { "time": 179.55, "text": "There's not a thing that I would change", "translation": "No hay ni una sola cosa que cambiaría" },
-      { "time": 184.04, "text": "'Cause you're amazing", "translation": "Porque eres increíble" },
-      { "time": 187.31, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 192.65, "text": "And when you smile", "translation": "Y cuando sonríes" },
-      { "time": 197.0, "text": "The whole world stops and stares for a while", "translation": "El mundo entero se detiene y se queda mirando por un rato" },
-      { "time": 201.68, "text": "'Cause girl, you're amazing", "translation": "Porque, chica, eres increíble" },
-      { "time": 204.86, "text": "Just the way you are", "translation": "Tal y como eres" },
-      { "time": 210.18, "text": "Yeah", "translation": "Sí" }
-    ],
-    "glowColors": {
-      "glow1": "rgba(244, 172, 183, 0.4)",
-      "glow2": "rgba(253, 241, 242, 0.5)",
-      "glow3": "rgba(255, 229, 217, 0.35)"
-    }
-  },
-  {
     "title": "Salto",
     "artist": "El Joven Paiva",
     "src": "/music/El Joven Paiva - Salto.mp3",
@@ -1398,51 +1288,358 @@ export const playlist = [
     "cover": "/album_art/Good Old Fashioned Lover Boy.jpg",
     "message": "Quiero escribirte cartas, sacarte a pasear y ser tu novio clásico a la antigua. Esta obra maestra de Queen es mi forma de cantarte que soy tu fiel servidor amoroso... 🫀",
     "lyrics": [
-      { "time": 0, "text": "♪ (Intro de Piano Clásico) ♪", "translation": "♪ (Intro de Piano Clásico) ♪" },
-      { "time": 0.24, "text": "I can dim the lights and sing you songs", "translation": "Puedo atenuar las luces y cantarte canciones" },
-      { "time": 3.67, "text": "Full of sad things", "translation": "Llenas de cosas tristes" },
-      { "time": 5.65, "text": "We can do the tango, just for two", "translation": "Podemos bailar el tango, solo para nosotros dos" },
-      { "time": 10.89, "text": "I can serenade and gently play (ooh, ooh, ooh)", "translation": "Puedo darte una serenata y tocar suavemente (ooh, ooh, ooh)" },
-      { "time": 14.18, "text": "On your heart strings", "translation": "Las cuerdas de tu corazón" },
-      { "time": 16.04, "text": "Be a Valentino, just for you (ooh, ooh)", "translation": "Ser un Valentino, solo para ti (ooh, ooh)" },
-      { "time": 21.26, "text": "\"Ooh love, ooh lover boy", "translation": "\"Oh amor, oh mi chico amante" },
-      { "time": 27.7, "text": "What're you doing tonight?\" (Ooh, hey boy)", "translation": "¿Qué vas a hacer esta noche?\" (Ooh, oye chico)" },
-      { "time": 30.87, "text": "Set my alarm, turn on my charm", "translation": "Pongo mi alarma, enciendo mi encanto" },
-      { "time": 33.38, "text": "That's because I'm a good old-fashioned lover boy", "translation": "Eso es porque soy un buen chico amante a la antigua" },
-      { "time": 39.42, "text": "Ooh, let me feel your heartbeat (grow faster, faster)", "translation": "Oh, déjame sentir tu latido (crecer más y más rápido)" },
-      { "time": 43.77, "text": "(Ooh) can you feel my love heat? (Ooh)", "translation": "(Oh) ¿puedes sentir el calor de mi amor? (Oh)" },
-      { "time": 47.8, "text": "You wanna sit on my hot seat of love", "translation": "Quieres sentarte en mi asiento caliente del amor" },
-      { "time": 50.55, "text": "And tell me how do you feel, right after all", "translation": "Y dime cómo te sientes, después de todo" },
-      { "time": 54.54, "text": "I'd like for you and I to go romancing", "translation": "Me gustaría que tú y yo tuviéramos un romance" },
-      { "time": 58.65, "text": "Say the word, your wish is my command", "translation": "Di la palabra, tu deseo es mi orden" },
-      { "time": 63.87, "text": "\"Ooh love, ooh lover boy", "translation": "\"Oh amor, oh mi chico amante" },
-      { "time": 70.17, "text": "What're you doing tonight?\" (Ooh, hey boy)", "translation": "¿Qué vas a hacer esta noche?\" (Ooh, oye chico)" },
-      { "time": 73.54, "text": "Write my letter, feel much better", "translation": "Escribo mi carta, me siento mucho mejor" },
-      { "time": 75.87, "text": "I'll use my fancy patter on the telephone", "translation": "Usaré mi charla elegante por el teléfono" },
-      { "time": 83.77, "text": "When I'm not with you, think of you always", "translation": "Cuando no estoy contigo, pienso en ti siempre" },
-      { "time": 88.08, "text": "(I miss those long hot summer nights) I miss you", "translation": "(Extraño esas largas y cálidas noches de verano) Te extraño" },
-      { "time": 94.03, "text": "When I'm not with you, think of me always", "translation": "Cuando no estoy contigo, piensa en mí siempre" },
-      { "time": 98.73, "text": "Love you, love you", "translation": "Te amo, te amo" },
-      { "time": 103.78, "text": "Hey boy, where do you get it from?", "translation": "Oye chico, ¿de dónde lo sacas?" },
-      { "time": 106.56, "text": "Hey boy, where did you go?", "translation": "Oye chico, ¿a dónde fuiste?" },
-      { "time": 108.32, "text": "I learned my passion in the good old-fashioned", "translation": "Aprendí mi pasión en la buena escuela a la antigua" },
-      { "time": 111.17, "text": "School of lover boys", "translation": "De los chicos amantes" },
-      { "time": 134.73, "text": "Dining at the Ritz, we'll meet at nine", "translation": "Cenando en el Ritz, nos encontraremos a las nueve" },
-      { "time": 137.46, "text": "(One, two, three, four, five, six, seven, eight, nine o'clock precisely)", "translation": "(Una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve en punto exactamente)" },
-      { "time": 140.1, "text": "I will pay the bill, you taste the wine", "translation": "Yo pagaré la cuenta, tú pruebas el vino" },
-      { "time": 144.37, "text": "Driving back in style in my saloon will do quite nicely", "translation": "Volviendo con estilo en mi coche de lujo estará muy bien" },
-      { "time": 149.03, "text": "Just take me back to yours, that will be fine (come on and get it)", "translation": "Solo llévame a tu casa, eso estará bien (ven y tómalo)" },
-      { "time": 154.27, "text": "Ooh, love (there he goes again)", "translation": "Oh, amor (ahí va de nuevo)" },
-      { "time": 156.66, "text": "Ooh, lover boy (who's my good old-fashioned lover boy?) (Ooh, ooh)", "translation": "Oh, mi chico amante (¿quién es mi buen chico amante a la antigua?) (Ooh, ooh)" },
-      { "time": 160.41, "text": "What're you doing tonight? (Ooh, hey boy)", "translation": "¿Qué vas a hacer esta noche? (Ooh, oye chico)" },
-      { "time": 163.59, "text": "Everything's all right, just hold on tight", "translation": "Todo está bien, solo agárrate fuerte" },
-      { "time": 165.93, "text": "That's because I'm a good old", "translation": "Eso es porque soy un buen" },
-      { "time": 167.62, "text": "(Fashioned) fashioned, lover boy", "translation": "(A la antigua) a la antigua, chico amante" }
+      {
+        "time": 0,
+        "text": "♪ (Intro de Piano Clásico) ♪",
+        "translation": "♪ (Intro de Piano Clásico) ♪"
+      },
+      {
+        "time": 0.24,
+        "text": "I can dim the lights and sing you songs",
+        "translation": "Puedo atenuar las luces y cantarte canciones"
+      },
+      {
+        "time": 3.67,
+        "text": "Full of sad things",
+        "translation": "Llenas de cosas tristes"
+      },
+      {
+        "time": 5.65,
+        "text": "We can do the tango, just for two",
+        "translation": "Podemos bailar el tango, solo para nosotros dos"
+      },
+      {
+        "time": 10.89,
+        "text": "I can serenade and gently play (ooh, ooh, ooh)",
+        "translation": "Puedo darte una serenata y tocar suavemente (ooh, ooh, ooh)"
+      },
+      {
+        "time": 14.18,
+        "text": "On your heart strings",
+        "translation": "Las cuerdas de tu corazón"
+      },
+      {
+        "time": 16.04,
+        "text": "Be a Valentino, just for you (ooh, ooh)",
+        "translation": "Ser un Valentino, solo para ti (ooh, ooh)"
+      },
+      {
+        "time": 21.26,
+        "text": "\"Ooh love, ooh lover boy",
+        "translation": "\"Oh amor, oh mi chico amante"
+      },
+      {
+        "time": 27.7,
+        "text": "What're you doing tonight?\" (Ooh, hey boy)",
+        "translation": "¿Qué vas a hacer esta noche?\" (Ooh, oye chico)"
+      },
+      {
+        "time": 30.87,
+        "text": "Set my alarm, turn on my charm",
+        "translation": "Pongo mi alarma, enciendo mi encanto"
+      },
+      {
+        "time": 33.38,
+        "text": "That's because I'm a good old-fashioned lover boy",
+        "translation": "Eso es porque soy un buen chico amante a la antigua"
+      },
+      {
+        "time": 39.42,
+        "text": "Ooh, let me feel your heartbeat (grow faster, faster)",
+        "translation": "Oh, déjame sentir tu latido (crecer más y más rápido)"
+      },
+      {
+        "time": 43.77,
+        "text": "(Ooh) can you feel my love heat? (Ooh)",
+        "translation": "(Oh) ¿puedes sentir el calor de mi amor? (Oh)"
+      },
+      {
+        "time": 47.8,
+        "text": "You wanna sit on my hot seat of love",
+        "translation": "Quieres sentarte en mi asiento caliente del amor"
+      },
+      {
+        "time": 50.55,
+        "text": "And tell me how do you feel, right after all",
+        "translation": "Y dime cómo te sientes, después de todo"
+      },
+      {
+        "time": 54.54,
+        "text": "I'd like for you and I to go romancing",
+        "translation": "Me gustaría que tú y yo tuviéramos un romance"
+      },
+      {
+        "time": 58.65,
+        "text": "Say the word, your wish is my command",
+        "translation": "Di la palabra, tu deseo es mi orden"
+      },
+      {
+        "time": 63.87,
+        "text": "\"Ooh love, ooh lover boy",
+        "translation": "\"Oh amor, oh mi chico amante"
+      },
+      {
+        "time": 70.17,
+        "text": "What're you doing tonight?\" (Ooh, hey boy)",
+        "translation": "¿Qué vas a hacer esta noche?\" (Ooh, oye chico)"
+      },
+      {
+        "time": 73.54,
+        "text": "Write my letter, feel much better",
+        "translation": "Escribo mi carta, me siento mucho mejor"
+      },
+      {
+        "time": 75.87,
+        "text": "I'll use my fancy patter on the telephone",
+        "translation": "Usaré mi charla elegante por el teléfono"
+      },
+      {
+        "time": 83.77,
+        "text": "When I'm not with you, think of you always",
+        "translation": "Cuando no estoy contigo, pienso en ti siempre"
+      },
+      {
+        "time": 88.08,
+        "text": "(I miss those long hot summer nights) I miss you",
+        "translation": "(Extraño esas largas y cálidas noches de verano) Te extraño"
+      },
+      {
+        "time": 94.03,
+        "text": "When I'm not with you, think of me always",
+        "translation": "Cuando no estoy contigo, piensa en mí siempre"
+      },
+      {
+        "time": 98.73,
+        "text": "Love you, love you",
+        "translation": "Te amo, te amo"
+      },
+      {
+        "time": 103.78,
+        "text": "Hey boy, where do you get it from?",
+        "translation": "Oye chico, ¿de dónde lo sacas?"
+      },
+      {
+        "time": 106.56,
+        "text": "Hey boy, where did you go?",
+        "translation": "Oye chico, ¿a dónde fuiste?"
+      },
+      {
+        "time": 108.32,
+        "text": "I learned my passion in the good old-fashioned",
+        "translation": "Aprendí mi pasión en la buena escuela a la antigua"
+      },
+      {
+        "time": 111.17,
+        "text": "School of lover boys",
+        "translation": "De los chicos amantes"
+      },
+      {
+        "time": 134.73,
+        "text": "Dining at the Ritz, we'll meet at nine",
+        "translation": "Cenando en el Ritz, nos encontraremos a las nueve"
+      },
+      {
+        "time": 137.46,
+        "text": "(One, two, three, four, five, six, seven, eight, nine o'clock precisely)",
+        "translation": "(Una, dos, tres, cuatro, cinco, seis, siete, ocho, nueve en punto exactamente)"
+      },
+      {
+        "time": 140.1,
+        "text": "I will pay the bill, you taste the wine",
+        "translation": "Yo pagaré la cuenta, tú pruebas el vino"
+      },
+      {
+        "time": 144.37,
+        "text": "Driving back in style in my saloon will do quite nicely",
+        "translation": "Volviendo con estilo en mi coche de lujo estará muy bien"
+      },
+      {
+        "time": 149.03,
+        "text": "Just take me back to yours, that will be fine (come on and get it)",
+        "translation": "Solo llévame a tu casa, eso estará bien (ven y tómalo)"
+      },
+      {
+        "time": 154.27,
+        "text": "Ooh, love (there he goes again)",
+        "translation": "Oh, amor (ahí va de nuevo)"
+      },
+      {
+        "time": 156.66,
+        "text": "Ooh, lover boy (who's my good old-fashioned lover boy?) (Ooh, ooh)",
+        "translation": "Oh, mi chico amante (¿quién es mi buen chico amante a la antigua?) (Ooh, ooh)"
+      },
+      {
+        "time": 160.41,
+        "text": "What're you doing tonight? (Ooh, hey boy)",
+        "translation": "¿Qué vas a hacer esta noche? (Ooh, oye chico)"
+      },
+      {
+        "time": 163.59,
+        "text": "Everything's all right, just hold on tight",
+        "translation": "Todo está bien, solo agárrate fuerte"
+      },
+      {
+        "time": 165.93,
+        "text": "That's because I'm a good old",
+        "translation": "Eso es porque soy un buen"
+      },
+      {
+        "time": 167.62,
+        "text": "(Fashioned) fashioned, lover boy",
+        "translation": "(A la antigua) a la antigua, chico amante"
+      }
     ],
     "glowColors": {
       "glow1": "rgba(255, 229, 217, 0.45)",
       "glow2": "rgba(238, 182, 187, 0.4)",
       "glow3": "rgba(244, 172, 183, 0.35)"
+    }
+  },
+  {
+    "title": "Como las Mariposas",
+    "artist": "Pedro Suárez-Vértiz",
+    "src": "/music/Pedro Suarez Vertiz - Como las Mariposas.mp3",
+    "cover": "/album_art/Como Las Mariposas.jpg",
+    "message": "Mi amor, esta canción describe perfectamente lo que siento cada vez que te veo. Se me alborota el pecho y me llenas de una felicidad inexplicable. Eres mi persona favorita... 🫀",
+    "lyrics": [
+      {
+        "time": 0,
+        "text": "♪ (Intro Instrumental) ♪",
+        "translation": "♪ (Intro Instrumental) ♪"
+      },
+      {
+        "time": 8.78,
+        "text": "Como las mariposas"
+      },
+      {
+        "time": 11.77,
+        "text": "Hermosa te veo venir"
+      },
+      {
+        "time": 15.99,
+        "text": "Esas piernas preciosas, ah"
+      },
+      {
+        "time": 20.12,
+        "text": "Son toditas para mí"
+      },
+      {
+        "time": 23.6,
+        "text": "Dime cosas graciosas"
+      },
+      {
+        "time": 27.52,
+        "text": "Tú sabes hacerme reír"
+      },
+      {
+        "time": 31.99,
+        "text": "Cintura deliciosa, ah"
+      },
+      {
+        "time": 35.17,
+        "text": "Quiero morir junto a ti"
+      },
+      {
+        "time": 41.92,
+        "text": "Uh, me enamoro, me enamoro de ella"
+      },
+      {
+        "time": 46.23,
+        "text": "Tanto que disparo y llego a las estrellas"
+      },
+      {
+        "time": 53.35,
+        "text": "No me alcanza memoria"
+      },
+      {
+        "time": 55.8,
+        "text": "Para poder resistir"
+      },
+      {
+        "time": 59.81,
+        "text": "Los espasmos de gloria, ah"
+      },
+      {
+        "time": 63.94,
+        "text": "Que tú me haces sentir"
+      },
+      {
+        "time": 68.1,
+        "text": "Quiero que muerdas mi boca"
+      },
+      {
+        "time": 71.34,
+        "text": "Quiero que me hagas sufrir"
+      },
+      {
+        "time": 76.22,
+        "text": "Quiero verte muy loca, ah"
+      },
+      {
+        "time": 79.47,
+        "text": "Quiero tus uñas sentir"
+      },
+      {
+        "time": 84.61,
+        "text": "Uh, me enamoro, me enamoro de ella"
+      },
+      {
+        "time": 89.93,
+        "text": "Tanto que disparo y llego a las estrellas"
+      },
+      {
+        "time": 95.32,
+        "text": "Vienes y vas frente a mí, mujer preciosa"
+      },
+      {
+        "time": 101.03,
+        "text": "Mi sangre ya va a hervir"
+      },
+      {
+        "time": 102.41,
+        "text": "Mis manos ya se frotan"
+      },
+      {
+        "time": 123.54,
+        "text": "Tus imágenes flotan"
+      },
+      {
+        "time": 126.08,
+        "text": "Vienen y van frente a mí"
+      },
+      {
+        "time": 130.5,
+        "text": "Nuestros cuerpos rebotan, ah"
+      },
+      {
+        "time": 133.98,
+        "text": "Porque te mueves así"
+      },
+      {
+        "time": 140.78,
+        "text": "Uh, me enamoro, me enamoro de ella"
+      },
+      {
+        "time": 144.75,
+        "text": "Tanto que disparo y llego a las estrellas"
+      },
+      {
+        "time": 151.34,
+        "text": "Vienes y vas frente a mí, mujer preciosa"
+      },
+      {
+        "time": 156.09,
+        "text": "Mi sangre ya va a hervir"
+      },
+      {
+        "time": 157.64,
+        "text": "Mis manos ya se frotan"
+      }
+    ],
+    "glowColors": {
+      "glow1": "rgba(244, 172, 183, 0.45)",
+      "glow2": "rgba(255, 229, 217, 0.3)",
+      "glow3": "rgba(238, 182, 187, 0.4)"
     }
   },
   {
@@ -1845,6 +2042,189 @@ export const playlist = [
       "glow1": "rgba(253, 241, 242, 0.5)",
       "glow2": "rgba(244, 172, 183, 0.35)",
       "glow3": "rgba(255, 229, 217, 0.4)"
+    }
+  },
+  {
+    "title": "Te Quiero",
+    "artist": "Amén",
+    "src": "/music/Amén - Te Quiero.mp3",
+    "cover": "/album_art/Te Quiero.jpg",
+    "message": "Esta canción de rock es pura magia. Su solo y la voz de Marcello me hacen pensar en ese encanto especial que tienes y que me enamora cada vez más de ti. 🫀",
+    "lyrics": [
+      {
+        "time": 0,
+        "text": "♪ (Intro Instrumental) ♪",
+        "translation": "♪ (Intro Instrumental) ♪"
+      },
+      {
+        "time": 34.09,
+        "text": "Cuando en las calles, al caminar"
+      },
+      {
+        "time": 38.36,
+        "text": "Prendo un cigarro y me pongo a pensar en ti"
+      },
+      {
+        "time": 44.04,
+        "text": "Oh, solo en ti"
+      },
+      {
+        "time": 49.29,
+        "text": "Siento tu risa y al despertar"
+      },
+      {
+        "time": 53.09,
+        "text": "Solo me doy cuenta que no era verdad"
+      },
+      {
+        "time": 56.63,
+        "text": "No sé, no sé si pueda aguantar"
+      },
+      {
+        "time": 62.1,
+        "text": "Oh, no"
+      },
+      {
+        "time": 63.46,
+        "text": "Y es que tienes algo muy especial"
+      },
+      {
+        "time": 67.49,
+        "text": "Tienes un encanto que me va a matar"
+      },
+      {
+        "time": 72.07,
+        "text": "Eres como una rosa"
+      },
+      {
+        "time": 74.59,
+        "text": "Que no la puedo tocar"
+      },
+      {
+        "time": 78.25,
+        "text": "Oh, no"
+      },
+      {
+        "time": 79.1,
+        "text": "Y solo quiero decirte una vez más"
+      },
+      {
+        "time": 82.91,
+        "text": "Que te quiero"
+      },
+      {
+        "time": 86.39,
+        "text": "Y ya no sé qué hacer"
+      },
+      {
+        "time": 89.71,
+        "text": "Pues no me quiero pelar"
+      },
+      {
+        "time": 95.82,
+        "text": "Anduve por las calles"
+      },
+      {
+        "time": 103.4,
+        "text": "En busca del amor"
+      },
+      {
+        "time": 109.33,
+        "text": "Pero nunca te encontré"
+      },
+      {
+        "time": 113.15,
+        "text": "Oh, no"
+      },
+      {
+        "time": 117.9,
+        "text": "Nunca te encontré"
+      },
+      {
+        "time": 120.42,
+        "text": "Oh, maldición"
+      },
+      {
+        "time": 155.52,
+        "text": "Cuando al fin te pude besar"
+      },
+      {
+        "time": 158.85,
+        "text": "Sentí que eras mi droga y no quiero dejarte, no"
+      },
+      {
+        "time": 165.62,
+        "text": "No te quiero dejar nunca más"
+      },
+      {
+        "time": 170.66,
+        "text": "Cuando te miro puedo soñar"
+      },
+      {
+        "time": 174,
+        "text": "Puedo tocar el cielo y volar como Supermán"
+      },
+      {
+        "time": 180.39,
+        "text": "Como Supermán, oh"
+      },
+      {
+        "time": 185.05,
+        "text": "Y es que tienes algo muy especial"
+      },
+      {
+        "time": 190.48,
+        "text": "Tienes un encanto que me va a matar"
+      },
+      {
+        "time": 193.19,
+        "text": "Eres como una rosa"
+      },
+      {
+        "time": 195.85,
+        "text": "Que no la puedo tocar, oh, no"
+      },
+      {
+        "time": 200.64,
+        "text": "Y solo quiero decirte una vez más"
+      },
+      {
+        "time": 204.24,
+        "text": "Que te quiero"
+      },
+      {
+        "time": 207.54,
+        "text": "Y ya no sé qué hacer"
+      },
+      {
+        "time": 210.94,
+        "text": "Pues no me quiero pelar"
+      },
+      {
+        "time": 214.58,
+        "text": "Y solo quiero decirte una vez más"
+      },
+      {
+        "time": 219.94,
+        "text": "Que te quiero"
+      },
+      {
+        "time": 222.91,
+        "text": "Y ya no sé qué hacer"
+      },
+      {
+        "time": 226.07,
+        "text": "Pues no me quiero pelar"
+      },
+      {
+        "time": 229.42,
+        "text": "Y ya no sé qué hacer, yeh"
+      }
+    ],
+    "glowColors": {
+      "glow1": "rgba(238, 182, 187, 0.45)",
+      "glow2": "rgba(255, 229, 217, 0.3)",
+      "glow3": "rgba(244, 172, 183, 0.4)"
     }
   }
 ];
