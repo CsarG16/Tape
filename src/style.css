@@ -449,14 +449,8 @@ html, body {
 
 /* Panel derecho con separador sutil */
 @media (min-width: 1280px) {
-  /* Welcome screen: textos más grandes en desktop */
   #screen-welcome h1 {
     font-size: 4rem;
-  }
-  
-  #screen-welcome p {
-    font-size: 1.125rem;
-    max-width: 28rem;
   }
 
   /* Story screen: textos más amplios en desktop */
