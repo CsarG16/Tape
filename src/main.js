@@ -479,18 +479,18 @@ function buildPlaylistUI() {
   }
   playlist.forEach((track, idx) => {
     const trackDiv = document.createElement('div');
-    trackDiv.className = 'track-item flex items-center justify-between p-4 bg-palo-rosa-100/50 rounded-xl transition-all duration-300 cursor-pointer active:scale-[0.98]';
+    trackDiv.className = 'track-item flex items-center justify-between p-4 bg-palo-rosa-100/50 rounded-xl transition-all duration-300 cursor-pointer active:scale-[0.98] min-w-0 w-full';
     trackDiv.innerHTML = `
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 overflow-hidden bg-black flex items-center justify-center rounded-md">
+      <div class="flex items-center gap-3 min-w-0 flex-grow mr-2">
+        <div class="w-10 h-10 overflow-hidden bg-black flex-shrink-0 flex items-center justify-center rounded-md">
           <img src="${track.cover}" class="w-full h-full object-cover" />
         </div>
-        <div class="text-left">
-          <h4 class="text-sm font-semibold text-palo-rosa-800 truncate max-w-[180px]">${track.title}</h4>
-          <p class="text-xs text-neutral-soft-500">${track.artist}</p>
+        <div class="text-left min-w-0 flex-grow">
+          <h4 class="text-sm font-semibold text-palo-rosa-800 truncate">${track.title}</h4>
+          <p class="text-xs text-neutral-soft-500 truncate">${track.artist}</p>
         </div>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 flex-shrink-0">
         <span class="active-indicator text-xs text-palo-rosa-500 hidden items-center gap-0.5">
           Sonando
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 inline align-text-bottom">
