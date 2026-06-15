@@ -123,7 +123,8 @@ html, body {
   }
 }
 
-.animate-heart-pulse {
+.animate-heart-pulse,
+.animate-music-pulse {
   animation: heartPulse 1.8s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 

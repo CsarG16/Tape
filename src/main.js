@@ -974,17 +974,12 @@ function handleEnter() {
     screenStory.offsetHeight;
     screenStory.classList.remove('opacity-0');
     screenStory.classList.add('opacity-100');
-    
-    if (!heartsInterval) {
-      heartsInterval = setInterval(createFloatingHeart, 900);
-    }
   }, 600);
 }
 
 // Transition 2: Scroll Story -> Player
 function handleGoToPlayer() {
-  if (heartsInterval) {
-    clearInterval(heartsInterval);
+  if (!heartsInterval) {
     heartsInterval = setInterval(createFloatingHeart, 450);
   }
 
