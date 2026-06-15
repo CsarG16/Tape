@@ -520,7 +520,11 @@ function scrollToLetter() {
   letterSection.classList.remove('hidden');
   
   setTimeout(() => {
-    letterSection.scrollIntoView({ behavior: 'smooth' });
+    const targetScroll = letterSection.getBoundingClientRect().top - screenPlayer.getBoundingClientRect().top + screenPlayer.scrollTop;
+    screenPlayer.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
   }, 30);
 }
 
@@ -531,13 +535,18 @@ function scrollToLyrics() {
   lyricsSection.classList.remove('hidden');
   
   setTimeout(() => {
-    lyricsSection.scrollIntoView({ behavior: 'smooth' });
+    const targetScroll = lyricsSection.getBoundingClientRect().top - screenPlayer.getBoundingClientRect().top + screenPlayer.scrollTop;
+    screenPlayer.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
   }, 30);
 }
 
 // Regresar suavemente al panel superior
 function scrollToControls() {
   screenPlayer.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' }); // Resetear cualquier scroll accidental de la ventana
   
   setTimeout(() => {
     const letterSection = document.getElementById('letter-section');
