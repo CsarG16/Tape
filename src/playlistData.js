@@ -207,7 +207,7 @@ export const playlist = [
     "title": "Como las Mariposas",
     "artist": "Pedro Suárez-Vértiz",
     "src": "/music/Pedro Suarez Vertiz - Como las Mariposas.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Como Las Mariposas.jpg",
     "message": "Mi amor, esta canción describe perfectamente lo que siento cada vez que te veo. Se me alborota el pecho y me llenas de una felicidad inexplicable. Eres mi persona favorita... 🫀",
     "lyrics": [
       {
@@ -354,7 +354,7 @@ export const playlist = [
     "title": "Nuestro Sueño",
     "artist": "Grupo Niche",
     "src": "/music/Grupo Niche - Nuestro Sueño.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Nuestro Sueño.jpg",
     "message": "Esta canción es un clásico de salsa, pero para mí significa nuestro futuro, ese sueño que estamos construyendo juntos día a día. Bailar contigo es mi momento favorito del mundo. 🫀",
     "lyrics": [
       {
@@ -697,7 +697,7 @@ export const playlist = [
     "title": "Te Quiero",
     "artist": "Amén",
     "src": "/music/Amén - Te Quiero.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Te Quiero.jpg",
     "message": "Esta canción de rock es pura magia. Su solo y la voz de Marcello me hacen pensar en ese encanto especial que tienes y que me enamora cada vez más de ti. 🫀",
     "lyrics": [
       {
@@ -880,7 +880,7 @@ export const playlist = [
     "title": "Un Beso",
     "artist": "Aventura",
     "src": "/music/Aventura - Un Beso.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Un Beso.jpg",
     "message": "Solo por un beso tuyo, mi amor, soy el hombre más feliz de este mundo. Un besito tuyo de verdad me lleva al infinito... 🫀",
     "lyrics": [
       {
@@ -1115,7 +1115,7 @@ export const playlist = [
     "title": "Just The Way You Are",
     "artist": "Bruno Mars",
     "src": "/music/Bruno Mars - Just The Way You Are.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Just The Way You Are.jpg",
     "message": "Tus ojos, tu cabello, tu risa... todo de ti es perfecto. Eres increíble tal y como eres. No hay nada en ti que quisiera cambiar, Ximenita. 🫀",
     "lyrics": [
       { "time": 0, "text": "♪ (Intro de Piano y Beat) ♪", "translation": "♪ (Intro de Piano y Beat) ♪" },
@@ -1184,7 +1184,7 @@ export const playlist = [
     "title": "Salto",
     "artist": "El Joven Paiva",
     "src": "/music/El Joven Paiva - Salto.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Salto.jpg",
     "message": "Si tú me lo pides, mi amor, ¡salto! Juro que hago lo que sea para enamorarte a ti y verte feliz. Esta cumbia tan tierna es todita para ti. 🫀",
     "lyrics": [
       {
@@ -1395,7 +1395,7 @@ export const playlist = [
     "title": "Good Old Fashioned Lover Boy",
     "artist": "Queen",
     "src": "/music/Queen - Good Old Fashioned Lover Boy.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Good Old Fashioned Lover Boy.jpg",
     "message": "Quiero escribirte cartas, sacarte a pasear y ser tu novio clásico a la antigua. Esta obra maestra de Queen es mi forma de cantarte que soy tu fiel servidor amoroso... 🫀",
     "lyrics": [
       { "time": 0, "text": "♪ (Intro de Piano Clásico) ♪", "translation": "♪ (Intro de Piano Clásico) ♪" },
@@ -1449,7 +1449,7 @@ export const playlist = [
     "title": "Perderme Contigo",
     "artist": "Bacilos",
     "src": "/music/Bacilos - Perderme Contigo.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Perderme Contigo.jpg",
     "message": "Mi vida, perderme contigo en cualquier rincón del mundo es mi mayor aventura. No importa a dónde vayamos, si es a tu lado, todo es perfecto. 🫀",
     "lyrics": [
       {
@@ -1712,7 +1712,7 @@ export const playlist = [
     "title": "Tus ojos",
     "artist": "Los Cafres",
     "src": "/music/Los Cafres - Tus ojos.mp3",
-    "cover": "/album_art.png",
+    "cover": "/album_art/Tus Ojos.jpg",
     "message": "Ximenita, tus ojos son el volcán de tu alma que ilumina mi camino. Ver la belleza de tu mirada me da toda la paz del mundo. Eres mi ángel de verdad. 🫀",
     "lyrics": [
       {
