@@ -1,39 +1,48 @@
 <div id="screen-story" class="hidden w-full max-w-md xl:max-w-xl mx-auto opacity-0 transition-all duration-1000 ease-out z-20 h-full overflow-y-auto custom-scrollbar px-6">
   
-  <div class="min-h-full flex flex-col justify-center items-center text-center space-y-20 w-full">
-    <div class="flex justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-palo-rosa-400">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21L8.188 15.904L3 15L8.188 14.096L9 9L9.813 14.096L15 15L9.813 15.904Z" />
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.92903L18.5 7L17.929 4.92903L15.858 4.35803L17.929 3.78703L18.5 1.71603L19.071 3.78703L21.142 4.35803L19.071 4.92903Z" />
-      </svg>
+  <div class="min-h-full flex flex-col w-full">
+    <!-- Spacer superior para centrado dinámico -->
+    <div class="flex-grow"></div>
+    
+    <!-- Contenedor del contenido -->
+    <div class="flex flex-col items-center text-center w-full py-6 space-y-20">
+      <div class="flex justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-palo-rosa-400">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21L8.188 15.904L3 15L8.188 14.096L9 9L9.813 14.096L15 15L9.813 15.904Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.071 4.92903L18.5 7L17.929 4.92903L15.858 4.35803L17.929 3.78703L18.5 1.71603L19.071 3.78703L21.142 4.35803L19.071 4.92903Z" />
+        </svg>
+      </div>
+      
+      <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
+        Hola, mi amor...<br>
+        Quería darte un detalle diferente, algo que pudieras llevar contigo en tu celular siempre.
+      </p>
+
+      <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
+        Por eso creé esta playlist interactiva de canciones que me recuerdan a ti y a nuestra historia.
+      </p>
+
+      <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
+        Cada canción tiene su propia carta dedicada. Podrás leer mi mensaje mientras la música suena de fondo.
+      </p>
+
+      <div class="pt-8 flex flex-col items-center">
+        <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4 mb-12">
+          ¿Estás lista para ver y escuchar lo que he preparado para ti?
+        </p>
+        
+        <button id="btn-go-to-player" class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-palo-rosa-500 to-palo-rosa-400 text-white flex items-center justify-center shadow-lg shadow-palo-rosa-400/40 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer animate-heart-pulse">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
+            <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+          </svg>
+          <span class="absolute inset-0 rounded-full border-2 border-palo-rosa-400/50 animate-ring-pulse"></span>
+        </button>
+        <p class="text-neutral-soft-500 text-xs mt-6 tracking-wider uppercase font-semibold">Toca el corazón para escuchar</p>
+      </div>
     </div>
     
-    <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
-      Hola, mi amor...<br>
-      Quería darte un detalle diferente, algo que pudieras llevar contigo en tu celular siempre.
-    </p>
-
-    <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
-      Por eso creé esta playlist interactiva de canciones que me recuerdan a ti y a nuestra historia.
-    </p>
-
-    <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4">
-      Cada canción tiene su propia carta dedicada. Podrás leer mi mensaje mientras la música suena de fondo.
-    </p>
-
-    <div class="pt-8 flex flex-col items-center">
-      <p class="font-handwritten2 text-3xl text-palo-rosa-600 leading-relaxed px-4 mb-12">
-        ¿Estás lista para ver y escuchar lo que he preparado para ti?
-      </p>
-      
-      <button id="btn-go-to-player" class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-palo-rosa-500 to-palo-rosa-400 text-white flex items-center justify-center shadow-lg shadow-palo-rosa-400/40 hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer animate-heart-pulse">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
-          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-        </svg>
-        <span class="absolute inset-0 rounded-full border-2 border-palo-rosa-400/50 animate-ring-pulse"></span>
-      </button>
-      <p class="text-neutral-soft-500 text-xs mt-6 tracking-wider uppercase font-semibold">Toca el corazón para escuchar</p>
-    </div>
+    <!-- Spacer inferior para centrado dinámico -->
+    <div class="flex-grow"></div>
   </div>
 
 </div>
