@@ -375,9 +375,16 @@ html, body {
 }
 
 #screen-story {
-  padding-top: calc(2rem + env(safe-area-inset-top)) !important;
-  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)) !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   height: 100% !important;
+}
+
+/* Aplica el espaciado y safe-area al contenido interno para que el scroll fluya hasta el tope real de la pantalla */
+#screen-welcome > div,
+#screen-story > div {
+  padding-top: calc(2rem + env(safe-area-inset-top));
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom));
 }
 
 /* En pantallas grandes (Mac, PC, Tablets) lo centramos de forma limpia y transparente */
