@@ -1,7 +1,17 @@
 import welcomeHTML from './templates/welcome.html?raw';
 import storyHTML from './templates/story.html?raw';
 import playerHTML from './templates/player.html?raw';
-import { playlist } from './playlistData.js';
+import { playlist as rawPlaylist } from './playlistData.js';
+
+// Resolve base paths for static assets on deployment platforms like GitHub Pages
+const playlist = rawPlaylist.map(track => {
+  const base = import.meta.env.BASE_URL; // e.g. '/Tape/' or '/'
+  return {
+    ...track,
+    src: track.src.startsWith('/') ? `${base}${track.src.slice(1)}` : track.src,
+    cover: track.cover.startsWith('/') ? `${base}${track.cover.slice(1)}` : track.cover,
+  };
+});
 
 // SVGs de Heroicons para Play/Pause
 const playIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6 ml-0.5"><path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653z" clip-rule="evenodd" /></svg>`;
@@ -104,7 +114,8 @@ function loadTrack(index) {
   songArtist.textContent = track.artist;
   letterText.textContent = track.message;
   if (albumCover) {
-    albumCover.src = track.cover || '/album_art.png';
+    const base = import.meta.env.BASE_URL;
+    albumCover.src = track.cover || `${base}album_art.png`;
   }
   
   // Renderizar las letras de karaoke dinámicamente
