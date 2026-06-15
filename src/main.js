@@ -470,24 +470,51 @@ audioPlayer.addEventListener('ended', () => {
   playTrack();
 });
 
-// Build Playlist Bottom Sheet
+// Reordenar elementos de la lista en memoria y actualizar interfaz
+function reorderPlaylist(fromIndex, toIndex) {
+  const currentTrack = playlist[currentIndex];
+  
+  // Mover el elemento en el array
+  const [movedTrack] = playlist.splice(fromIndex, 1);
+  playlist.splice(toIndex, 0, movedTrack);
+  
+  // Actualizar el índice actual para apuntar a la misma canción que está sonando
+  currentIndex = playlist.indexOf(currentTrack);
+  
+  // Volver a renderizar la lista y actualizar resaltados
+  buildPlaylistUI();
+  updatePlaylistActiveState();
+}
+
+// Build Playlist Bottom Sheet con soporte para arrastrar y reordenar (Drag & Drop)
 function buildPlaylistUI() {
   playlistTracksContainer.innerHTML = '';
   if (playlist.length === 0) {
     playlistTracksContainer.innerHTML = '<p class="text-xs text-neutral-soft-500 text-center py-8">No hay canciones añadidas aún</p>';
     return;
   }
+  
   playlist.forEach((track, idx) => {
     const trackDiv = document.createElement('div');
-    trackDiv.className = 'track-item flex items-center justify-between p-4 bg-palo-rosa-100/50 rounded-xl transition-all duration-300 cursor-pointer active:scale-[0.98] min-w-0 w-full';
+    trackDiv.className = 'track-item flex items-center justify-between p-4 bg-palo-rosa-100/50 rounded-xl transition-all duration-300 min-w-0 w-full';
+    trackDiv.setAttribute('data-index', idx);
+    trackDiv.draggable = true;
+    
     trackDiv.innerHTML = `
-      <div class="flex items-center gap-3 min-w-0 flex-grow mr-2">
-        <div class="w-10 h-10 overflow-hidden bg-black flex-shrink-0 flex items-center justify-center rounded-md">
-          <img src="${track.cover}" class="w-full h-full object-cover" />
-        </div>
-        <div class="text-left min-w-0 flex-grow">
-          <h4 class="text-sm font-semibold text-palo-rosa-800 truncate">${track.title}</h4>
-          <p class="text-xs text-neutral-soft-500 truncate">${track.artist}</p>
+      <div class="flex items-center gap-2 min-w-0 flex-grow mr-2">
+        <!-- Grip handle para arrastrar -->
+        <svg class="w-4 h-4 text-palo-rosa-300 drag-handle cursor-grab flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8.5 10a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm5 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm5 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm-10 4a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm5 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm5 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+        </svg>
+        <!-- Área clickeable para reproducir canción -->
+        <div class="track-click-area flex items-center gap-3 min-w-0 flex-grow cursor-pointer active:scale-[0.98] transition-transform">
+          <div class="w-10 h-10 overflow-hidden bg-black flex-shrink-0 flex items-center justify-center rounded-md">
+            <img src="${track.cover}" class="w-full h-full object-cover" />
+          </div>
+          <div class="text-left min-w-0 flex-grow">
+            <h4 class="text-sm font-semibold text-palo-rosa-800 truncate">${track.title}</h4>
+            <p class="text-xs text-neutral-soft-500 truncate">${track.artist}</p>
+          </div>
         </div>
       </div>
       <div class="flex items-center gap-2 flex-shrink-0">
@@ -503,10 +530,83 @@ function buildPlaylistUI() {
       </div>
     `;
     
-    trackDiv.addEventListener('click', () => {
+    // Asignar evento click solo al área de reproducción
+    trackDiv.querySelector('.track-click-area').addEventListener('click', () => {
       loadTrack(idx);
       playTrack();
       closePlaylistSheet();
+    });
+    
+    // === EVENTOS DRAG & DROP (ESCRITORIO) ===
+    trackDiv.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', idx);
+      trackDiv.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    
+    trackDiv.addEventListener('dragend', () => {
+      trackDiv.classList.remove('dragging');
+      const items = playlistTracksContainer.querySelectorAll('.track-item');
+      items.forEach(item => item.classList.remove('drag-over'));
+    });
+    
+    trackDiv.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const draggingItem = playlistTracksContainer.querySelector('.dragging');
+      if (draggingItem && draggingItem !== trackDiv) {
+        trackDiv.classList.add('drag-over');
+      }
+    });
+    
+    trackDiv.addEventListener('dragleave', () => {
+      trackDiv.classList.remove('drag-over');
+    });
+    
+    trackDiv.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const fromIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
+      const toIndex = idx;
+      if (!isNaN(fromIndex) && fromIndex !== toIndex) {
+        reorderPlaylist(fromIndex, toIndex);
+      }
+    });
+    
+    // === EVENTOS TÁCTILES (MÓVILES) ===
+    const gripHandle = trackDiv.querySelector('.drag-handle');
+    
+    gripHandle.addEventListener('touchstart', () => {
+      trackDiv.classList.add('dragging');
+    }, { passive: true });
+    
+    gripHandle.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const element = document.elementFromPoint(touch.clientX, touch.clientY);
+      const targetItem = element ? element.closest('.track-item') : null;
+      
+      const items = playlistTracksContainer.querySelectorAll('.track-item');
+      items.forEach(item => {
+        if (item !== trackDiv) {
+          item.classList.remove('drag-over');
+        }
+      });
+      
+      if (targetItem && targetItem !== trackDiv) {
+        targetItem.classList.add('drag-over');
+      }
+    }, { passive: false });
+    
+    gripHandle.addEventListener('touchend', () => {
+      trackDiv.classList.remove('dragging');
+      const targetItem = playlistTracksContainer.querySelector('.drag-over');
+      if (targetItem) {
+        const toIndex = parseInt(targetItem.getAttribute('data-index'), 10);
+        targetItem.classList.remove('drag-over');
+        if (!isNaN(toIndex) && idx !== toIndex) {
+          reorderPlaylist(idx, toIndex);
+        }
+      }
     });
     
     playlistTracksContainer.appendChild(trackDiv);
