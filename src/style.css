@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+@property --primary-theme-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #CA7C83;
+}
+@property --secondary-theme-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #7C565A;
+}
+@property --light-theme-accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #FEFDFE;
+}
+@property --bg-theme-light {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #FEFDFE;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -370,7 +391,7 @@ html, body {
 }
 
 #screen-player {
-  padding-top: calc(1rem + env(safe-area-inset-top)) !important;
+  padding-top: calc(2rem + env(safe-area-inset-top)) !important;
   padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)) !important;
   height: 100% !important;
 }
@@ -553,7 +574,184 @@ html, body {
 /* Evitar scroll vertical en el reproductor principal en móvil cuando las secciones extra están ocultas */
 @media (max-width: 1279px) {
   .player-main-block {
-    min-height: calc(100dvh - 3.5rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    min-height: calc(100dvh - 4.5rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   }
+}
+
+/* ========== DYNAMIC THEME OVERRIDES (SPOTIFY-STYLE ALBUM COLORS) ========== */
+body.dynamic-theme {
+  background-color: var(--light-theme-accent) !important;
+  background-image: radial-gradient(circle at 50% 50%, var(--light-theme-accent) 0%, var(--bg-theme-light) 100%) !important;
+  transition: --light-theme-accent 3.5s ease-in-out,
+              --bg-theme-light 3.5s ease-in-out,
+              background-color 3.5s ease-in-out !important;
+}
+
+#app.dynamic-theme {
+  background: transparent !important;
+}
+
+/* Slow, smooth fading transitions for all themed elements (Spotify-style) */
+#app.dynamic-theme #song-title,
+#app.dynamic-theme #btn-like,
+#app.dynamic-theme #btn-play-pause,
+#app.dynamic-theme #btn-prev,
+#app.dynamic-theme #btn-next,
+#app.dynamic-theme #btn-open-letter,
+#app.dynamic-theme #btn-open-lyrics,
+#app.dynamic-theme #btn-desktop-translate,
+#app.dynamic-theme #btn-translate-lyrics,
+#app.dynamic-theme #btn-desktop-tab-letter,
+#app.dynamic-theme #btn-desktop-tab-lyrics,
+#app.dynamic-theme #progress-fill,
+#app.dynamic-theme #progress-thumb,
+#app.dynamic-theme .lyric-line,
+#app.dynamic-theme #playlist-overlay h3,
+#app.dynamic-theme #settings-overlay h3,
+#app.dynamic-theme .track-item,
+#app.dynamic-theme #btn-open-settings,
+#app.dynamic-theme #btn-toggle-special,
+#app.dynamic-theme #btn-close-playlist,
+#app.dynamic-theme #btn-close-settings,
+#app.dynamic-theme #screen-player #btn-back-welcome,
+#app.dynamic-theme #screen-player #btn-toggle-playlist,
+#app.dynamic-theme #screen-player .text-palo-rosa-600,
+#app.dynamic-theme #screen-player .text-palo-rosa-500 {
+  transition: color 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              background-color 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              background-image 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              text-shadow 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              --primary-theme-color 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              --secondary-theme-color 3.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+              --light-theme-accent 3.5s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+#app.dynamic-theme #song-title {
+  color: var(--secondary-theme-color) !important;
+}
+
+#app.dynamic-theme #btn-like {
+  color: var(--primary-theme-color) !important;
+}
+
+#app.dynamic-theme #btn-play-pause {
+  background-color: var(--primary-theme-color) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 4px 10px var(--light-theme-accent) !important;
+}
+
+#app.dynamic-theme #btn-prev,
+#app.dynamic-theme #btn-next {
+  color: var(--primary-theme-color) !important;
+  opacity: 0.7;
+}
+
+#app.dynamic-theme #btn-prev:active,
+#app.dynamic-theme #btn-next:active {
+  opacity: 1;
+}
+
+#app.dynamic-theme #btn-open-letter,
+#app.dynamic-theme #btn-open-lyrics,
+#app.dynamic-theme #btn-desktop-translate,
+#app.dynamic-theme #btn-translate-lyrics {
+  color: var(--secondary-theme-color) !important;
+  background-color: var(--light-theme-accent) !important;
+}
+
+/* Desktop tab active vs inactive states */
+#app.dynamic-theme #btn-desktop-tab-letter.bg-palo-rosa-500,
+#app.dynamic-theme #btn-desktop-tab-lyrics.bg-palo-rosa-500 {
+  background-color: var(--primary-theme-color) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px var(--light-theme-accent) !important;
+}
+
+#app.dynamic-theme #btn-desktop-tab-letter.bg-palo-rosa-100,
+#app.dynamic-theme #btn-desktop-tab-lyrics.bg-palo-rosa-100 {
+  background-color: var(--light-theme-accent) !important;
+  color: var(--secondary-theme-color) !important;
+}
+
+#app.dynamic-theme #progress-fill {
+  background: linear-gradient(
+    90deg,
+    var(--light-theme-accent) 0%,
+    var(--primary-theme-color) 100%
+  ) !important;
+}
+
+#app.dynamic-theme #progress-thumb {
+  background-color: var(--primary-theme-color) !important;
+}
+
+#app.dynamic-theme .progress-wave {
+  background-color: var(--primary-theme-color) !important;
+  opacity: 0.15;
+}
+
+/* Inactive lyrics: use the extracted primary hue variable with a light tone */
+#app.dynamic-theme .lyric-line {
+  color: hsla(var(--primary-theme-hue, 351), 20%, 35%, 0.35) !important;
+  text-shadow: none !important;
+}
+
+#app.dynamic-theme .lyric-line.active {
+  color: var(--primary-theme-color) !important;
+  opacity: 1 !important;
+  text-shadow: 0 0 20px var(--light-theme-accent) !important;
+}
+
+#app.dynamic-theme #playlist-overlay h3,
+#app.dynamic-theme #settings-overlay h3 {
+  color: var(--primary-theme-color) !important;
+}
+
+#app.dynamic-theme .track-item.bg-palo-rosa-200\/60 {
+  background-color: var(--light-theme-accent) !important;
+  border-left: 3px solid var(--primary-theme-color);
+}
+
+#app.dynamic-theme .track-item .active-indicator {
+  color: var(--primary-theme-color) !important;
+}
+
+/* Dynamic styling for letter texts */
+#app.dynamic-theme #letter-text,
+#app.dynamic-theme #desktop-letter-text {
+  color: var(--secondary-theme-color) !important;
+}
+
+/* Dynamic styling for headers and text indicators */
+#app.dynamic-theme #screen-player #btn-back-welcome,
+#app.dynamic-theme #screen-player #btn-toggle-playlist {
+  color: var(--primary-theme-color) !important;
+}
+
+#app.dynamic-theme #screen-player .text-palo-rosa-600 {
+  color: var(--primary-theme-color) !important;
+}
+
+#app.dynamic-theme #screen-player .text-palo-rosa-500 {
+  color: var(--primary-theme-color) !important;
+}
+
+/* Settings button in playlist footer */
+#app.dynamic-theme #btn-open-settings {
+  background-color: var(--light-theme-accent) !important;
+  color: var(--primary-theme-color) !important;
+  box-shadow: 0 4px 10px var(--light-theme-accent) !important;
+}
+
+/* Settings Switch button when enabled */
+#app.dynamic-theme #btn-toggle-special.bg-palo-rosa-500 {
+  background-color: var(--primary-theme-color) !important;
+}
+
+/* Close buttons in overlays */
+#app.dynamic-theme #btn-close-playlist,
+#app.dynamic-theme #btn-close-settings {
+  color: var(--primary-theme-color) !important;
 }
 

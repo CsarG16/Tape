@@ -28,6 +28,7 @@ let heartsInterval = null;
 let lastActiveIndex = -1; // Rastreador de línea activa de karaoke
 let animationFrameId = null; // ID para el loop de requestAnimationFrame
 let currentLanguage = 'EN'; // Idioma actual de las letras ('EN' o 'ES')
+let specialOptionEnabled = true; // Estado de la opción especial en ajustes
 
 // Detector de pantalla grande para layout responsivo
 const isDesktop = () => window.matchMedia('(min-width: 1280px)').matches;
@@ -46,6 +47,10 @@ const btnEnter = document.getElementById('btn-enter');
 const btnGoToPlayer = document.getElementById('btn-go-to-player');
 const btnBackWelcome = document.getElementById('btn-back-welcome');
 const btnTogglePlaylist = document.getElementById('btn-toggle-playlist');
+const btnOpenSettings = document.getElementById('btn-open-settings');
+const btnCloseSettings = document.getElementById('btn-close-settings');
+const btnToggleSpecial = document.getElementById('btn-toggle-special');
+const settingsOverlay = document.getElementById('settings-overlay');
 
 // Voice Note Player Elements
 const btnPlayVoice = document.getElementById('btn-play-voice');
@@ -61,6 +66,9 @@ const voiceNoteAudio = document.getElementById('voice-note-audio');
 const audioPlayer = document.getElementById('audio-player');
 const vinyl = document.getElementById('vinyl');
 const albumCover = document.getElementById('album-cover');
+if (albumCover) {
+  albumCover.crossOrigin = "anonymous";
+}
 const songTitle = document.getElementById('song-title');
 const songArtist = document.getElementById('song-artist');
 
@@ -140,7 +148,8 @@ function loadTrack(index) {
   letterText.textContent = track.message;
   if (albumCover) {
     const base = import.meta.env.BASE_URL;
-    albumCover.src = track.cover || `${base}album_art.png`;
+    const coverUrl = track.cover || `${base}album_art.png`;
+    albumCover.src = coverUrl + (coverUrl.includes('?') ? '&' : '?') + 't=' + Date.now();
   }
   
   // Renderizar las letras de karaoke dinámicamente (mobile)
@@ -184,6 +193,7 @@ function loadTrack(index) {
   
   // Highlight active item in playlist bottom sheet
   updatePlaylistActiveState();
+  applyDynamicTheme();
 }
 
 // Generador de interfaz de letras sincronizadas
@@ -811,14 +821,226 @@ function scrollToControls() {
   }, 650);
 }
 
+// Convert RGB to HSL for dynamic contrast adjustments
+function rgbToHsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+  if (max === min) {
+    h = s = 0;
+  } else {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+}
+
+// Helper to parse rgba string to solid rgb
+function parseRGBA(rgbaStr) {
+  const match = rgbaStr.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*[\d.]+)?\)/);
+  if (match) {
+    return { r: parseInt(match[1], 10), g: parseInt(match[2], 10), b: parseInt(match[3], 10) };
+  }
+  return { r: 202, g: 124, b: 131 };
+}
+
+// Extract dominant color from image element using canvas with vibrancy scoring
+function getDominantColors(imgEl) {
+  if (!imgEl || !imgEl.complete || imgEl.naturalWidth === 0) {
+    return null;
+  }
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 30;
+    canvas.height = 30;
+    ctx.drawImage(imgEl, 0, 0, 30, 30);
+    const imgData = ctx.getImageData(0, 0, 30, 30).data;
+
+    let bestColor = null;
+    let maxScore = -1;
+    let rSum = 0, gSum = 0, bSum = 0, count = 0;
+
+    for (let i = 0; i < imgData.length; i += 4) {
+      const r = imgData[i];
+      const g = imgData[i+1];
+      const b = imgData[i+2];
+      const a = imgData[i+3];
+      if (a < 220) continue; // Ignore transparent pixels
+
+      rSum += r;
+      gSum += g;
+      bSum += b;
+      count++;
+
+      // Convert pixel to HSL for scoring vibrancy
+      const hsl = rgbToHsl(r, g, b);
+      
+      // Calculate a vibrancy score favoring saturated colors that aren't near-black (L < 12) or near-white (L > 92)
+      if (hsl.l > 12 && hsl.l < 92) {
+        // Score: Saturation is the main driver, with a small weight to center lightness around 50%
+        const score = hsl.s * (1 - Math.abs(hsl.l - 50) / 100);
+        if (score > maxScore) {
+          maxScore = score;
+          bestColor = { r, g, b };
+        }
+      }
+    }
+
+    // Fall back to average color if no good colorful pixel is found
+    if ((!bestColor || maxScore < 5) && count > 0) {
+      bestColor = {
+        r: Math.round(rSum / count),
+        g: Math.round(gSum / count),
+        b: Math.round(bSum / count)
+      };
+    }
+
+    return bestColor || { r: 202, g: 124, b: 131 };
+  } catch (e) {
+    console.error("Error in getDominantColors:", e);
+    return null;
+  }
+}
+
+function applyDynamicTheme() {
+  const appElement = document.getElementById('app');
+  if (!appElement) return;
+
+  const track = playlist[currentIndex];
+
+  if (specialOptionEnabled && playlist.length > 0) {
+    let rgb = null;
+    if (track.title === "Tus ojos") {
+      rgb = { r: 40, g: 90, b: 165 }; // Blue override for Los Cafres
+    } else if (track.title === "My Favorite Part") {
+      rgb = { r: 202, g: 124, b: 131 }; // Default palo rosa override for Mac Miller
+    } else if (track.title === "Salto") {
+      rgb = { r: 175, g: 215, b: 180 }; // Soft mint pastel green override for El Joven Paiva
+    } else {
+      const extracted = getDominantColors(albumCover);
+      if (extracted) {
+        rgb = extracted;
+      } else if (track.glowColors && track.glowColors.glow1) {
+        rgb = parseRGBA(track.glowColors.glow1);
+      } else {
+        rgb = { r: 202, g: 124, b: 131 };
+      }
+    }
+
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    let hue = hsl.h;
+    
+    // Formulate a beautiful pastel color scheme:
+    // 1. Primary theme color (accent, play button, active lyrics): Saturated but not too bright
+    let primarySat = Math.max(45, Math.min(70, hsl.s));
+    // 2. Background color (light accent): Very light and soft, desaturated (pastel wash)
+    let bgSat = Math.max(12, Math.min(22, hsl.s));
+    
+    // Fallback for grayscale images
+    if (hsl.s < 10) {
+      hue = 351;
+      primarySat = 35;
+      bgSat = 15;
+    }
+
+        const primaryColor = `hsl(${hue}, ${primarySat}%, 45%)`;
+    const secondaryColor = `hsl(${hue}, ${primarySat}%, 28%)`;
+    const lightAccent = `hsl(${hue}, ${bgSat}%, 88%)`; // More present, beautiful pastel background tone
+    const bgThemeLight = `hsl(${hue}, ${Math.max(8, bgSat - 4)}%, 94%)`; // Smooth lighter gradient endpoint
+
+    // Apply variables to document.body so they inherit everywhere (including outside the main app wrapper)
+    document.body.style.setProperty('--primary-theme-hue', hue);
+    document.body.style.setProperty('--primary-theme-color', primaryColor);
+    document.body.style.setProperty('--secondary-theme-color', secondaryColor);
+    document.body.style.setProperty('--light-theme-accent', lightAccent);
+    document.body.style.setProperty('--bg-theme-light', bgThemeLight);
+
+    document.body.classList.add('dynamic-theme');
+    appElement.classList.add('dynamic-theme');
+
+    // Update ambient glows dynamically to match the theme color with very light opacities
+    if (glow1 && glow2 && glow3) {
+      glow1.style.backgroundColor = `hsla(${hue}, ${primarySat}%, 45%, 0.35)`;
+      glow2.style.backgroundColor = `hsla(${hue}, ${primarySat}%, 65%, 0.35)`;
+      glow3.style.backgroundColor = `hsla(${hue}, ${primarySat}%, 85%, 0.25)`;
+    }
+  } else {
+    document.body.classList.remove('dynamic-theme');
+    appElement.classList.remove('dynamic-theme');
+    
+    document.body.style.removeProperty('--primary-theme-hue');
+    document.body.style.removeProperty('--primary-theme-color');
+    document.body.style.removeProperty('--secondary-theme-color');
+    document.body.style.removeProperty('--light-theme-accent');
+    document.body.style.removeProperty('--bg-theme-light');
+
+    // Revert ambient glows to original track colors
+    if (track && track.glowColors) {
+      if (glow1) glow1.style.backgroundColor = track.glowColors.glow1;
+      if (glow2) glow2.style.backgroundColor = track.glowColors.glow2;
+      if (glow3) glow3.style.backgroundColor = track.glowColors.glow3;
+    }
+  }
+}
+
 // Overlay Toggle Functions (Lista de Reproducción)
+function checkSpotifyBtnVisibility() {
+  const spotifyBtn = document.getElementById('spotify-playlist-btn');
+  if (!spotifyBtn || !playlistTracksContainer) return;
+  const isScrollable = playlistTracksContainer.scrollHeight > playlistTracksContainer.clientHeight;
+  const isAtBottom = !isScrollable || (playlistTracksContainer.scrollHeight - playlistTracksContainer.scrollTop <= playlistTracksContainer.clientHeight + 15);
+  if (isAtBottom) {
+    spotifyBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+    spotifyBtn.classList.add('opacity-100', 'translate-y-0');
+  } else {
+    spotifyBtn.classList.remove('opacity-100', 'translate-y-0');
+    spotifyBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+  }
+}
+
 function openPlaylistSheet() {
   screenPlayer.scrollTo({ top: 0, behavior: 'auto' });
   playlistOverlay.classList.remove('translate-y-full');
+  setTimeout(checkSpotifyBtnVisibility, 100);
 }
 
 function closePlaylistSheet() {
   playlistOverlay.classList.add('translate-y-full');
+}
+
+function openSettingsSheet() {
+  closePlaylistSheet();
+  if (settingsOverlay) {
+    settingsOverlay.classList.remove('translate-y-full');
+  }
+}
+
+function closeSettingsSheet() {
+  if (settingsOverlay) {
+    settingsOverlay.classList.add('translate-y-full');
+  }
+}
+
+function updateSpecialOptionUI() {
+  const switchBtn = document.getElementById('btn-toggle-special');
+  if (!switchBtn) return;
+  const knob = switchBtn.querySelector('span');
+  if (specialOptionEnabled) {
+    switchBtn.classList.remove('bg-neutral-200');
+    switchBtn.classList.add('bg-palo-rosa-500');
+    if (knob) knob.classList.add('translate-x-6');
+  } else {
+    switchBtn.classList.remove('bg-palo-rosa-500');
+    switchBtn.classList.add('bg-neutral-200');
+    if (knob) knob.classList.remove('translate-x-6');
+  }
 }
 
 // Floating Hearts Particle Engine (Únicamente corazones anatómicos)
@@ -993,6 +1215,7 @@ function handleGoToPlayer() {
     screenPlayer.offsetHeight;
     screenPlayer.classList.remove('opacity-0');
     screenPlayer.classList.add('opacity-100');
+    applyDynamicTheme(); // Apply dynamic theme on page entry
   }, 600);
 }
 
@@ -1001,6 +1224,18 @@ function handleBackToWelcome() {
   pauseTrack();
   screenPlayer.classList.remove('opacity-100');
   screenPlayer.classList.add('opacity-0');
+  
+  // Revert body background immediately to prevent leak to Welcome screen
+  document.body.classList.remove('dynamic-theme');
+  const appElement = document.getElementById('app');
+  if (appElement) {
+    appElement.classList.remove('dynamic-theme');
+  }
+  document.body.style.removeProperty('--primary-theme-hue');
+  document.body.style.removeProperty('--primary-theme-color');
+  document.body.style.removeProperty('--secondary-theme-color');
+  document.body.style.removeProperty('--light-theme-accent');
+  document.body.style.removeProperty('--bg-theme-light');
   
   setTimeout(() => {
     screenPlayerContainer.style.display = 'none';
@@ -1025,6 +1260,20 @@ btnGoToPlayer.addEventListener('click', handleGoToPlayer);
 btnBackWelcome.addEventListener('click', handleBackToWelcome);
 btnTogglePlaylist.addEventListener('click', openPlaylistSheet);
 btnClosePlaylist.addEventListener('click', closePlaylistSheet);
+
+if (playlistTracksContainer) {
+  playlistTracksContainer.addEventListener('scroll', checkSpotifyBtnVisibility);
+}
+
+if (btnOpenSettings) btnOpenSettings.addEventListener('click', openSettingsSheet);
+if (btnCloseSettings) btnCloseSettings.addEventListener('click', closeSettingsSheet);
+if (btnToggleSpecial) {
+  btnToggleSpecial.addEventListener('click', () => {
+    specialOptionEnabled = !specialOptionEnabled;
+    updateSpecialOptionUI();
+    applyDynamicTheme();
+  });
+}
 
 // Carta scroll triggers
 btnOpenLetter.addEventListener('click', scrollToLetter);
@@ -1075,8 +1324,13 @@ btnLike.addEventListener('click', () => {
 
 // Close sheets when clicking outside them
 document.addEventListener('click', (e) => {
-  if (!playlistOverlay.contains(e.target) && !btnTogglePlaylist.contains(e.target) && !playlistOverlay.classList.contains('translate-y-full')) {
-    closePlaylistSheet();
+  if (playlistOverlay && !playlistOverlay.contains(e.target) && !btnTogglePlaylist.contains(e.target) && !playlistOverlay.classList.contains('translate-y-full')) {
+    if (!btnOpenSettings || !btnOpenSettings.contains(e.target)) {
+      closePlaylistSheet();
+    }
+  }
+  if (settingsOverlay && !settingsOverlay.contains(e.target) && !btnOpenSettings.contains(e.target) && !settingsOverlay.classList.contains('translate-y-full')) {
+    closeSettingsSheet();
   }
 });
 
@@ -1110,6 +1364,12 @@ if (btnDesktopTranslate) {
 
 // App Startup
 document.addEventListener('DOMContentLoaded', () => {
+  if (albumCover) {
+    albumCover.addEventListener('load', () => {
+      applyDynamicTheme();
+    });
+  }
+  updateSpecialOptionUI();
   buildPlaylistUI();
   loadTrack(0);
   initScrollAnimations();
