@@ -1195,6 +1195,13 @@ function handleEnter() {
 
   screenWelcome.classList.add('opacity-0', 'scale-95');
   
+  // Hide hanging bear immediately on transition start
+  const hangingBear = document.getElementById('hanging-container-bear');
+  if (hangingBear) {
+    hangingBear.style.display = 'none';
+    hangingBear.classList.remove('is-hanging');
+  }
+  
   setTimeout(() => {
     screenWelcomeContainer.style.display = 'none';
     screenStoryContainer.style.display = 'block';
@@ -1202,11 +1209,37 @@ function handleEnter() {
     screenStory.offsetHeight;
     screenStory.classList.remove('opacity-0');
     screenStory.classList.add('opacity-100');
+
+    // Show peeking bears on story page
+    const pinkBear = document.getElementById('peeking-container-pink');
+    const blueBear = document.getElementById('peeking-container-blue');
+    if (pinkBear) pinkBear.style.display = 'block';
+    if (blueBear) blueBear.style.display = 'block';
+
+    // Hide hanging bear on story page and reset state
+    const hangingBear = document.getElementById('hanging-container-bear');
+    if (hangingBear) {
+      hangingBear.style.display = 'none';
+      hangingBear.classList.remove('is-hanging');
+    }
   }, 600);
 }
 
 // Transition 2: Scroll Story -> Player
 function handleGoToPlayer() {
+  // Hide peeking bears on the player view
+  const pinkBear = document.getElementById('peeking-container-pink');
+  const blueBear = document.getElementById('peeking-container-blue');
+  if (pinkBear) pinkBear.style.display = 'none';
+  if (blueBear) blueBear.style.display = 'none';
+
+  // Hide hanging bear on the player view and reset state
+  const hangingBear = document.getElementById('hanging-container-bear');
+  if (hangingBear) {
+    hangingBear.style.display = 'none';
+    hangingBear.classList.remove('is-hanging');
+  }
+
   if (!heartsInterval) {
     heartsInterval = setInterval(createFloatingHeart, 450);
   }
@@ -1249,6 +1282,19 @@ function handleBackToWelcome() {
     screenWelcome.style.display = 'flex';
     screenWelcome.offsetHeight;
     screenWelcome.classList.remove('opacity-0', 'scale-95');
+    
+    // Hide peeking bears when returning to welcome screen
+    const pinkBear = document.getElementById('peeking-container-pink');
+    const blueBear = document.getElementById('peeking-container-blue');
+    if (pinkBear) pinkBear.style.display = 'none';
+    if (blueBear) blueBear.style.display = 'none';
+
+    // Show hanging bear when returning to welcome screen and reset state
+    const hangingBear = document.getElementById('hanging-container-bear');
+    if (hangingBear) {
+      hangingBear.style.display = 'flex';
+      hangingBear.classList.remove('is-hanging');
+    }
     
     // Resetear posición de scroll del reproductor
     screenPlayer.scrollTo({ top: 0, behavior: 'auto' });
@@ -1368,6 +1414,53 @@ if (btnDesktopTranslate) {
   });
 }
 
+// Generic Peeking Mascot Controller (Starts hidden, peeks on tap, auto-retracts on mobile after 15s)
+function initPeekingMascot(containerId, activeTime = 15000) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  let retractTimeout = null;
+  
+  const activatePeek = () => {
+    container.classList.add('peeking-active');
+    
+    // Clear any existing timer
+    if (retractTimeout) clearTimeout(retractTimeout);
+    
+    // Automatically retract after activeTime (on all devices)
+    retractTimeout = setTimeout(() => {
+      container.classList.remove('peeking-active');
+    }, activeTime);
+  };
+  
+  // Toggle peek on click/tap
+  container.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (container.classList.contains('peeking-active')) {
+      container.classList.remove('peeking-active');
+      if (retractTimeout) clearTimeout(retractTimeout);
+    } else {
+      activatePeek();
+    }
+  });
+}
+
+// Dedicated Hanging Mascot Controller (Separate behavior for the purple bear)
+function initHangingMascot() {
+  const container = document.getElementById('hanging-container-bear');
+  if (!container) return;
+  
+  const body = container.querySelector('.hanging-bear-body');
+  if (!body) return;
+  
+  body.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    container.classList.toggle('is-hanging');
+  });
+}
+
 // App Startup
 document.addEventListener('DOMContentLoaded', () => {
   if (albumCover) {
@@ -1399,6 +1492,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const base = import.meta.env.BASE_URL;
     imgCarebear.src = `${base}carebear.png`;
   }
+
+  // Set Peeking Carebear Pink image source dynamically
+  const peekingCarebearPink = document.getElementById('peeking-carebear-pink');
+  if (peekingCarebearPink) {
+    const base = import.meta.env.BASE_URL;
+    peekingCarebearPink.src = `${base}carebear.png`;
+  }
+
+  // Set Peeking Carebear Blue image source dynamically
+  const peekingCarebearBlue = document.getElementById('peeking-carebear-blue');
+  if (peekingCarebearBlue) {
+    const base = import.meta.env.BASE_URL;
+    peekingCarebearBlue.src = `${base}carebearazul.png`;
+  }
+
+  // Set Hanging Carebear Image source dynamically
+  const hangingCarebearImg = document.getElementById('hanging-carebear-img');
+  if (hangingCarebearImg) {
+    const base = import.meta.env.BASE_URL;
+    hangingCarebearImg.src = `${base}carebearmorado.png`;
+  }
+  
+  // Initialize peeking mascot controllers
+  initPeekingMascot('peeking-container-pink', 15000);
+  initPeekingMascot('peeking-container-blue', 15000);
+
+  // Initialize hanging mascot controller
+  initHangingMascot();
   
   screenStoryContainer.style.display = 'none';
   screenPlayerContainer.style.display = 'none';

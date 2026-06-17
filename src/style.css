@@ -800,3 +800,256 @@ body.dynamic-theme {
   );
 }
 
+/* Mascotas Asomadizas (Peeking Mascots) */
+.peeking-mascot {
+  position: fixed !important;
+  z-index: 50 !important;
+  transition: all 0.5s ease-out !important;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  display: none;
+}
+.peeking-mascot img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transition: transform 0.3s ease-out !important;
+}
+
+/* Pink Bear (Right) */
+#peeking-container-pink {
+  right: -80px !important; /* w-28 = 112px, so 32px is visible */
+  top: 35% !important;
+}
+#peeking-container-pink img {
+  transform: rotate(5deg) !important;
+}
+#peeking-container-pink.peeking-active {
+  transform: translateX(-40px) !important;
+}
+#peeking-container-pink.peeking-active img {
+  transform: rotate(-20deg) !important;
+}
+
+@media (hover: hover) {
+  #peeking-container-pink:hover {
+    transform: translateX(-40px) !important;
+  }
+  #peeking-container-pink:hover img {
+    transform: rotate(-20deg) !important;
+  }
+}
+
+/* Blue Bear (Left) */
+#peeking-container-blue {
+  left: -95px !important; /* Adjusted to -90px so ears peek out and are visible at rest */
+  top: 55% !important;
+}
+#peeking-container-blue img {
+  transform: rotate(90deg) !important;
+}
+#peeking-container-blue.peeking-active {
+  transform: translateX(41px) !important;
+}
+#peeking-container-blue.peeking-active img {
+  transform: rotate(90deg) !important;
+}
+
+@media (hover: hover) {
+  #peeking-container-blue:hover {
+    transform: translateX(41px) !important;
+  }
+  #peeking-container-blue:hover img {
+    transform: rotate(90deg) !important;
+  }
+}
+
+/* Responsive adjustments for larger screens (Tablets/PCs) */
+
+/* 1. Tablets (width >= 768px): Make bears larger, keep cellular offsets */
+@media (min-width: 768px) {
+  #peeking-container-pink {
+    width: 144px !important;
+    height: 144px !important;
+    right: -80px !important;
+  }
+  #peeking-container-pink.peeking-active {
+    transform: translateX(-40px) !important;
+  }
+  
+  #peeking-container-blue {
+    width: 176px !important;
+    height: 176px !important;
+    left: -95px !important;
+  }
+  #peeking-container-blue.peeking-active {
+    transform: translateX(41px) !important;
+  }
+}
+
+@media (min-width: 768px) and (hover: hover) {
+  #peeking-container-pink:hover {
+    transform: translateX(-40px) !important;
+  }
+  #peeking-container-blue:hover {
+    transform: translateX(41px) !important;
+  }
+}
+
+/* 2. PC/Laptops (width >= 1024px): Make bears even larger, keep cellular offsets */
+@media (min-width: 1024px) {
+  #peeking-container-pink {
+    width: 176px !important;
+    height: 176px !important;
+    right: -100px !important;
+  }
+  #peeking-container-pink.peeking-active {
+    transform: translateX(-40px) !important;
+  }
+  
+  #peeking-container-blue {
+    width: 208px !important;
+    height: 208px !important;
+    left: -130px !important;
+  }
+  #peeking-container-blue.peeking-active {
+    transform: translateX(52px) !important;
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) {
+  #peeking-container-pink:hover {
+    transform: translateX(-40px) !important;
+  }
+  #peeking-container-blue:hover {
+    transform: translateX(52px) !important;
+  }
+}
+
+/* ==========================================
+   Hanging Carebear (Osito Colgante Morado)
+   ========================================== */
+.hanging-bear-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 20% !important;
+  z-index: 50 !important;
+  display: flex; /* Lives on welcome screen by default */
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none; /* Don't block screen interactions */
+  transform-origin: top center;
+  --rope-connection-offset: -10px; /* Adjust this to slide the bear's feet up/down and align perfectly with the rope */
+}
+
+/* Rope that extends down (Simula una cuerda trenzada con gradiente diagonal y sombra 3D) */
+.hanging-rope {
+  width: 4px; /* Un poco más gruesa para que se aprecie la textura */
+  background: repeating-linear-gradient(
+    -45deg,
+    #CA7C83,
+    #CA7C83 3px,
+    #B56A72 3px,
+    #B56A72 6px
+  ); /* Efecto de hebras trenzadas diagonales */
+  box-shadow: 
+    inset -1px 0 1px rgba(255, 255, 255, 0.2), /* Brillo en el borde */
+    inset 1px 0 2px rgba(0, 0, 0, 0.15),       /* Sombra interna para dar volumen 3D */
+    1px 2px 3px rgba(0, 0, 0, 0.1);            /* Sombra proyectada detrás de la cuerda */
+  border-radius: 4px;
+  height: 0;
+  transition: height 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2) !important;
+}
+
+/* Bear body container (paws initially visible) */
+.hanging-bear-body {
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  pointer-events: auto; /* Clickable */
+  transform: translateY(-50px); /* Adjusted to -50px to show more of the body and account for transparent margins */
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2) !important;
+}
+
+.hanging-bear-body img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: translateY(var(--rope-connection-offset)) rotate(180deg) !important; /* Upside down and shifted up slightly to connect to the rope */
+}
+
+/* Hanging active state */
+.hanging-bear-container.is-hanging .hanging-rope {
+  height: 120px;
+}
+
+.hanging-bear-container.is-hanging .hanging-bear-body {
+  transform: translateY(0);
+}
+
+/* Fall-and-swing simulation followed by gentle idle swinging */
+.hanging-bear-container.is-hanging {
+  animation: fallAndSwing 4s ease-in-out forwards, idleSwing 6s ease-in-out infinite 4s alternate;
+}
+
+@keyframes fallAndSwing {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(25deg); /* Bounce swing */
+  }
+  40% {
+    transform: rotate(-20deg);
+  }
+  60% {
+    transform: rotate(12deg);
+  }
+  80% {
+    transform: rotate(-6deg);
+  }
+  95% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes idleSwing {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+  100% {
+    transform: rotate(-1.5deg);
+  }
+}
+
+/* Responsive sizes for Hanging Bear */
+@media (min-width: 768px) {
+  .hanging-bear-body {
+    width: 120px;
+    height: 120px;
+    transform: translateY(-70px); /* Adjusted to -70px */
+  }
+  .hanging-bear-container.is-hanging .hanging-rope {
+    height: 170px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hanging-bear-body {
+    width: 150px;
+    height: 150px;
+    transform: translateY(-90px); /* Adjusted to -90px */
+  }
+  .hanging-bear-container.is-hanging .hanging-rope {
+    height: 220px;
+  }
+}
+
+
