@@ -235,27 +235,32 @@ html, body {
               0 0 4px rgba(202, 124, 131, 0.2);
 }
 
-/* Ocultar el relleno de progreso plano cuando se muestran las ondas */
+/* Difuminar el relleno plano cerca del origen cuando se muestran las ondas para que se unan suavemente */
 .progress-bar-container.is-playing:not(.active) .progress-fill {
-  opacity: 0;
+  -webkit-mask-image: linear-gradient(to right, white 0px, white 8px, transparent 24px);
+  mask-image: linear-gradient(to right, white 0px, white 8px, transparent 24px);
 }
 
-/* Animaciones de oscilación de las ondas (punto de origen y nodos estáticos) */
-@keyframes waveOscillate1 {
-  0%, 100% {
-    transform: scaleY(1);
+/* Animaciones de desplazamiento de las ondas */
+@keyframes waveMoveLeft {
+  0% {
+    -webkit-mask-position: 0px center;
+    mask-position: 0px center;
   }
-  50% {
-    transform: scaleY(-1);
+  100% {
+    -webkit-mask-position: -120px center;
+    mask-position: -120px center;
   }
 }
 
-@keyframes waveOscillate2 {
-  0%, 100% {
-    transform: scaleY(-0.7);
+@keyframes waveMoveRight {
+  0% {
+    -webkit-mask-position: 0px center;
+    mask-position: 0px center;
   }
-  50% {
-    transform: scaleY(0.7);
+  100% {
+    -webkit-mask-position: -80px;
+    mask-position: -80px center;
   }
 }
 
@@ -272,6 +277,12 @@ html, body {
   z-index: 2;
 }
 
+/* El contenedor de ondas se difumina en el origen para mantener el inicio estático */
+.progress-bar-container.is-playing:not(.active) .progress-wave-container {
+  -webkit-mask-image: linear-gradient(to right, transparent 0px, transparent 8px, white 24px);
+  mask-image: linear-gradient(to right, transparent 0px, transparent 8px, white 24px);
+}
+
 /* Ondas fluidas (estilo espectro de Samsung One UI 8) */
 .progress-wave {
   position: absolute;
@@ -282,7 +293,6 @@ html, body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.35s ease;
-  transform-origin: center center;
 }
 
 .wave-1 {
@@ -312,12 +322,12 @@ html, body {
 /* Mostrar y animar las ondas solo cuando se reproduce y no se arrastra */
 .progress-bar-container.is-playing:not(.active) .wave-1 {
   opacity: 0.8;
-  animation: waveOscillate1 2s ease-in-out infinite;
+  animation: waveMoveLeft 4s linear infinite;
 }
 
 .progress-bar-container.is-playing:not(.active) .wave-2 {
   opacity: 0.45;
-  animation: waveOscillate2 1.4s ease-in-out infinite;
+  animation: waveMoveRight 2.5s linear infinite;
 }
 
 /* Thumb (bolita) — invisible por defecto, aparece al hover/touch */
