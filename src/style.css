@@ -240,30 +240,22 @@ html, body {
   opacity: 0;
 }
 
-/* Animaciones de desplazamiento de las ondas */
-@keyframes waveMoveLeft {
-  0% {
-    background-position-x: 0px;
-    -webkit-mask-position: 0px center;
-    mask-position: 0px center;
+/* Animaciones de oscilación de las ondas (punto de origen y nodos estáticos) */
+@keyframes waveOscillate1 {
+  0%, 100% {
+    transform: scaleY(1);
   }
-  100% {
-    background-position-x: -120px;
-    -webkit-mask-position: -120px center;
-    mask-position: -120px center;
+  50% {
+    transform: scaleY(-1);
   }
 }
 
-@keyframes waveMoveRight {
-  0% {
-    background-position-x: 0px;
-    -webkit-mask-position: 0px center;
-    mask-position: 0px center;
+@keyframes waveOscillate2 {
+  0%, 100% {
+    transform: scaleY(-0.7);
   }
-  100% {
-    background-position-x: -80px;
-    -webkit-mask-position: -80px center;
-    mask-position: -80px center;
+  50% {
+    transform: scaleY(0.7);
   }
 }
 
@@ -290,6 +282,7 @@ html, body {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.35s ease;
+  transform-origin: center center;
 }
 
 .wave-1 {
@@ -319,12 +312,12 @@ html, body {
 /* Mostrar y animar las ondas solo cuando se reproduce y no se arrastra */
 .progress-bar-container.is-playing:not(.active) .wave-1 {
   opacity: 0.8;
-  animation: waveMoveLeft 4s linear infinite;
+  animation: waveOscillate1 2s ease-in-out infinite;
 }
 
 .progress-bar-container.is-playing:not(.active) .wave-2 {
   opacity: 0.45;
-  animation: waveMoveRight 2.5s linear infinite;
+  animation: waveOscillate2 1.4s ease-in-out infinite;
 }
 
 /* Thumb (bolita) — invisible por defecto, aparece al hover/touch */
