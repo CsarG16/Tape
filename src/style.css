@@ -779,3 +779,24 @@ body.dynamic-theme {
   color: var(--primary-theme-color) !important;
 }
 
+/* Efecto de desvanecimiento (fade out) superior e inferior en las pantallas y letras */
+#lyrics-container-scroll,
+#desktop-lyrics-content,
+#screen-welcome,
+#screen-story {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 60px,
+    white calc(100% - 60px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 60px,
+    white calc(100% - 60px),
+    transparent 100%
+  );
+}
+

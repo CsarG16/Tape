@@ -116,6 +116,8 @@ const desktopLetterContent = document.getElementById('desktop-letter-content');
 const desktopLyricsContent = document.getElementById('desktop-lyrics-content');
 const desktopLetterText = document.getElementById('desktop-letter-text');
 const desktopLyricsText = document.getElementById('desktop-lyrics-text');
+const letterSignature = document.getElementById('letter-signature');
+const desktopLetterSignature = document.getElementById('desktop-letter-signature');
 
 // Initialize Playlist Data & State
 function loadTrack(index) {
@@ -146,6 +148,10 @@ function loadTrack(index) {
   songTitle.textContent = track.title;
   songArtist.textContent = track.artist;
   letterText.textContent = track.message;
+  
+  const signatureText = track.signature || "Con todo mi amor, César";
+  if (letterSignature) letterSignature.textContent = signatureText;
+  if (desktopLetterSignature) desktopLetterSignature.textContent = signatureText;
   if (albumCover) {
     const base = import.meta.env.BASE_URL;
     const coverUrl = track.cover || `${base}album_art.png`;
@@ -1378,6 +1384,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (voiceNoteAudio) {
     const base = import.meta.env.BASE_URL;
     voiceNoteAudio.src = `${base}uwu.m4a`;
+  }
+
+  // Set XimenitaKity image source dynamically
+  const imgXimenitaKity = document.getElementById('img-ximenitakity');
+  if (imgXimenitaKity) {
+    const base = import.meta.env.BASE_URL;
+    imgXimenitaKity.src = `${base}XimenitaKity.jpeg`;
   }
   
   screenStoryContainer.style.display = 'none';

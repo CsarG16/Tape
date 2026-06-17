@@ -5,6 +5,7 @@ export const playlist = [
     "src": "/music/Mac Miller - My Favorite Part.mp3",
     "cover": "/album_art/The Divine Feminie.jpg",
     "message": "“Simplemente no sabes lo hermosa que eres, esa es mi parte favorita”, al menos eso dice Mac. Pero mi parte favorita de usted es que, en el fondo y aunque no lo parezca a simple vista, aún vive en ti una niñita chiquitita; que yo pueda cuidarte de todito lo malo, ayudar a levantarte y poder darte la mano en los momentos malos o incluso impulsarte a ser cada día mejorrr y caminar juntitos por la vida... Que seas mi niña bomnita, esa es mi parte favorita. Vida en la cual te estoy amando muchito justo como Mac amó a Ariana. Así que, ¿si yo fuera Mac, sería usted mi Ariana Grande?",
+    "signature": "pero obvio con final feliz",
     "lyrics": [
       {
         "time": 0,

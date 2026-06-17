@@ -16,52 +16,35 @@
         tu ladito para seguir dándote todo mi amorrr.
       </p>
       
-      <div class="w-full max-w-sm mx-auto bg-white/45 backdrop-blur-md border border-palo-rosa-200/40 rounded-2xl p-4 shadow-sm my-6 flex flex-col gap-3">
+      <!-- Reproductor de Nota de Voz Minimalista y Cute -->
+      <!-- Reproductor de Nota de Voz Minimalista y Cute -->
+      <div class="w-full max-w-[320px] mx-auto bg-palo-rosa-100/60 backdrop-blur-md rounded-full px-4 py-2 flex items-center gap-3 my-6">
+        <!-- Botón de Reproducir/Pausar -->
+        <button id="btn-play-voice" class="w-8 h-8 rounded-full bg-palo-rosa-500 hover:bg-palo-rosa-600 text-white flex items-center justify-center shadow-md shadow-palo-rosa-300/30 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0">
+          <svg id="voice-play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 ml-0.5">
+            <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.324-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+          </svg>
+          <svg id="voice-pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3.5 h-3.5 hidden">
+            <path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z" />
+          </svg>
+        </button>
 
-        <div class="flex items-center gap-2.5 text-left pl-1">
-          <div class="w-8 h-8 rounded-full bg-palo-rosa-100 flex items-center justify-center text-palo-rosa-500 shadow-inner flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4.5 h-4.5">
-              <path d="M7 4a3 3 0 016 0v6a3 3 0 11-6 0V4z" />
-              <path d="M5.5 9.643a.75.75 0 00-1.5 0V10c0 3.06 2.267 5.594 5.25 5.954V17.5h-1.5a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-1.5v-1.546A6.001 6.001 0 0016 10v-.357a.75.75 0 00-1.5 0V10a4.5 4.5 0 01-9 0v-.357z" />
-            </svg>
+        <!-- Contenedor de barra de progreso e info -->
+        <div class="flex-grow flex flex-col gap-0.5 min-w-0 pr-1 text-left">
+          <div class="flex justify-between items-baseline">
+            <span class="text-[11px] font-bold text-palo-rosa-700 truncate">Mensaje de voz</span>
+            <span class="text-[10px] font-semibold text-palo-rosa-600/80 font-mono"><span id="voice-time-current">0:00</span> / <span id="voice-time-duration">0:00</span></span>
           </div>
-          <div class="flex-grow min-w-0">
-            <span class="text-xs font-semibold text-palo-rosa-600 block leading-tight truncate">Mensaje de voz de César 🫀</span>
-            <span class="text-[9px] uppercase tracking-wider text-neutral-soft-500 font-bold">Escúchame antes de continuar</span>
+
+          <!-- Barra de progreso -->
+          <div id="voice-progress-container" class="relative w-full h-3 flex items-center cursor-pointer select-none">
+            <div class="w-full h-1 bg-palo-rosa-200 rounded-full relative">
+              <div id="voice-progress-fill" class="absolute left-0 top-0 h-full w-0 bg-palo-rosa-500 rounded-full transition-all duration-75"></div>
+            </div>
+            <div id="voice-progress-thumb" class="absolute left-0 w-2.5 h-2.5 bg-palo-rosa-500 rounded-full border border-white shadow shadow-palo-rosa-300/50 -translate-x-1/2 transition-transform duration-150"></div>
           </div>
         </div>
-        
-        <!-- Fila de reproducción -->
-        <div class="flex items-center gap-3">
-          <!-- Botón de Reproducir/Pausar -->
-          <button id="btn-play-voice" class="w-12 h-12 rounded-full bg-gradient-to-tr from-palo-rosa-500 to-palo-rosa-400 text-white flex items-center justify-center shadow-md shadow-palo-rosa-300/40 hover:scale-105 active:scale-95 transition-all cursor-pointer flex-shrink-0">
-            <svg id="voice-play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ml-0.5">
-              <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.324-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-            </svg>
-            <svg id="voice-pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 hidden">
-              <path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z" />
-            </svg>
-          </button>
-          
-          <!-- Línea de tiempo y barra de progreso -->
-          <div class="flex-grow flex flex-col gap-1.5">
-            <!-- Barra de progreso clickeable -->
-            <div id="voice-progress-container" class="relative w-full h-4 flex items-center cursor-pointer select-none">
-              <div class="w-full h-1.5 bg-palo-rosa-100 rounded-full relative">
-                <div id="voice-progress-fill" class="absolute left-0 top-0 h-full w-0 bg-gradient-to-r from-palo-rosa-400 to-palo-rosa-500 rounded-full transition-all duration-75"></div>
-              </div>
-              <div id="voice-progress-thumb" class="absolute left-0 w-3.5 h-3.5 bg-palo-rosa-500 rounded-full border-2 border-white shadow shadow-palo-rosa-300/50 -translate-x-1/2 scale-100 opacity-0 hover:opacity-100 transition-opacity duration-150"></div>
-            </div>
-            
-            <!-- Tiempos -->
-            <div class="flex justify-between items-center text-[10px] font-semibold text-neutral-soft-500 leading-none px-0.5">
-              <span id="voice-time-current">0:00</span>
-              <span id="voice-time-duration">0:00</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Elemento de audio invisible para la nota de voz -->
+
         <audio id="voice-note-audio" preload="auto"></audio>
       </div>
       
