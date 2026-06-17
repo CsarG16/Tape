@@ -1392,6 +1392,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const base = import.meta.env.BASE_URL;
     imgXimenitaKity.src = `${base}XimenitaKity.jpeg`;
   }
+
+  // Set Carebear image source dynamically
+  const imgCarebear = document.getElementById('img-carebear');
+  if (imgCarebear) {
+    const base = import.meta.env.BASE_URL;
+    imgCarebear.src = `${base}carebear.png`;
+  }
   
   screenStoryContainer.style.display = 'none';
   screenPlayerContainer.style.display = 'none';
