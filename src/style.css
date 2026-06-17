@@ -225,8 +225,8 @@ html, body {
     #CA7C83 45%,
     #B56A72 100%
   );
-  transition: width 0.08s linear;
-  will-change: width;
+  transition: width 0.08s linear, opacity 0.35s ease;
+  will-change: width, opacity;
 }
 
 /* Al arrastrar, el relleno brilla ligeramente */
@@ -235,22 +235,35 @@ html, body {
               0 0 4px rgba(202, 124, 131, 0.2);
 }
 
+/* Ocultar el relleno de progreso plano cuando se muestran las ondas */
+.progress-bar-container.is-playing:not(.active) .progress-fill {
+  opacity: 0;
+}
+
 /* Animaciones de desplazamiento de las ondas */
 @keyframes waveMoveLeft {
   0% {
     background-position-x: 0px;
+    -webkit-mask-position: 0px center;
+    mask-position: 0px center;
   }
   100% {
     background-position-x: -120px;
+    -webkit-mask-position: -120px center;
+    mask-position: -120px center;
   }
 }
 
 @keyframes waveMoveRight {
   0% {
     background-position-x: 0px;
+    -webkit-mask-position: 0px center;
+    mask-position: 0px center;
   }
   100% {
     background-position-x: -80px;
+    -webkit-mask-position: -80px center;
+    mask-position: -80px center;
   }
 }
 
@@ -276,32 +289,41 @@ html, body {
   height: 100%;
   pointer-events: none;
   opacity: 0;
-  background-repeat: repeat-x;
   transition: opacity 0.35s ease;
 }
 
 .wave-1 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30' viewBox='0 0 120 30'%3E%3Cpath d='M 0 15 C 30 3%2C 30 27%2C 60 15 C 90 3%2C 90 27%2C 120 15 L 120 30 L 0 30 Z' fill='rgba(255%2C 255%2C 255%2C 0.22)'/%3E%3C/svg%3E");
-  background-size: 120px 30px;
-  background-position: 0 center;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30' viewBox='0 0 120 30'%3E%3Cpath d='M 0 15 C 30 3%2C 30 27%2C 60 15 C 90 3%2C 90 27%2C 120 15' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='30' viewBox='0 0 120 30'%3E%3Cpath d='M 0 15 C 30 3%2C 30 27%2C 60 15 C 90 3%2C 90 27%2C 120 15' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  -webkit-mask-size: 120px 30px;
+  mask-size: 120px 30px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: 0 center;
+  mask-position: 0 center;
+  background-color: rgba(202, 124, 131, 0.7);
 }
 
 .wave-2 {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 80 30'%3E%3Cpath d='M 0 15 C 20 0%2C 20 30%2C 40 15 C 60 0%2C 60 30%2C 80 15 L 80 30 L 0 30 Z' fill='rgba(255%2C 255%2C 255%2C 0.35)'/%3E%3C/svg%3E");
-  background-size: 80px 30px;
-  background-position: 0 center;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 80 30'%3E%3Cpath d='M 0 15 C 20 0%2C 20 30%2C 40 15 C 60 0%2C 60 30%2C 80 15' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='30' viewBox='0 0 80 30'%3E%3Cpath d='M 0 15 C 20 0%2C 20 30%2C 40 15 C 60 0%2C 60 30%2C 80 15' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  -webkit-mask-size: 80px 30px;
+  mask-size: 80px 30px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: 0 center;
+  mask-position: 0 center;
+  background-color: rgba(202, 124, 131, 0.4);
 }
 
 /* Mostrar y animar las ondas solo cuando se reproduce y no se arrastra */
-.progress-bar-container.is-playing:not(.active) .progress-wave {
-  opacity: 1;
-}
-
 .progress-bar-container.is-playing:not(.active) .wave-1 {
+  opacity: 0.8;
   animation: waveMoveLeft 4s linear infinite;
 }
 
 .progress-bar-container.is-playing:not(.active) .wave-2 {
+  opacity: 0.45;
   animation: waveMoveRight 2.5s linear infinite;
 }
 
@@ -688,7 +710,6 @@ body.dynamic-theme {
 
 #app.dynamic-theme .progress-wave {
   background-color: var(--primary-theme-color) !important;
-  opacity: 0.15;
 }
 
 /* Inactive lyrics: use the extracted primary hue variable with a light tone */
