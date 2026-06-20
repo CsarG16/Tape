@@ -2050,7 +2050,7 @@ export const playlist = [
     "artist": "Amén",
     "src": "/music/Amén - Te Quiero.mp3",
     "cover": "/album_art/Te Quiero.jpg",
-    "message": "Esta canción de rock es pura magia. Su solo y la voz de Marcello me hacen pensar en ese encanto especial que tienes y que me enamora cada vez más de ti. 🫀",
+    "message": "Esta cancioncita la descubrí en la S yendo a la universidad y automáticamente dije: 'Esta tengo que compartirla con usted, tienes que escucharlaaa pero ahorititaaa'. De la misma manera como nosotros no nos buscamos, pero logramos coincidir gracias a las coincidencias del universo, esta canción me encontró a mí para poder compartirla con usted, y siempre será la más especial por eso. 🫀",
     "lyrics": [
       {
         "time": 0,
