@@ -1911,7 +1911,7 @@ export const playlist = [
     "artist": "Los Cafres",
     "src": "/music/Los Cafres - Tus ojos.mp3",
     "cover": "/album_art/Tus Ojos.jpg",
-    "message": "Ximenita, tus ojos son el volcán de tu alma que ilumina mi camino. Ver la belleza de tu mirada me da toda la paz del mundo. Eres mi ángel de verdad. 🫀",
+    "message": "Tus ojos, tus ojos, tus lindos ojitos cafecitos me encantan. Efectivamente son el reflejo de tu alma; en ellos puedo ver si estás triste, feliz o incluso si estás enojadita con tu gabito, pero también veo a tu niñita interior, esa que es feliz con unas gomitas yamps, algo saladito para combinar o la más contenta con un nuevo osito para colección. Veo a mi mujer fuerte que le pone ganas a todo ella solita. En esos ojitos hermososss que me enamoraron al verlos por primera vez de cerquita, sigo viendo un futuro lleno de amor junto a usted.",
     "lyrics": [
       {
         "time": 0,
@@ -2050,7 +2050,7 @@ export const playlist = [
     "artist": "Amén",
     "src": "/music/Amén - Te Quiero.mp3",
     "cover": "/album_art/Te Quiero.jpg",
-    "message": "Esta cancioncita la descubrí en la S yendo a la universidad y automáticamente dije: 'Esta tengo que compartirla con usted, tienes que escucharlaaa pero ahorititaaa'.\n\nDe la misma manera como nosotros no nos buscamos, pero logramos coincidir gracias a las coincidencias del universo, esta canción me encontró a mí para poder compartirla con usted, y siempre será la más especial por eso.",
+    "message": "Esta cancioncita la descubrí en la S yendo a la universidad y automáticamente dije: 'Esta tengo que compartirla con usted, tienes que escucharlaaa pero ahorititaaa'.\n\nDe la misma manera como nosotros no nos buscamos, pero logramos coincidir gracias a las sorpresas del universo, esta canción me encontró a mí para poder compartirla con usted, y siempre será la más especial por eso.",
     "lyrics": [
       {
         "time": 0,
