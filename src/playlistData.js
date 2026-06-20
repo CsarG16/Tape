@@ -209,7 +209,7 @@ export const playlist = [
     "artist": "Grupo Niche",
     "src": "/music/Grupo Niche - Nuestro Sueño.mp3",
     "cover": "/album_art/Nuestro Sueño.jpg",
-    "message": "Esta canción es un clásico de salsa, pero para mí significa nuestro futuro, ese sueño que estamos construyendo juntos día a día. Bailar contigo es mi momento favorito del mundo. 🫀",
+    "message": "Una miradita... Con una miradita empezó todo. Aunque usted no se dio cuenta, yo sí vi a un angelito que parecía aburridita, que no sabía muy bien qué hacer o a dónde mirar.\n\nSin saberlo, un gabito la estaba mirando y pensando al mismo tiempo cómo acercarse: \"Le tengo que hablar, pero ¿qué le digo? No me atrevo, pero si no lo hago, no podré ver esos ojitos de cerquita\".\n\nEn serio, gracias. Seguro que no me aceptaste bailar pensando en que llegaríamos aquí, pero cada acción tomada desde ese momento nos llevó a donde estamos ahora, un año y medio después de esa noche. \"Espero que tú me quemes\", \"quiero que tú me lleves\" y \"que tú nunca me dejes, siempre, siempre\"... Deseo que ese sea nuestro sueño.",
     "lyrics": [
       {
         "time": 0,
@@ -552,7 +552,7 @@ export const playlist = [
     "artist": "Bruno Mars",
     "src": "/music/Bruno Mars - Just The Way You Are.mp3",
     "cover": "/album_art/Just The Way You Are.jpg",
-    "message": "Tus ojos, tu cabello, tu risa... todo de ti es perfecto. Eres increíble tal y como eres. No hay nada en ti que quisiera cambiar, Ximenita. 🫀",
+    "message": "Cada parte de usted me encanta, de pies a cabeza. Me encantas, eres toda una mujer hermosa, hecha para mí y solo para mí. Y se pone Gabito enojadito si piensas que es florito; mil veces no, no es florito, mil veces eres demasiado linda. Todo el mundo quisiera tener el privilegio de estar con una niña tan linda, pero ese privilegio lo tengo yo :p.\n\nPor eso estoy totalmente agradecido por tener a una mujer tan bella en todo el sentido de la palabra, una mujer que vale de verdad. No cambiaría nada de usted; infinitamente la dejaría tal y como es, porque así me enamoré perdidamente de usted.",
     "lyrics": [
       {
         "time": 0,
@@ -841,7 +841,7 @@ export const playlist = [
     "artist": "Aventura",
     "src": "/music/Aventura - Un Beso.mp3",
     "cover": "/album_art/Un Beso.jpg",
-    "message": "Solo por un beso tuyo, mi amor, soy el hombre más feliz de este mundo. Un besito tuyo de verdad me lleva al infinito... 🫀",
+    "message": "Aunque en nuestro caso fue una combinación de verte, agarrarte de la mano, bailar hasta cosas que ni sabía cómo, una conversación en una cocina y un besito en el cachete que me dejó sonsitooo. Y eso que solo fue en el cachetito; no te imaginas lo que causa en mi interior un besito tuyo, mi amorrr. Me descoloca totalmente, me acelera el corazón, me apaga el cerebro y luego lo prende para no perder el ritmo y seguir besándote. Con un besito me puedes matar y con otro besito me puedes devolver a la vida.\n\nEspero que nunca, nunca, nunca me falten tus besitos, y que nunca me falte usted para dármelos.",
     "lyrics": [
       {
         "time": 0,
@@ -1076,7 +1076,7 @@ export const playlist = [
     "artist": "El Joven Paiva",
     "src": "/music/El Joven Paiva - Salto.mp3",
     "cover": "/album_art/Salto.jpg",
-    "message": "Si tú me lo pides, mi amor, ¡salto! Juro que hago lo que sea para enamorarte a ti y verte feliz. Esta cumbia tan tierna es todita para ti. 🫀",
+    "message": "Todo, definitivamente. Sin pensarlo haría todo lo posible a mi alcance, y un poquito más de eso, para poder quedarme para siempre en tu corazoncito. Ahí quiero tener mi casita, quedarme hasta viejito y poder darte todo mi amor hasta que me quede sin aliento, y que mi último suspiro sea un \"teamito\" al oído. Y para lograrlo, hasta saltaría con tal de que usted me permita lograr mi cometido.",
     "lyrics": [
       {
         "time": 0,
@@ -1287,7 +1287,7 @@ export const playlist = [
     "artist": "Queen",
     "src": "/music/Queen - Good Old Fashioned Lover Boy.mp3",
     "cover": "/album_art/Good Old Fashioned Lover Boy.jpg",
-    "message": "Quiero escribirte cartas, sacarte a pasear y ser tu novio clásico a la antigua. Esta obra maestra de Queen es mi forma de cantarte que soy tu fiel servidor amoroso... 🫀",
+    "message": "He aquí otra canción que me encanta. Esta la estaba guardando; se puede decir que nació la idea con esta canción. De hecho, me he demorado demasiado desde que pensé en hacer esto, pido perdón por eso :(\n\nMe encanta Queen, es mi banda favorita, y no sabía de esta canción. No es una de las más conocidas, pero la descubrí al día siguiente de haber pedido que seas mi noviecita y dije: \"La voy a guardar\". Pero hoy finalmente llegó el día.\n\nTenemos que ver juntos la película de Queen, porfi uwu.",
     "lyrics": [
       {
         "time": 0,
@@ -1501,7 +1501,7 @@ export const playlist = [
     "artist": "Pedro Suárez-Vértiz",
     "src": "/music/Pedro Suarez Vertiz - Como las Mariposas.mp3",
     "cover": "/album_art/Como Las Mariposas.jpg",
-    "message": "Mi amor, esta canción describe perfectamente lo que siento cada vez que te veo. Se me alborota el pecho y me llenas de una felicidad inexplicable. Eres mi persona favorita... 🫀",
+    "message": "Bueno, aquí no puedo decir mucho. Solo te pido que escuches cada palabra del gran Pedro Suárez-Vértiz; aquí él me opacaría totalmente y me roba todas las palabras de la boca. No podía no poner una de él. Te podría decir que es de mis cantantes favoritos de todos; es parte de mi infancia, lo escuchaba en unos CDs que mi papá se compró, y gracias a ese gusto que tuve de chiquito, hoy puedo dedicarte esta hermosa canción para usted, mi niña hermosa.",
     "lyrics": [
       {
         "time": 0,
@@ -1648,7 +1648,7 @@ export const playlist = [
     "artist": "Bacilos",
     "src": "/music/Bacilos - Perderme Contigo.mp3",
     "cover": "/album_art/Perderme Contigo.jpg",
-    "message": "Mi vida, perderme contigo en cualquier rincón del mundo es mi mayor aventura. No importa a dónde vayamos, si es a tu lado, todo es perfecto. 🫀",
+    "message": "Si te estoy robando el corazoncito, no es para guardarlo ni para presumir; es para cuidarlo y protegerlo, y juntitos perdernos sin que nos importe lo demás, que juntitos todo pase a otro lado y disfrutemos de las cosas nuevas que nos depara la vidaaa. Solo imagínate a nosotros yendo a donde queramos, disfrutar de la vida por todos lados del mundo y dejar nuestra marquita por todo el mundo. ¡Literalmente metaaaas! Hagamos todo lo posible para cumplirlas, mi amorrrr.",
     "lyrics": [
       {
         "time": 0,
