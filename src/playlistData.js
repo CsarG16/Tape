@@ -554,282 +554,282 @@ export const playlist = [
     "cover": "/album_art/Just The Way You Are.jpg",
     "message": "Cada parte de usted me encanta, de pies a cabeza. Me encantas, eres toda una mujer hermosa, hecha para mí y solo para mí. Y se pone Gabito enojadito si piensas que es florito; mil veces no, no es florito, mil veces eres demasiado linda. Todo el mundo quisiera tener el privilegio de estar con una niña tan linda, pero ese privilegio lo tengo yo :p.\n\nPor eso estoy totalmente agradecido por tener a una mujer tan bella en todo el sentido de la palabra, una mujer que vale de verdad. No cambiaría nada de usted; infinitamente la dejaría tal y como es, porque así me enamoré perdidamente de usted.",
     "lyrics": [
-      {
-        "time": 0,
-        "text": "♪ (Intro de Piano y Beat) ♪",
-        "translation": "♪ (Intro de Piano y Beat) ♪"
-      },
-      {
-        "time": 17.82,
-        "text": "Oh, her eyes, her eyes",
-        "translation": "Oh, sus ojos, sus ojos"
-      },
-      {
-        "time": 19.83,
-        "text": "Make the stars look like they're not shining",
-        "translation": "Hacen que las estrellas parezcan no brillar"
-      },
-      {
-        "time": 22.58,
-        "text": "Her hair, her hair",
-        "translation": "Su cabello, su cabello"
-      },
-      {
-        "time": 24.33,
-        "text": "Falls perfectly without her trying",
-        "translation": "Cae perfectamente sin que ella lo intente"
-      },
-      {
-        "time": 27.2,
-        "text": "She's so beautiful",
-        "translation": "Ella es tan hermosa"
-      },
-      {
-        "time": 29.72,
-        "text": "And I tell her every day",
-        "translation": "Y se lo digo todos los días"
-      },
-      {
-        "time": 34.53,
-        "text": "Yeah, I know, I know",
-        "translation": "Sí, lo sé, lo sé"
-      },
-      {
-        "time": 37.58,
-        "text": "When I compliment her, she won't believe me",
-        "translation": "Cuando la elogio ella no me cree"
-      },
-      {
-        "time": 40.07,
-        "text": "And it's so, it's so",
-        "translation": "Y es tan, tan"
-      },
-      {
-        "time": 41.85,
-        "text": "Sad to think that she don't see what I see",
-        "translation": "Triste pensar que ella no ve lo que yo veo"
-      },
-      {
-        "time": 44.89,
-        "text": "But every time she asks me, \"Do I look okay?\"",
-        "translation": "Pero cada vez que me pregunta '¿me veo bien?'"
-      },
-      {
-        "time": 48.43,
-        "text": "I say",
-        "translation": "Yo digo"
-      },
-      {
-        "time": 51.57,
-        "text": "When I see your face",
-        "translation": "Cuando veo tu rostro"
-      },
-      {
-        "time": 56.16,
-        "text": "There's not a thing that I would change",
-        "translation": "No hay ni una sola cosa que cambiaría"
-      },
-      {
-        "time": 60.95,
-        "text": "'Cause you're amazing",
-        "translation": "Porque eres increíble"
-      },
-      {
-        "time": 63.83,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 69.35,
-        "text": "And when you smile",
-        "translation": "Y cuando sonríes"
-      },
-      {
-        "time": 73.95,
-        "text": "The whole world stops and stares for a while",
-        "translation": "El mundo entero se detiene y se queda mirando por un rato"
-      },
-      {
-        "time": 78.1,
-        "text": "'Cause girl, you're amazing",
-        "translation": "Porque, chica, eres increíble"
-      },
-      {
-        "time": 81.46,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 87.17,
-        "text": "Yeah",
-        "translation": "Sí"
-      },
-      {
-        "time": 88.61,
-        "text": "Her lips, her lips",
-        "translation": "Sus labios, sus labios"
-      },
-      {
-        "time": 90.38,
-        "text": "I could kiss them all day if she'd let me",
-        "translation": "Podría besarlos todo el día si me dejara"
-      },
-      {
-        "time": 93.05,
-        "text": "Her laugh, her laugh",
-        "translation": "Su risa, su risa"
-      },
-      {
-        "time": 94.71,
-        "text": "She hates, but I think it's so sexy",
-        "translation": "La odia, pero a mí me parece tan sexy"
-      },
-      {
-        "time": 97.63,
-        "text": "She's so beautiful",
-        "translation": "Ella es tan hermosa"
-      },
-      {
-        "time": 100.21,
-        "text": "And I tell her every day",
-        "translation": "Y se lo digo todos los días"
-      },
-      {
-        "time": 105.27,
-        "text": "Oh, you know, you know, you know",
-        "translation": "Oh, sabes, sabes, sabes"
-      },
-      {
-        "time": 107.39,
-        "text": "I'd never ask you to change",
-        "translation": "Que nunca te pediría que cambies"
-      },
-      {
-        "time": 110.19,
-        "text": "If perfect's what you're searching for",
-        "translation": "Si lo que buscas es la perfección"
-      },
-      {
-        "time": 112.59,
-        "text": "Then just stay the same",
-        "translation": "Entonces quédate igual"
-      },
-      {
-        "time": 114.52,
-        "text": "So don't even bother asking if you look okay",
-        "translation": "Así que ni te molestes en preguntar si te ves bien"
-      },
-      {
-        "time": 118.63,
-        "text": "You know I'll say",
-        "translation": "Sabes que diré"
-      },
-      {
-        "time": 121.98,
-        "text": "When I see your face",
-        "translation": "Cuando veo tu rostro"
-      },
-      {
-        "time": 126.65,
-        "text": "There's not a thing that I would change",
-        "translation": "No hay ni una sola cosa que cambiaría"
-      },
-      {
-        "time": 131.24,
-        "text": "'Cause you're amazing",
-        "translation": "Porque eres increíble"
-      },
-      {
-        "time": 134.2,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 139.99,
-        "text": "And when you smile",
-        "translation": "Y cuando sonríes"
-      },
-      {
-        "time": 144.12,
-        "text": "The whole world stops and stares for a while",
-        "translation": "El mundo entero se detiene y se queda mirando por un rato"
-      },
-      {
-        "time": 148.78,
-        "text": "'Cause girl, you're amazing",
-        "translation": "Porque, chica, eres increíble"
-      },
-      {
-        "time": 152.05,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 157.22,
-        "text": "The way you are",
-        "translation": "Cómo eres"
-      },
-      {
-        "time": 161.72,
-        "text": "The way you are",
-        "translation": "Cómo eres"
-      },
-      {
-        "time": 166.62,
-        "text": "Girl, you're amazing",
-        "translation": "Chica, eres increíble"
-      },
-      {
-        "time": 169.59,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 174.87,
-        "text": "When I see your face",
-        "translation": "Cuando veo tu rostro"
-      },
-      {
-        "time": 179.55,
-        "text": "There's not a thing that I would change",
-        "translation": "No hay ni una sola cosa que cambiaría"
-      },
-      {
-        "time": 184.04,
-        "text": "'Cause you're amazing",
-        "translation": "Porque eres increíble"
-      },
-      {
-        "time": 187.31,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 192.65,
-        "text": "And when you smile",
-        "translation": "Y cuando sonríes"
-      },
-      {
-        "time": 197,
-        "text": "The whole world stops and stares for a while",
-        "translation": "El mundo entero se detiene y se queda mirando por un rato"
-      },
-      {
-        "time": 201.68,
-        "text": "'Cause girl, you're amazing",
-        "translation": "Porque, chica, eres increíble"
-      },
-      {
-        "time": 204.86,
-        "text": "Just the way you are",
-        "translation": "Tal y como eres"
-      },
-      {
-        "time": 210.18,
-        "text": "Yeah",
-        "translation": "Sí"
-      }
-    ],
+  {
+    "time": 0,
+    "text": "♪ (Intro de Piano y Beat) ♪",
+    "translation": "♪ (Intro de Piano y Beat) ♪"
+  },
+  {
+    "time": 33,
+    "text": "Oh, her eyes, her eyes",
+    "translation": "Oh, sus ojos, sus ojos"
+  },
+  {
+    "time": 35.01,
+    "text": "Make the stars look like they're not shining",
+    "translation": "Hacen que las estrellas parezcan no brillar"
+  },
+  {
+    "time": 37.76,
+    "text": "Her hair, her hair",
+    "translation": "Su cabello, su cabello"
+  },
+  {
+    "time": 39.51,
+    "text": "Falls perfectly without her trying",
+    "translation": "Cae perfectamente sin que ella lo intente"
+  },
+  {
+    "time": 42.38,
+    "text": "She's so beautiful",
+    "translation": "Ella es tan hermosa"
+  },
+  {
+    "time": 44.9,
+    "text": "And I tell her every day",
+    "translation": "Y se lo digo todos los días"
+  },
+  {
+    "time": 49.71,
+    "text": "Yeah, I know, I know",
+    "translation": "Sí, lo sé, lo sé"
+  },
+  {
+    "time": 52.76,
+    "text": "When I compliment her, she won't believe me",
+    "translation": "Cuando la elogio ella no me cree"
+  },
+  {
+    "time": 55.25,
+    "text": "And it's so, it's so",
+    "translation": "Y es tan, tan"
+  },
+  {
+    "time": 57.03,
+    "text": "Sad to think that she don't see what I see",
+    "translation": "Triste pensar que ella no ve lo que yo veo"
+  },
+  {
+    "time": 60.07,
+    "text": "But every time she asks me, \"Do I look okay?\"",
+    "translation": "Pero cada vez que me pregunta '¿me veo bien?'"
+  },
+  {
+    "time": 63.61,
+    "text": "I say",
+    "translation": "Yo digo"
+  },
+  {
+    "time": 66.75,
+    "text": "When I see your face",
+    "translation": "Cuando veo tu rostro"
+  },
+  {
+    "time": 71.34,
+    "text": "There's not a thing that I would change",
+    "translation": "No hay ni una sola cosa que cambiaría"
+  },
+  {
+    "time": 76.13,
+    "text": "'Cause you're amazing",
+    "translation": "Porque eres increíble"
+  },
+  {
+    "time": 79.01,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 84.53,
+    "text": "And when you smile",
+    "translation": "Y cuando sonríes"
+  },
+  {
+    "time": 89.13,
+    "text": "The whole world stops and stares for a while",
+    "translation": "El mundo entero se detiene y se queda mirando por un rato"
+  },
+  {
+    "time": 93.28,
+    "text": "'Cause girl, you're amazing",
+    "translation": "Porque, chica, eres increíble"
+  },
+  {
+    "time": 96.64,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 102.35,
+    "text": "Yeah",
+    "translation": "Sí"
+  },
+  {
+    "time": 103.79,
+    "text": "Her lips, her lips",
+    "translation": "Sus labios, sus labios"
+  },
+  {
+    "time": 105.56,
+    "text": "I could kiss them all day if she'd let me",
+    "translation": "Podría besarlos todo el día si me dejara"
+  },
+  {
+    "time": 108.23,
+    "text": "Her laugh, her laugh",
+    "translation": "Su risa, su risa"
+  },
+  {
+    "time": 109.89,
+    "text": "She hates, but I think it's so sexy",
+    "translation": "La odia, pero a mí me parece tan sexy"
+  },
+  {
+    "time": 112.81,
+    "text": "She's so beautiful",
+    "translation": "Ella es tan hermosa"
+  },
+  {
+    "time": 115.39,
+    "text": "And I tell her every day",
+    "translation": "Y se lo digo todos los días"
+  },
+  {
+    "time": 120.45,
+    "text": "Oh, you know, you know, you know",
+    "translation": "Oh, sabes, sabes, sabes"
+  },
+  {
+    "time": 122.57,
+    "text": "I'd never ask you to change",
+    "translation": "Que nunca te pediría que cambies"
+  },
+  {
+    "time": 125.37,
+    "text": "If perfect's what you're searching for",
+    "translation": "Si lo que buscas es la perfección"
+  },
+  {
+    "time": 127.77,
+    "text": "Then just stay the same",
+    "translation": "Entonces quédate igual"
+  },
+  {
+    "time": 129.7,
+    "text": "So don't even bother asking if you look okay",
+    "translation": "Así que ni te molestes en preguntar si te ves bien"
+  },
+  {
+    "time": 133.81,
+    "text": "You know I'll say",
+    "translation": "Sabes que diré"
+  },
+  {
+    "time": 137.16,
+    "text": "When I see your face",
+    "translation": "Cuando veo tu rostro"
+  },
+  {
+    "time": 141.83,
+    "text": "There's not a thing that I would change",
+    "translation": "No hay ni una sola cosa que cambiaría"
+  },
+  {
+    "time": 146.42,
+    "text": "'Cause you're amazing",
+    "translation": "Porque eres increíble"
+  },
+  {
+    "time": 149.38,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 155.17,
+    "text": "And when you smile",
+    "translation": "Y cuando sonríes"
+  },
+  {
+    "time": 159.3,
+    "text": "The whole world stops and stares for a while",
+    "translation": "El mundo entero se detiene y se queda mirando por un rato"
+  },
+  {
+    "time": 163.96,
+    "text": "'Cause girl, you're amazing",
+    "translation": "Porque, chica, eres increíble"
+  },
+  {
+    "time": 167.23,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 172.4,
+    "text": "The way you are",
+    "translation": "Cómo eres"
+  },
+  {
+    "time": 176.9,
+    "text": "The way you are",
+    "translation": "Cómo eres"
+  },
+  {
+    "time": 181.8,
+    "text": "Girl, you're amazing",
+    "translation": "Chica, eres increíble"
+  },
+  {
+    "time": 184.77,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 190.05,
+    "text": "When I see your face",
+    "translation": "Cuando veo tu rostro"
+  },
+  {
+    "time": 194.73,
+    "text": "There's not a thing that I would change",
+    "translation": "No hay ni una sola cosa que cambiaría"
+  },
+  {
+    "time": 199.22,
+    "text": "'Cause you're amazing",
+    "translation": "Porque eres increíble"
+  },
+  {
+    "time": 202.49,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 207.83,
+    "text": "And when you smile",
+    "translation": "Y cuando sonríes"
+  },
+  {
+    "time": 212.18,
+    "text": "The whole world stops and stares for a while",
+    "translation": "El mundo entero se detiene y se queda mirando por un rato"
+  },
+  {
+    "time": 216.86,
+    "text": "'Cause girl, you're amazing",
+    "translation": "Porque, chica, eres increíble"
+  },
+  {
+    "time": 220.04,
+    "text": "Just the way you are",
+    "translation": "Tal y como eres"
+  },
+  {
+    "time": 225.36,
+    "text": "Yeah",
+    "translation": "Sí"
+  }
+],
     "glowColors": {
       "glow1": "rgba(244, 172, 183, 0.4)",
       "glow2": "rgba(253, 241, 242, 0.5)",
